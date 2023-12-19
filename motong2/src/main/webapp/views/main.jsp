@@ -30,12 +30,12 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                    <li class="nav-item">${sessionScope.ldto.username}님</li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
+                    <li class="nav-item">${sessionScope.ldto.name}님</li>
                     <li class="nav-item"><a class="nav-link" href="">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 목록</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">회비 납입</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
             </div>

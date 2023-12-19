@@ -10,4 +10,10 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+	
+	// 로그인 된 상태 main
+	@GetMapping("/main")
+	public String main() {
+		return "main";
+	}
 }
