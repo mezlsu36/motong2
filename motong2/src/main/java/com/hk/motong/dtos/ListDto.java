@@ -26,7 +26,7 @@ public class ListDto {
 		this.leader = leader;
 		this.account_num = account_num;
 	}
-
+ 
 
 	/**
 	 * @return the moim_seq
