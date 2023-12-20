@@ -1,6 +1,6 @@
 package com.hk.motong.dtos;
 
-public class ListDto {
+public class ListDto { 
 	private int moim_seq;
 	private int leader;
 	private String account_num;
