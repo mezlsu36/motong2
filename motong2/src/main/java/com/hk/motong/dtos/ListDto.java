@@ -4,7 +4,7 @@ public class ListDto {
 	private int moim_seq;
 	private int leader;
 	private String account_num;
-	private String name;
+	private String mname;
 	private int pin;
 	
 	public ListDto() {
@@ -12,12 +12,12 @@ public class ListDto {
 		// TODO Auto-generated constructor stub
 	}
   
-	public ListDto(int moim_seq, int leader, String account_num, String name, int pin) {
+	public ListDto(int moim_seq, int leader, String account_num, String mname, int pin) {
 		super();
 		this.moim_seq = moim_seq;
 		this.leader = leader;
 		this.account_num = account_num;
-		this.name = name;
+		this.mname = mname;
 		this.pin = pin;
 	}
 	public ListDto(int moim_seq, int leader, String account_num) {
@@ -74,14 +74,14 @@ public class ListDto {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return mname;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String mname) {
+		this.mname = mname;
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class ListDto {
 
 	@Override
 	public String toString() {
-		return "ListDto [moim_seq=" + moim_seq + ", leader=" + leader + ", account_num=" + account_num + ", name="
-				+ name + ", pin=" + pin + "]";
+		return "ListDto [moim_seq=" + moim_seq + ", leader=" + leader + ", account_num=" + account_num + ", mname="
+				+ mname + ", pin=" + pin + "]";
 	}
 	
 	
