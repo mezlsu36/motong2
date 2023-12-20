@@ -15,6 +15,13 @@
 	<select id="loginUser" parameterType="UserDto" resultType="UserDto">
 		SELECT * FROM USER WHERE EMAIL = #{email} AND PASSWORD = #{password}
 	</select>
+	
+	<update id="userUpdate" parameterType="UserDto">
+		UPDATE USER
+		SET PASSWORD = #{password}, PHONE = #{phone}, USERACCESSTOKEN = #{useraccesstoken},
+						USERREFRESHTOKEN = #{userrefreshtoken}, USERSEQNO = #{userseqno}
+		WHERE EMAIL = #{email}
+	</update>
 </mapper>
 
 

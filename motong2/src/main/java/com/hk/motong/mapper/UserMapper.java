@@ -11,4 +11,6 @@ public interface UserMapper {
 	public String idChk(String email);
 	
 	public UserDto loginUser(UserDto dto);
+	
+	public int userUpdate(UserDto dto);
 }

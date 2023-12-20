@@ -24,4 +24,10 @@ public class UserService {
 	public UserDto loginUser(UserDto dto) {
 		return userMapper.loginUser(dto);
 	}
+	
+	public boolean userUpdate(UserDto dto) {
+		int count=userMapper.userUpdate(dto);
+		
+		return count>0?true:false;
+	}
 }

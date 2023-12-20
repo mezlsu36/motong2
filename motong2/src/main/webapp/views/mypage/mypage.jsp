@@ -19,7 +19,18 @@
 		.box > .sub_menu{text-align: right;}
 	</style>
 	<script type="text/javascript">
-
+		//사용자 인증 요청하기(사용자 인증하면서 계좌등록까지 진행함)
+		function authorization(){
+			var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+				   +"response_type=code&" //고정값 code: 인증요청시 반환되는 값의 형식의미
+				   +"client_id=4987e938-f84b-4e23-b0a2-3b15b00f4ffd&" //이용기관의 ID
+				   +"redirect_uri=http://localhost:8087/user/authresult&"//응답URL
+				   +"scope=login inquiry transfer&" //토큰의 권한
+				   +"state=12345678123456781234567812345678&" //32자리 난수 설정
+				   +"auth_type=0"; //0:최초 한번 인증, 2:인증생략
+				   
+			window.open(url,"인증하기","width=400px,height=600px");	   
+		}
 	</script>
 
 </head>
@@ -37,48 +48,68 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/mypage" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 목록</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">회비 관리</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Header - set the background image for the header in the line below-->
-        <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
-            <div class="text-center my-5">
-                <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>
-                <p class="text-white-50 mb-0">Landing Page Template</p>
-            </div>
-        </header>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>모임통장</h2>
-                        <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
-                        <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
-                    </div>
+    <!-- Content section-->
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                	<h2 style="font-weight: bold;">나의 정보</h2>
+                	<hr/>
+					<div id="myinfo">
+						<form action="/user/userUpdate" method="post">
+							<input type="hidden" name="email" value="${ldto.email}"/>
+							<input type="hidden" name="useraccesstoken" class="form-control"  value="${ldto.useraccesstoken}"/>
+							<input type="hidden" name="userrefreshtoken" class="form-control"  value="${ldto.userrefreshtoken}"/>
+							<input type="hidden" name="userseqno" class="form-control" value="${ldto.userseqno}"/>
+							<table class="table">
+								<tr>
+									<th>이메일</th>
+									<td>${ldto.email}</td>
+								</tr>
+								<tr>
+									<th>비밀번호</th>
+									<td>
+										<input type="text" name="password" value="${ldto.password}" class="form-control"/>
+									</td>
+								</tr>
+								<tr>
+									<th>이름</th>
+									<td>${ldto.name}</td>
+								</tr>
+								<tr>
+									<th>핸드폰번호</th>
+									<td>
+										<input type="text" name="phone" value="${ldto.phone}" class="form-control"/>
+									</td>
+								</tr>
+								
+								<tr>
+									<th>계좌 연동</th>
+									<td>
+	                    				<input type="button" value="인증하기" onclick="authorization()" class="btn btn-outline-primary" />						
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<button type="submit" class="btn btn-primary">수정</button>
+										<button type="button" onclick="d" class="btn btn-primary">회원 탈퇴</button>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<br/>
+					
                 </div>
             </div>
-        </section>
-        <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-            <div style="height: 20rem"></div>
         </div>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2></h2>
-                        <p class="lead"></p>
-                        <p class="mb-0"></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </section>
     <!-- Footer-->
     <footer class="py-3 bg-dark">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
