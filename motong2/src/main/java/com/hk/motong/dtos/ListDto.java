@@ -11,7 +11,7 @@ public class ListDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+  
 	public ListDto(int moim_seq, int leader, String account_num, String name, int pin) {
 		super();
 		this.moim_seq = moim_seq;
