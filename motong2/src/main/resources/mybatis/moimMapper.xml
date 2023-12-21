@@ -3,7 +3,7 @@
 
 <mapper namespace="com.hk.motong">
 	
-	<select id="getMoim" parameterType="ListDto">
+	<select id="getMoimList" parameterType="ListDto">
 		SELECT *
 		FROM moim
 	</select>

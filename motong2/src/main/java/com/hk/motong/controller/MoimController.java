@@ -11,23 +11,22 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hk.motong.dtos.ListDto;
-import com.hk.motong.service.moimService;
+import com.hk.motong.service.MoimService;
 
 @Controller
 
 public class MoimController {
 	
 	@Autowired
-	private moimService moimService;
+	private MoimService moimService;
 	
 	@GetMapping("/moimlist")
-	public String moimList(Model model, int moim_seq) {	//int moim_seq, 	
+	public String moimList(Model model) {	//int moim_seq, 	
 		System.out.println("moimlist.do요청");
 		
-		List<ListDto>list=moimService.getMoim(moim_seq);
+		List<ListDto>list=moimService.getMoimList();
 		model.addAttribute("list", list);
 		
 		return "moimlist";
 	}
-	
 }

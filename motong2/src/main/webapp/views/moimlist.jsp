@@ -17,9 +17,9 @@
       <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="resources/css/styles.css" rel="stylesheet" />
-      <script type="text/javascript">
-      	
-      </script>
+<script type="text/javascript">
+
+ </script>
 </head>
 
 <body>
@@ -42,6 +42,7 @@
 	 <div id="container">
 	 	<table class="table table-striped">
 	 		<tr>
+	 			<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /> </th>
 	 			<th>모임번호</th>
 	 			<th>모임장</th>
 	 			<th>계좌SEQ</th>

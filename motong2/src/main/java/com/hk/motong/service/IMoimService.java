@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.hk.motong.dtos.ListDto;
 
-public class imoimService {
-	
+public interface IMoimService {
+	public List<ListDto> getMoimList();
 }
