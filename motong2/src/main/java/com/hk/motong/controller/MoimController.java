@@ -21,11 +21,11 @@ public class MoimController {
 	private moimService moimService;
 	
 	@GetMapping("/moimlist")
-	public String moimList(Model model) {	//int moim_seq, 	
+	public String moimList(Model model, int moim_seq) {	//int moim_seq, 	
 		System.out.println("moimlist.do요청");
 		
-//		List<ListDto>list=moimService.getMoim(moim_seq);
-//		model.addAttribute("list", list);
+		List<ListDto>list=moimService.getMoim(moim_seq);
+		model.addAttribute("list", list);
 		
 		return "moimlist";
 	}

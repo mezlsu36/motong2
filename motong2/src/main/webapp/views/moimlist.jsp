@@ -55,20 +55,22 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="{lists}" var="dto">
-						<tr>
-							<td>
-								<input type="checkbox" name="chk" value="${dto.moim_seq}"/>
-							</td>
-							<td>${dto.moim_seq}</td>
-							<td>${dto.leader}</td>
-							<td>${dto.account_num}</td>
-							<td>${dto.mname}</td>
-						
-						</tr>
+					<c:forEach items="${lists}" var="dto">
+					    <tr>
+					        <td><input type="checkbox" name="chk" value="${dto.moim_seq}"/></td>
+					        <td>${dto.moim_seq}</td>
+					        <td>${dto.leader}</td>
+					        <td>${dto.account_num}</td>
+					        <td>${dto.mname}</td>   
+					    </tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
+			<tr>
+				<td colspan="10">
+					<button class="btn btn-primary" type="button">모임개설</button>
+				</td>
+			</tr>
 	 	</table>
 	 </div>
 

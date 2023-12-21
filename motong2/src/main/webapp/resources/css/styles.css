@@ -11292,3 +11292,7 @@ textarea.form-control-lg {
   background-position: center;
   background-size: cover;
 }
+.btn-primary {
+    background-color: #B5B2FF;
+    /* Add any additional styles as needed */
+}

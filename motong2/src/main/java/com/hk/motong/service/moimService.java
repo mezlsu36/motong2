@@ -16,4 +16,5 @@ public class moimService {
 	public List<ListDto> getMoim(int moim_seq) {
 		return moimDao.getMoim(moim_seq);
 	}
+
 }
