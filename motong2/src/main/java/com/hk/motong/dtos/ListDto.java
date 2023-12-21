@@ -11,29 +11,7 @@ public class ListDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ListDto(int moim_seq, int leader, String account_num, String mname) {
-		super();
-		this.moim_seq = moim_seq;
-		this.leader = leader;
-		this.account_num = account_num;
-		this.mname = mname;
-	}
-	public ListDto(int moim_seq, int leader, String account_num, String mname, int pin) {
-		super();
-		this.moim_seq = moim_seq;
-		this.leader = leader;
-		this.account_num = account_num;
-		this.mname = mname;
-		this.pin = pin;
-	}
-	public ListDto(int moim_seq, int leader, String account_num) {
-		super();
-		this.moim_seq = moim_seq;
-		this.leader = leader;
-		this.account_num = account_num;
-	}
- 
-   
+
 	/**
 	 * @return the moim_seq
 	 */
@@ -77,16 +55,16 @@ public class ListDto {
 	}
 
 	/**
-	 * @return the name
+	 * @return the mname
 	 */
-	public String getName() {
+	public String getMname() {
 		return mname;
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param mname the mname to set
 	 */
-	public void setName(String mname) {
+	public void setMname(String mname) {
 		this.mname = mname;
 	}
 
@@ -104,13 +82,20 @@ public class ListDto {
 		this.pin = pin;
 	}
 
+	public ListDto(int moim_seq, int leader, String account_num, String mname, int pin) {
+		super();
+		this.moim_seq = moim_seq;
+		this.leader = leader;
+		this.account_num = account_num;
+		this.mname = mname;
+		this.pin = pin;
+	}
+
 	@Override
 	public String toString() {
 		return "ListDto [moim_seq=" + moim_seq + ", leader=" + leader + ", account_num=" + account_num + ", mname="
 				+ mname + ", pin=" + pin + "]";
 	}
-	
-	
 	
 	
 	

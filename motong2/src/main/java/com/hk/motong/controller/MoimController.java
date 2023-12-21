@@ -22,7 +22,7 @@ public class MoimController {
 	
 	@GetMapping("/moimlist")
 	public String moimList(Model model) {	//int moim_seq, 	
-		System.out.println("moimlist.do요청");
+		System.out.println("moimlist요청");
 		
 		List<ListDto>list=moimService.getMoimList();
 		model.addAttribute("list", list);
