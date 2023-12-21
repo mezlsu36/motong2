@@ -51,7 +51,7 @@
 			<c:choose>
 				<c:when test="${empty lists}">
 					<tr>
-						<td colspan="10">--작성된 글이 없습니다.--</td>
+						<td colspan="10">--모임이 없습니다.--</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -64,11 +64,7 @@
 							<td>${dto.leader}</td>
 							<td>${dto.account_num}</td>
 							<td>${dto.mname}</td>
-							<c:choose>
-								<c:when test="${dto.delflag=='Y'}">
-									--삭제된 모임입니다.--
-								</c:when>
-							</c:choose>
+						
 						</tr>
 					</c:forEach>
 				</c:otherwise>

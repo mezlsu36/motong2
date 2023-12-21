@@ -11,7 +11,13 @@ public class ListDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-  
+	public ListDto(int moim_seq, int leader, String account_num, String mname) {
+		super();
+		this.moim_seq = moim_seq;
+		this.leader = leader;
+		this.account_num = account_num;
+		this.mname = mname;
+	}
 	public ListDto(int moim_seq, int leader, String account_num, String mname, int pin) {
 		super();
 		this.moim_seq = moim_seq;
