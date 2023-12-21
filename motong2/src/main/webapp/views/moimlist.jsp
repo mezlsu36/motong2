@@ -2,7 +2,9 @@
 <%@page import="com.hk.motong.dtos.ListDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +21,6 @@
       	
       </script>
 </head>
-<%
-	List<ListDto> list =(List<ListDto>)request.getAttribute("list");
-%>
 
 <body>
 	 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
@@ -39,38 +38,52 @@
 	         </div>
 	     </div>
 	 </nav>
-	 
-<form action="" method="post" onsubmit="return isAllCheck()">
-<table border="1">
-	<col width="50px" />
-	<col width="50px" />
-	<col width="100px" />
-	<col width="300px" />
-	<col width="200px" />
-	<tr>
-		<th><input  type="checkbox" name="all" onclick="allSel(this.checked)"> </th>
-		<th>모임번호</th><th>모임장</th><th>계좌SEQ</th><th>모임이름</th>
-	</tr>
-	<%
-		for(int i=0;i<list.size();i++){
-			ListDto dto=list.get(i);	
-		%>
-		<tr>
-			<td><input type="checkbox" name="chk" value="<%= %>"/></td>
-			<td><%=dto.getMoim_seq()%></td>
-			<td><%=dto.getLeader()%></td>
-			<td><%=dto.getAccount_num()%></td>
-			<td><a href="<%=dto.getMoim_seq()%>"><%=dto.getName()%></a></td>
-		</tr>
-		<%
-		}
-	%>
-	 
-</table>
-</form>
+<h1>모임 목록 </h1>
+	 <div id="container">
+	 	<table class="table table-striped">
+	 		<tr>
+	 			<th>모임번호</th>
+	 			<th>모임장</th>
+	 			<th>계좌SEQ</th>
+	 			<th>모임이름</th>	 			
+	 		</tr>
+	 		<c:set var="lists" value="${list}" />
+			<c:choose>
+				<c:when test="${empty lists}">
+					<tr>
+						<td colspan="10">--작성된 글이 없습니다.--</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="{lists}" var="dto">
+						<tr>
+							<td>
+								<input type="checkbox" name="chk" value="${dto.moim_seq}"/>
+							</td>
+							<td>${dto.moim_seq}</td>
+							<td>${dto.leader}</td>
+							<td>${dto.account_num}</td>
+							<td>${dto.mname}</td>
+							<c:choose>
+								<c:when test="${dto.delflag=='Y'}">
+									--삭제된 모임입니다.--
+								</c:when>
+							</c:choose>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+	 	</table>
+	 </div>
 
 <footer class="py-3 bg-dark">
     <div class="container"><p class="m-0 text-center text-white" style="height: 40px;">Copyright &copy; motong 2023</p></div>
 </footer>
 </body>
 </html>
+
+
+
+
+
+

@@ -22,14 +22,14 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
             <div class="container">
             	<img src="resources/img/header.png">
-                <a class="navbar-brand" href="#!">MOTONG</a>
+                <a style="font-weight: bold;" class="navbar-brand" href="/">MOTONG</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">SignIN</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">SignUp</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/moimlist">모임리스트</a></li>                       
+                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">SignIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/moimlist">모임리스트</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,6 @@
                         <h2>모임통장</h2>
                         <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
                         <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
-                        
                     </div>
                 </div>
             </div>
