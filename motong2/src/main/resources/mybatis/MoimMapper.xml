@@ -18,6 +18,7 @@
 				JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
 				WHERE user_moim.USER_SEQ=#{user_seq});
 	</select>
+	
 </mapper>
 
 

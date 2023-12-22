@@ -27,15 +27,14 @@
 <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
         <div class="container">
-        	<img src="resources/img/header.png">
-            <a style="font-weight: bold;" class="navbar-brand" href="/main">MOTONG</a>
+       		<a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
-                    <li class="nav-item">${sessionScope.ldto.name}님</li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/mypage" >마이 페이지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 목록</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>

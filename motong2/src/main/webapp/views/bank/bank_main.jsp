@@ -32,10 +32,10 @@
 <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
         <div class="container">
-           <img src="resources/img/header.png">
-            <a style="font-weight: bold;" class="navbar-brand" href="/main">MOTONG</a>
+           <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a style="font-weight: bold;" class="navbar-brand" href="/main">MOTONG</a>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
                     <li class="nav-item">${sessionScope.ldto.name}님</li>
@@ -80,7 +80,7 @@
 									<td>${dto.moim_seq}</td>
 									<td>${leaderList[status.index]}</td>
 									<td>${dto.account_seq}</td>
-									<td>${dto.mname}</td>
+									<td><a href="/bank/bank_moim=${dto.moim_seq}">${dto.mname}</a></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -93,7 +93,7 @@
         </div>
     </section>
     <!-- Footer-->
-    <footer class="py-3 bg-dark">
+    <footer style="bottom: 0px; position: fixed; width: 100%" class="py-3 bg-dark">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
     </footer>
     <!-- Bootstrap core JS-->

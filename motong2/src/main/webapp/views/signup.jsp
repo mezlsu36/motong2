@@ -13,6 +13,12 @@
     <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
+
+    <style type="text/css">
+    	.hi{
+    		width:500px;
+    	}
+    </style>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		
@@ -29,14 +35,25 @@
 			}
 		}
 	}
+	
+	function checkPW(form){
+		if(form.password.value==form.passwordChk.value){
+			return true;	
+		}else{
+			document.getElementById("diff").textContent="비밀번호가 일치하지 않습니다.";
+			form.password.value=""; //비밀번호 초기화
+			form.passwordChk.value="";
+			form.password.focus();
+			return false;
+		}
+	}
+	
 	// 아이디 중복 체크
 	function idChk(){
 		var email=document.getElementsByName("email")[0].value;
 		if(email==""){
 			alert("이메일을 입력하세요.");
 		}else{
-			/* window.open("userController.jsp?command=idChk"
-					+"&id="+id,"아이디 확인","width=300px, height=300px"); */
 			$.ajax({
 				url:"/user/idChk",	// 요청 url
 				method:"post",		// 전송방식
@@ -44,13 +61,13 @@
 				dataType:"text",	// 전달받을 데이터 타입 (xml,json,html,text ...)
 				async: false,		// $.ajax()메서드를 실행하는 방식
 				success: function(data){// 데이터 받기 성공하면 함수 실행
-					
-					if(data=="null"){
-						$("#enabledEmail").css("color","blue").text(" 사용가능한 이메일입니다.");
+					console.log(data);
+					if(data =="null" || data=="" || data == null){
+						$("#enabledEmail").css("color","blue").text(" 사용 가능한 이메일입니다.");
 						$("#idChk").text("y");
 					}else{
-						$("#enabledEmail").css("color","blue").text(" 사용가능한 이메일입니다.");
-						$("#idChk").text("y");
+						$("#enabledEmail").css("color","red").text(" 사용 불가능한 이메일입니다.");
+						$("#idChk").text("n");
 					}
 				}, error:function(){ // 데이터받기 실패하면 함수 실행
 					alert("통신 실패");
@@ -64,20 +81,19 @@
 </head>
 <body>
 <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
-        <div class="container">
-            <img src="resources/img/header.png">
-            <a style="font-weight: bold;" class="navbar-brand" href="/">MOTONG</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">SignIN</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
-                </ul>
+        <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
+            <div class="container">
+            	<a href="/"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     <!-- Content section-->
     <section class="py-5">
         <div class="container my-5">
@@ -85,11 +101,12 @@
                 <div class="col-lg-6">
                 	<h2 style="font-weight: bold;">회원가입</h2>
                 	<hr/>
-                    <form action="/user/addUser" method="post">
+
+                    <form action="/user/addUser" method="post" onsubmit="return checkPW(this)">
                     	<table class="table">
                     		<tr>
                     			<th>이메일</th>
-                    			<td><input type="text" name="email" class="form-control" />
+                    			<td><input type="text" name="email" class="form-control hi" required/>
                     				<a href="#" onclick="idChk()">중복체크</a>
                     				<span id="idChk" style="display:none;">n</span>
                     				<span id="enabledEmail"></span>
@@ -97,19 +114,26 @@
                     		</tr>
                     		<tr>
                     			<th>비밀번호</th>
-                    			<td><input type="password" name="password" class="form-control" /></td>
+                    			<td><input type="password" name="password" class="form-control hi" minlength="8" maxlength="16" placeholder="8자리 이상 16자리 이하" required /></td>
+                    		</tr>
+                    		<tr>
+                    			<th>비밀번호 확인</th>
+                    			<td>
+                    				<input type="password" name="passwordChk" class="form-control hi" required />
+                    				<span id="diff" style="color:red; font-size:10pt;"></span>
+                    			</td>
                     		</tr>
                     		<tr>
                     			<th>이름</th>
-                    			<td><input type="text" name="name" class="form-control" /></td>
+                    			<td><input type="text" name="name" class="form-control hi" required/></td>
                     		</tr>
                     		<tr>
                     			<th>핸드폰번호</th>
-                    			<td><input type="text" name="phone" class="form-control" /></td>
+                    			<td><input type="text" name="phone" class="form-control hi" required/></td>
                     		</tr>
                     		<tr>
                     			<td colspan="2">
-                    				<input style="font-weight: bold;" type="submit" value="가입하기" class="btn btn-primary">
+                    				<input style="font-weight: bold;" type="submit" value="가입하기" class="btn btn-outline-primary">
                     			</td>
                     		</tr>
                     	</table>
@@ -119,19 +143,15 @@
         </div>
     </section>
     <!-- Footer-->
-    <footer class="py-3 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
-    </footer>
+     <footer style="width:100%; position:absolute; bottom:0; background-color:#e3f2fd;" class="py-3"  >
+            <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
+        </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="resources/js/scripts.js"></script>
 </body>
 </html>
-
-
-
-
 
 
 

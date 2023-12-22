@@ -1,7 +1,6 @@
 package com.hk.motong.dtos;
 
 public class UserDto {
-	
 	private int user_seq;
 	private String email;
 	private String password;
