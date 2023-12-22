@@ -17,4 +17,8 @@ public class MoimService {
    public List<MoimDto> subsMoim(int user_seq){
       return moimMapper.subsMoim(user_seq);
    }
+   
+   public List<String> moimLeader(int user_seq) {
+	   return moimMapper.moimLeader(user_seq);
+   }
 }

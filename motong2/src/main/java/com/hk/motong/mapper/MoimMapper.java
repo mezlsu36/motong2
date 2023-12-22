@@ -12,4 +12,6 @@ public interface MoimMapper {
    
    public List<MoimDto> subsMoim(int user_seq);
    
+   public List<String> moimLeader(int user_seq);
+   
 }

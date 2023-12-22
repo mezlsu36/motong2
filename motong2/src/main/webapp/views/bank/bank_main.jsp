@@ -52,16 +52,21 @@
     <section class="py-5">
         <div class="container my-5">
             <div class="row justify-content-center">
-                <h2>가입된 모임</h2>
+            <div class="col-lg-6">
+                <h2 style="font-weight: bold;">가입된 모임</h2>
+                <hr/>
                 <form>
-                   <table border="1">
+                   <table class="table table-hover">
                       <col width="50px"/>
                       <col width="50px"/>
                       <col width="100px"/>
                       <col width="80px"/>
+                      <thead>
                       <tr>
-                         <th>seq</th><th>모임장</th><th>모임 계좌번호</th><th>모임이름</th>
+                         <th>모임 번호 </th><th>모임장</th><th>계좌 잔액</th><th>모임이름</th>
                       </tr>
+                      </thead>
+                      <tbody>
                      <c:set var="list" value="${list}"/>
                      <c:choose>
                      	<c:when test="${empty list}">
@@ -70,18 +75,20 @@
 						</tr>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${list}" var="dto">
+							<c:forEach items="${list}" var="dto" varStatus="status">
 								<tr>
 									<td>${dto.moim_seq}</td>
-									<td>${dto.leader}</td>
+									<td>${leaderList[status.index]}</td>
 									<td>${dto.account_seq}</td>
 									<td>${dto.mname}</td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
                      </c:choose>
+                     </tbody>
                    </table>
                 </form>
+               </div>
             </div>
         </div>
     </section>

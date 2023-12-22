@@ -27,12 +27,15 @@ public class BankController {
    @GetMapping("/bank_main")
    public String bank_main(Model model, HttpServletRequest request) {
       System.out.println("회비관리 페이지 이동");
-   
+      
       HttpSession session=request.getSession();
       int user_seq=(int) session.getAttribute("user_seq");
-      
+ 
       List<MoimDto> list=moimService.subsMoim(user_seq);
       model.addAttribute("list",list);
+      
+      List<String> leaderList=moimService.moimLeader(user_seq);
+      model.addAttribute("leaderList",leaderList);
       
       return "bank/bank_main";
    }

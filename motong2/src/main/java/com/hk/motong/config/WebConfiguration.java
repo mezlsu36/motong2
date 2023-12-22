@@ -11,7 +11,7 @@ public class WebConfiguration implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		//추가할 인터셉터를 정의
 		registry.addInterceptor(new LoginInterceptor())
-				.addPathPatterns("/banking/*");
+				.addPathPatterns("/bank/*");
 //				.excludePathPatterns("/banking/test","","")
 	}
 }
