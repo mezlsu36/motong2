@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@page import="com.hk.motong.dtos.MoimDto"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -14,20 +19,20 @@
     <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
-	<style type="text/css">
-		.box{border-bottom: 1px solid gray; margin-bottom: 10px;}
-		.box > .sub_menu{text-align: right;}
-	</style>
-	<script type="text/javascript">
+   <style type="text/css">
+      .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
+      .box > .sub_menu{text-align: right;}
+   </style>
+   <script type="text/javascript">
 
-	</script>
+   </script>
 
 </head>
 <body>
 <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
         <div class="container">
-        	<img src="resources/img/header.png">
+           <img src="resources/img/header.png">
             <a style="font-weight: bold;" class="navbar-brand" href="/main">MOTONG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,20 +52,36 @@
     <section class="py-5">
         <div class="container my-5">
             <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div id="list">
-<!--                     	<div class="box container"> -->
-<!-- 	                       	<div> -->
-<!-- 	                     	   <h1>이름</h1> -->
-<!-- 	                     	   <p>번호 [은행이름]</p> -->
-<!-- 	                      	</div> -->
-<!-- 	                      	<div class="sub_menu"> -->
-<!-- 	                      		<button  onclick="balance(fintech_user_num,this)" class="balance">잔액조회</button> -->
-<!-- 	                      	</div> -->
-<!-- 	                      	<div class="balance_amt"></div> -->
-<!-- 	                    </div>	 -->
-                    </div>
-                </div>
+                <h2>가입된 모임</h2>
+                <form>
+                   <table border="1">
+                      <col width="50px"/>
+                      <col width="50px"/>
+                      <col width="100px"/>
+                      <col width="80px"/>
+                      <tr>
+                         <th>seq</th><th>모임장</th><th>모임 계좌번호</th><th>모임이름</th>
+                      </tr>
+                     <c:set var="list" value="${list}"/>
+                     <c:choose>
+                     	<c:when test="${empty list}">
+						<tr>
+							<td colspan="10">--가입된 모임이 없습니다.--</td>
+						</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>${dto.moim_seq}</td>
+									<td>${dto.leader}</td>
+									<td>${dto.account_seq}</td>
+									<td>${dto.mname}</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+                     </c:choose>
+                   </table>
+                </form>
             </div>
         </div>
     </section>
@@ -74,4 +95,3 @@
 <!--     <script src="resources/js/scripts.js"></script> -->
 </body>
 </html>
-

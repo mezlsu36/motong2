@@ -86,6 +86,7 @@ public class UserController {
 			System.out.println("회원이 맞음");
 			HttpSession session=request.getSession();
 			session.setAttribute("ldto", ldto);
+			session.setAttribute("user_seq", ldto.getUser_seq());
 			session.setMaxInactiveInterval(60*10);
 			return "redirect:/main";
 		}

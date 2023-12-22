@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.motong.mapper.MoimMapper">
+   
+   <select id="subsMoim" parameterType="Integer" resultType="MoimDto">
+      SELECT MOIM_SEQ, LEADER, ACCOUNT_SEQ, MNAME
+      FROM MOIM
+      WHERE MOIM_SEQ=(SELECT MOIM_SEQ FROM user_moim WHERE USER_SEQ=#{user_seq});   
+   </select>
+
+</mapper>
+
+
+
