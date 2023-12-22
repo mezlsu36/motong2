@@ -19,16 +19,15 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+        <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
             <div class="container">
-            	<img src="resources/img/header.png">
-                <a class="navbar-brand" href="#!">MOTONG</a>
+            	<a href="/"><img src="resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">SignIN</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">SignUp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,8 +69,8 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-3 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white" style="height: 40px;">Copyright &copy; motong 2023</p></div>
+        <footer class="py-3"  style="background-color:#e3f2fd;" >
+            <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

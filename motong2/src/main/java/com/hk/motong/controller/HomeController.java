@@ -8,7 +8,6 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String index() {
-		//test1asdgh,
 		return "index";
 	}
 }
