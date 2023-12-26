@@ -1,5 +1,8 @@
 package com.hk.motong.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,6 +59,17 @@ public class UserService {
 	
 	public boolean registAccount(AccountTableDto adto) {
 		return userMapper.registAccount(adto);
+	}
+	
+	//계좌 리스트 불러오기
+	public List<AccountTableDto> getAccountList(int user_seq){
+		
+		return userMapper.getAccountList(user_seq);
+	}
+	
+	//잔액 업데이트
+	public boolean updateBalanceAmt(Map<String, Integer> map) {
+		return userMapper.updateBalanceAmt(map);
 	}
 	
 }

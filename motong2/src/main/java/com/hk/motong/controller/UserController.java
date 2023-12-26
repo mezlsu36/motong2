@@ -7,7 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -129,10 +131,49 @@ public class UserController {
 	
 	//마이페이지 창 이동
 	@GetMapping("/myPage")
-	public String myPage(String email,Model model) {
+	public String myPage(HttpServletRequest request,String email,Model model) throws IOException, ParseException {
 		System.out.println("마이페이지로 이동");
 		UserDto dto=userService.myInfo(email);
 		model.addAttribute("dto", dto);
+		System.out.println(dto);
+		if(dto.getUseraccesstoken() ==null || dto.getUseraccesstoken()=="null" || dto.getUseraccesstoken() == "") {
+			System.out.println(dto.getUseraccesstoken());
+			model.addAttribute("exitAccessToken", "사용자 인증 안된 회원");
+		}else {
+			//DB 계좌 리스트 불러오기
+			List<AccountTableDto> acList = userService.getAccountList(dto.getUser_seq());
+			
+			//계좌 리스트 불러오기 - 잔액 새로 가져올라고 ㅜㅜ
+			UserMeDto userMeDto = getAccount(request,dto.getUseraccesstoken());
+			List<UserMeAccountDto> list = userMeDto.getRes_list();
+			
+			////////////////////////////////////////////////////////////////////////
+			//이 부분 잔액업로드 하는 부분 다시 한번만 살펴보기
+			for (int j = 0; j < acList.size(); j++) {
+				for (int i = 0; i < list.size(); i++) {
+					String fintech_use_num = list.get(i).getFintech_use_num();
+					//계좌 잔액 정보 들은 dto 가져오기
+					AccountBalanceDto accountBalanceDto = getAccountBalanceDto(request,dto.getUseraccesstoken(),fintech_use_num);
+					
+					if(acList.get(j).getFintech_use_num().equals(fintech_use_num)) {
+						int balance_amt = Integer.parseInt(accountBalanceDto.getBalance_amt());
+						System.out.println("balance_amt"+balance_amt);
+						int account_seq = acList.get(j).getAccount_seq();
+						System.out.println("account_seq:"+account_seq);
+						Map<String, Integer> map = new HashMap<String, Integer>();
+						map.put("balance_amt", balance_amt);
+						map.put("account_seq",account_seq);
+						userService.updateBalanceAmt(map);
+					}
+				}
+				
+			}
+			List<AccountTableDto> aList = userService.getAccountList(dto.getUser_seq());
+			//이제 잔액이랑 계좌 목록 띄울거 보내시오~
+			model.addAttribute("aList", aList);
+		}
+		
+		
 		return "myPage";
 	}
 	
@@ -225,17 +266,16 @@ public class UserController {
 			List<UserMeAccountDto> list = userMeDto.getRes_list();
 			
 			String fintech_use_num = list.get(0).getFintech_use_num();
-		
+			String account_num_masked = list.get(0).getAccount_num_masked();
 			System.out.println(list.get(0));
 			
 			//계좌 잔액 정보 들은 dto 가져오기
 			AccountBalanceDto accountBalanceDto = getAccountBalanceDto(request,access_token,fintech_use_num);
 			System.out.println(accountBalanceDto);
-			
 			AccountTableDto aDto = new AccountTableDto();
-			aDto.setAccount_seq(list.get(0).getAccount_seq());
 			aDto.setUser_seq(dto.getUser_seq());
 			aDto.setFintech_use_num(fintech_use_num);
+			aDto.setAccount_num_masked(account_num_masked);
 			aDto.setBalance_amt(Integer.parseInt(accountBalanceDto.getBalance_amt()));
 			aDto.setBank_name(list.get(0).getBank_name());
 			System.out.println(aDto);
@@ -252,7 +292,7 @@ public class UserController {
 		//계좌 정보 가져오기
 		public UserMeDto getAccount(HttpServletRequest request,String access_token) throws IOException, ParseException {
 				
-			System.out.println("DB에 계좌 등록하기 위한 계좌들 목록");
+			System.out.println("DB에 계좌 등록하기 위한 계좌들 목록 가져오기");
 			//사용자 일련 번호를 가져오기 위해 session객체 구함
 			HttpSession session=request.getSession();
 			UserDto ldto=(UserDto)session.getAttribute("ldto");
@@ -269,7 +309,7 @@ public class UserController {
 		//잔액 정보 들어있는 dto 가져오기
 		public AccountBalanceDto getAccountBalanceDto(HttpServletRequest request,String access_token,String fintech_use_num) throws IOException, ParseException {
 						
-			System.out.println("잔액정보 들어있는 Dto가져오기");
+//			System.out.println("잔액정보 들어있는 Dto가져오기");
 			String useraccesstoken=access_token;//접근할 토큰
 			String bank_tran_id = "M202201886U" + createNum();
 			String tran_dtime = getDateTime();
@@ -287,7 +327,7 @@ public class UserController {
 			for (int i = 0; i < 9; i++) {
 				createNum+=((int)(Math.random()*10))+"";
 			}
-			System.out.println("이용기관부여번호9자리생성:"+createNum);
+//			System.out.println("이용기관부여번호9자리생성:"+createNum);
 			return createNum;
 		}
 		

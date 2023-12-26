@@ -34,7 +34,7 @@ public interface OpenBankingFeign {
 //				@RequestParam("client_id") String client_id,
 //				@RequestParam("client_secret") String client_secret,
 //				@RequestParam("redirect_uri") String redirect_uri,
-//				@RequestParam("grant_type") String grant_type
+//				@RequestParam("grant_type") String grant_type 
 			);
 
 	@GetMapping(path = "/v2.0/account/list")

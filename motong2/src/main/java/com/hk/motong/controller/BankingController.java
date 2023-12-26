@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.motong.apidto.AccountBalanceDto;
+import com.hk.motong.apidto.AccountTransactionDto;
+import com.hk.motong.apidto.AccountTransactionListDto;
 import com.hk.motong.apidto.UserMeAccountDto;
 import com.hk.motong.apidto.UserMeDto;
 import com.hk.motong.dtos.AccountTableDto;
@@ -59,7 +61,7 @@ public class BankingController {
 		List<UserMeAccountDto> list = userMeDto.getRes_list();
 		
 		String fintech_use_num = list.get(0).getFintech_use_num();
-	
+		String account_num_masked = list.get(0).getAccount_num_masked();
 		System.out.println(list.get(0));
 		
 		//계좌 잔액 정보 들은 dto 가져오기
@@ -67,9 +69,9 @@ public class BankingController {
 		System.out.println(accountBalanceDto);
 		
 		AccountTableDto aDto = new AccountTableDto();
-		aDto.setAccount_seq(list.get(0).getAccount_seq());
 		aDto.setUser_seq(dto.getUser_seq());
 		aDto.setFintech_use_num(fintech_use_num);
+		aDto.setAccount_num_masked(account_num_masked);
 		aDto.setBalance_amt(Integer.parseInt(accountBalanceDto.getBalance_amt()));
 		aDto.setBank_name(list.get(0).getBank_name());
 		System.out.println(aDto);
@@ -83,69 +85,68 @@ public class BankingController {
 				  +"</script>";
 		return str;
 	}
-
 	//거래내역조회
-		//거래내역 조회
-		@GetMapping("/transactionList")
-		@ResponseBody
-		public JSONObject transactionList(String fintech_use_num
-	            ,HttpServletRequest request) throws IOException, ParseException {
-			System.out.println("거래내역 조회하기");
-			HttpURLConnection conn=null;
-			JSONObject result=null;
-			
-			HttpSession session=request.getSession();
-			UserDto ldto=(UserDto)session.getAttribute("ldto");
-			
-			URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?"
-			+ "bank_tran_id=M202201886U"+createNum()
-			+ "&fintech_use_num="+fintech_use_num
-			+ "&inquiry_type=A"
-			+ "&inquiry_base=D"
-			+ "&from_date=20190101"
-			+ "&to_date=20190131"
-			+ "&sort_order=D"
-			+ "&tran_dtime="+getDateTime());
-			
-			conn = (HttpURLConnection)url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-Type", "application/json");
-			conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
-			conn.setDoOutput(true);
-			
-			// java에서 사용할 수 있도록 읽어들이는 코드
-			BufferedReader br=new BufferedReader(
-			new InputStreamReader(conn.getInputStream(),"utf-8")
-			);
-			StringBuilder response=new StringBuilder();
-			String responseLine=null;
-			
-			while((responseLine=br.readLine())!=null) {
-			response.append(responseLine.trim());
-			}
-			
-			//읽은 값이 json 형태로 된 문자열 --> json객체로 변환하자
-			result=(JSONObject)new JSONParser().parse(response.toString());
-			System.out.println("거래내역:"+result.get("res_list"));
-			
-			return result;
-			}
-//		public List<AccountTransactionDto> transactionList(String fintech_use_num) throws IOException, ParseException {
-//			System.out.println("거래내역 조회하기");
-//			String bank_tran_id = "M202201886U" + createNum();
-//		    String inquiry_type="A";
-//		    String inquiry_base="D";
-//		    String from_date="20190101";
-//		    String to_date="20190131";
-//		    String sort_order="D";
-//		    String tran_dtime = getDateTime();
-//			AccountTransactionListDto accountTransactionListDto = openBankingFeign.requestAccountTransactionList(bank_tran_id,fintech_use_num,inquiry_type,inquiry_base,from_date,to_date,sort_order,tran_dtime);
-//			List<AccountTransactionDto> res_list = accountTransactionListDto.getRes_list();
-//			return res_list;
-//		}
-	//계좌 목록 부르기
-	//잔액 조회
-	//거래내역조회
+	//거래내역 조회
+	@GetMapping("/transactionList")
+	@ResponseBody
+	public JSONObject transactionList(String fintech_use_num
+            ,HttpServletRequest request) throws IOException, ParseException {
+		System.out.println("거래내역 조회하기");
+		HttpURLConnection conn=null;
+		JSONObject result=null;
+		
+		HttpSession session=request.getSession();
+		UserDto ldto=(UserDto)session.getAttribute("ldto");
+		
+		URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?"
+		+ "bank_tran_id=M202201886U"+createNum()
+		+ "&fintech_use_num="+fintech_use_num
+		+ "&inquiry_type=A"
+		+ "&inquiry_base=D"
+		+ "&from_date=20190101"
+		+ "&to_date=20190131"
+		+ "&sort_order=D"
+		+ "&tran_dtime="+getDateTime());
+		
+		conn = (HttpURLConnection)url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("Authorization", "Bearer "+ldto.getUseraccesstoken());
+		conn.setDoOutput(true);
+		
+		// java에서 사용할 수 있도록 읽어들이는 코드
+		BufferedReader br=new BufferedReader(
+		new InputStreamReader(conn.getInputStream(),"utf-8")
+		);
+		StringBuilder response=new StringBuilder();
+		String responseLine=null;
+		
+		while((responseLine=br.readLine())!=null) {
+		response.append(responseLine.trim());
+		}
+		
+		//읽은 값이 json 형태로 된 문자열 --> json객체로 변환하자
+		result=(JSONObject)new JSONParser().parse(response.toString());
+		System.out.println("거래내역:"+result.get("res_list"));
+		
+		return result;
+		}
+//	public List<AccountTransactionDto> transactionList(String fintech_use_num) throws IOException, ParseException {
+//		System.out.println("거래내역 조회하기");
+//		String bank_tran_id = "M202201886U" + createNum();
+//	    String inquiry_type="A";
+//	    String inquiry_base="D";
+//	    String from_date="20190101";
+//	    String to_date="20190131";
+//	    String sort_order="D";
+//	    String tran_dtime = getDateTime();
+//		AccountTransactionListDto accountTransactionListDto = openBankingFeign.requestAccountTransactionList(bank_tran_id,fintech_use_num,inquiry_type,inquiry_base,from_date,to_date,sort_order,tran_dtime);
+//		List<AccountTransactionDto> res_list = accountTransactionListDto.getRes_list();
+//		return res_list;
+//	}
+	
+	
+	
 	
 	//계좌 정보 가져오기
 	public UserMeDto getAccount(HttpServletRequest request,String useraccesstoken) throws IOException, ParseException {

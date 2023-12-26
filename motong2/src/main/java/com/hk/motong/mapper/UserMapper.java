@@ -1,9 +1,13 @@
 package com.hk.motong.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.hk.motong.dtos.AccountTableDto;
 import com.hk.motong.dtos.UserDto;
+
 
 @Mapper
 public interface UserMapper {
@@ -23,4 +27,10 @@ public interface UserMapper {
 	public boolean registToken(UserDto dto);
 	//계좌테이블에 계좌 정보 저장
 	public boolean registAccount(AccountTableDto dto);
+	
+	//계좌 리스트 불러오기
+	public List<AccountTableDto> getAccountList(int user_seq);
+	
+	//잔액 업데이트
+	public boolean updateBalanceAmt(Map<String, Integer> map);
 }

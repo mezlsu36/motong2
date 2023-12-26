@@ -1,27 +1,30 @@
 package com.hk.motong.dtos;
 
 public class AccountTableDto {
-	private String account_seq;
+	private int account_seq;
 	private int user_seq;
 	private String fintech_use_num;
+	private String account_num_masked;
 	private int balance_amt;
 	private String bank_name;
 	public AccountTableDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AccountTableDto(String account_seq, int user_seq, String fintech_use_num, int balance_amt, String bank_name) {
+	public AccountTableDto(int account_seq, int user_seq, String fintech_use_num, String account_num_masked,
+			int balance_amt, String bank_name) {
 		super();
 		this.account_seq = account_seq;
 		this.user_seq = user_seq;
 		this.fintech_use_num = fintech_use_num;
+		this.account_num_masked = account_num_masked;
 		this.balance_amt = balance_amt;
 		this.bank_name = bank_name;
 	}
-	public String getAccount_seq() {
+	public int getAccount_seq() {
 		return account_seq;
 	}
-	public void setAccount_seq(String account_seq) {
+	public void setAccount_seq(int account_seq) {
 		this.account_seq = account_seq;
 	}
 	public int getUser_seq() {
@@ -35,6 +38,12 @@ public class AccountTableDto {
 	}
 	public void setFintech_use_num(String fintech_use_num) {
 		this.fintech_use_num = fintech_use_num;
+	}
+	public String getAccount_num_masked() {
+		return account_num_masked;
+	}
+	public void setAccount_num_masked(String account_num_masked) {
+		this.account_num_masked = account_num_masked;
 	}
 	public int getBalance_amt() {
 		return balance_amt;
@@ -50,9 +59,9 @@ public class AccountTableDto {
 	}
 	@Override
 	public String toString() {
-		return "AccountDto [account_seq=" + account_seq + ", user_seq=" + user_seq + ", fintech_use_num="
-				+ fintech_use_num + ", balance_amt=" + balance_amt + ", bank_name=" + bank_name + "]";
+		return "AccountTableDto [account_seq=" + account_seq + ", user_seq=" + user_seq + ", fintech_use_num="
+				+ fintech_use_num + ", account_num_masked=" + account_num_masked + ", balance_amt=" + balance_amt
+				+ ", bank_name=" + bank_name + "]";
 	}
-	
 	
 }

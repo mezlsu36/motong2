@@ -25,7 +25,8 @@
    </style>
    <script type="text/javascript">
 
- 	//거래내역조회
+
+	//거래내역조회
 	function transactionList(fintech_use_num,btnEle){
 		$.ajax({
 			url:"/banking/transactionList",
@@ -33,7 +34,6 @@
 			data:{"fintech_use_num":fintech_use_num},
 			dataType:"json",
 			success:function(data){ //data: 응답결과을 받을 변수
-				console.log(data.res_list);
 				var list="<ul>";
 				// data.res_list  -->  배열
 				for (var i = 0; i < data.res_list.length; i++) {
@@ -46,15 +46,18 @@
 				}
 				list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
 				//button .   p    . <div> 
-				$(".tran-btn").parent().parent().siblings().find(".tranList").html(list);		
-			},
-			error:function(){
-				
+				$(btnEle).next().next().next().next().next().html(list);	
 			}
 		});
 	}
    
-   
+	// 출금 
+	function withdraw(fintech_use_num,btnEle){
+		$.ajax({
+			url:"/banking/withdraw",
+			
+		});
+	}
    </script>
 
 </head>
@@ -98,8 +101,9 @@
                 		<tr>
                 			<td colspan="2">
                 			<button type="button" class="btn btn-outline-primary" onclick="transactionList('${dto.fintech_use_num}',this)">거래 내역 조회</button>
-                			<button type="button" class="btn btn-outline-primary" onclick="">입출금</button>
-                			<br/><div class="tranList"></div>
+                			<button type="button" class="btn btn-outline-primary" onclick="">입금</button>
+                			<button type="button" class="btn btn-outline-primary" onclick="withdraw('${dto.fintech_use_num}',this)">출금</button>
+                			<br/><br/><div class="tranList"></div>
                 		</tr>
                 	</table>
                 </div>
