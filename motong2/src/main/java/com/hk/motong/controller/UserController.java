@@ -171,6 +171,8 @@ public class UserController {
 		public String authResult(HttpServletRequest request,String code) throws IOException, java.text.ParseException, ParseException {
 			System.out.println("인증후 받은 code:"+code);
 			
+			HttpSession session=request.getSession();
+						
 			HttpURLConnection conn=null;// api에서 제공하는 데이터를 받기 위한 연결 객체
 			JSONObject result=null; //받아온 데이터를 json으로 저장할 객체
 			
@@ -211,8 +213,7 @@ public class UserController {
 			System.out.println("refresh_token:"+refresh_token);
 			System.out.println("user_seq_no:"+user_seq_no);
 			
-			HttpSession session=request.getSession();
-			UserDto dto = (UserDto)session.getAttribute("ldto");
+      		UserDto dto = (UserDto)session.getAttribute("ldto");
 
 			dto.setUseraccesstoken(access_token);
 			dto.setUserrefreshtoken(refresh_token);

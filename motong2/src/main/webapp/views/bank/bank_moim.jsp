@@ -46,7 +46,10 @@
 				}
 				list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
 				//button .   p    . <div> 
-				$(btnEle).parent().next(".transaction_list").html(list);
+				$(".tran-btn").parent().parent().siblings().find(".tranList").html(list);		
+			},
+			error:function(){
+				
 			}
 		});
 	}
@@ -94,8 +97,9 @@
                 		</tr>
                 		<tr>
                 			<td colspan="2">
-                			<button type="button" class="btn btn-outline-primary" onclick="transactionList("+${dto.fintech_use_num}+")>거래 내역 조회</button>
+                			<button type="button" class="btn btn-outline-primary" onclick="transactionList('${dto.fintech_use_num}',this)">거래 내역 조회</button>
                 			<button type="button" class="btn btn-outline-primary" onclick="">입출금</button>
+                			<br/><div class="tranList"></div>
                 		</tr>
                 	</table>
                 </div>
