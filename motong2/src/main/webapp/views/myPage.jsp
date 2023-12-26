@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +50,7 @@
 		}
 		
 		//계좌등록하기(센터인증 이용기관용: 사용자 인증후에 계좌 등록 가능)
-		function addAccount(){
+		function addAccount(email){
 			var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
 				   +"response_type=code&" //고정값 code: 인증요청시 반환되는 값의 형식의미
 				   +"client_id=4987e938-f84b-4e23-b0a2-3b15b00f4ffd&" //이용기관의 ID
@@ -60,8 +60,52 @@
 				   +"auth_type=0"; //0:최초 한번 인증, 2:인증생략
 				   
 			window.open(url,"인증하기","width=400px,height=600px");	
-			
-// 			alert("계좌 등록 완료");
+		}
+		
+		//잔액확인 버튼 누르면 잔액 확인
+		$(function(){
+				$(".amt-btn").click(function(){
+					$(this).siblings().eq(4).toggle();
+					$(this).parent().parent().siblings().each(function(){ 
+						
+						$(this).find("span").eq(1).hide();
+						$(this).find(".tranList").hide();
+					});
+					
+				});
+				
+				$(".tran-btn").click(function(){
+					$(this).siblings().eq(6).toggle();
+					$(this).parent().parent().siblings().each(function(){ 
+						$(this).find("span").eq(1).hide();
+						$(this).find(".tranList").hide();
+					});
+				});
+			});
+		
+		//거래내역조회
+		function transactionList(fintech_use_num,btnEle){
+			$.ajax({
+				url:"/banking/transactionList",
+				method:"get",
+				data:{"fintech_use_num":fintech_use_num},
+				dataType:"json",
+				success:function(data){ //data: 응답결과을 받을 변수
+					var list="<ul>";
+					// data.res_list  -->  배열
+					for (var i = 0; i < data.res_list.length; i++) {
+						var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
+						list+="<li>"+res.tran_date
+						            +" ["+res.branch_name+"] "
+						            +res.inout_type+" "
+						            +res.print_content+":"
+						            +res.tran_amt+"</li>"
+					}
+					list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
+					//button .   p    . <div> 
+					$(".tran-btn").parent().parent().siblings().find(".tranList").html(list);		
+				}
+			});
 		}
 	</script>
 
@@ -121,7 +165,30 @@
 					<h1>나의 계좌</h1>
 					<div id="myAccount">
 						<button type="button" class="btn btn-outline-primary" onclick="${sessionScope.ldto.useraccesstoken == null ? 'authorization()':'already()'}">사용자인증</button>
-						<button type="button" class="btn btn-outline-primary" onclick="addAccount()" >계좌 등록하기</button>
+						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}')" >계좌 등록하기</button>
+						<table class="table">
+							<c:choose> 
+								<c:when test="${empty aList}"><!-- 안에가 비어있냐 -->
+									<tr>
+										<td></td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${aList}" var="aTdto">
+										<tr>
+											<td>
+												<h2>${aTdto.bank_name}</h2>
+												<span>계좌번호 : ${aTdto.account_num_masked}</span>
+												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px">잔액조회</button>
+												<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>
+												<br/><span class="amt" style="display:none;">${aTdto.balance_amt}원</span>
+												<br/><div class="tranList"></div>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</table>
 					</div>
                 </div>
             </div>

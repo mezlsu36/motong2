@@ -13,11 +13,13 @@
 	</select>
 	
 	<select id="loginUser" parameterType="UserDto" resultType="UserDto">
-		SELECT * FROM USER WHERE EMAIL = #{email} 
+		SELECT * 
+		FROM USER 
+		WHERE EMAIL = #{email} 
 	</select>
 	
 	<select id="myInfo" parameterType="String" resultType="UserDto">
-		SELECT EMAIL, PASSWORD, NAME, PHONE
+		SELECT *
 		FROM user
 		WHERE EMAIL=#{email};
 	</select>
@@ -41,6 +43,18 @@
 	
 	<insert id="registAccount" parameterType="AccountTableDto">
 		INSERT INTO account
-		VALUES (NULL, #{user_seq}, #{fintech_use_num}, #{balance_amt}, #{bank_name})
+		VALUES (NULL, #{user_seq}, #{fintech_use_num}, #{account_num_masked},#{balance_amt}, #{bank_name})
 	</insert>
+	
+	<select id="getAccountList" parameterType="int" resultType="AccountTableDto">
+		SELECT *
+		FROM account
+		WHERE user_seq= #{user_seq}
+	</select>
+	
+	<update id="updateBalanceAmt" parameterType="map">
+		UPDATE account
+		SET balance_amt = #{balance_amt}
+		WHERE account_seq = #{account_seq}
+	</update>
 </mapper> 
