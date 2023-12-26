@@ -104,6 +104,9 @@
 					list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
 					//button .   p    . <div> 
 					$(".tran-btn").parent().parent().siblings().find(".tranList").html(list);		
+				},
+				error:function(){
+					alert("왜 씨ㅏ");
 				}
 			});
 		}
