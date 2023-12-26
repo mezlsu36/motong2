@@ -17,6 +17,13 @@
       <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="resources/css/styles.css" rel="stylesheet" />
+   <style>
+   .right-btn {
+     float: right;
+   }
+   h2 { text-align: center; margin-top: 10px;}
+   </style>
+
 <script type="text/javascript">
 
  </script>
@@ -67,19 +74,38 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<tr>
-				<td colspan="10">
-					<button class="btn btn-primary" type="button">모임개설</button>
-				</td>
-			</tr>
-	 	</table>
-	 </div>
+			 <div class="container">
+         <div class="row">
+         <form method="post" name="search" action="">
+            <table class="pull-right">
+               <tr>
+                  <td><select class="form-control" name="search_node">
+                        <option value="1">선택</option>
+                        <option value="2">모임이름</option>
+                        <option value="3">모임장</option>
+                  </select></td>
+                  <td><input type="text" class="form-control"
+                     placeholder="검색어 입력" name="searchText" maxlength="100"  value="${map.keyword}"></td>
+                  <td><input type="submit" class="btn btn-secondary" value="검색"></td>
+                  <div class="right-btn">
+                  <button class="btn btn-secondary" type="button" onclick="location.href='newmoim'">모임개설</button>
+                  </div>
+               </tr>
 
+            </table>
+         </form>
+      </div>
+   </div>
+         
+       </table>
+    </div>
 <footer class="py-3 bg-dark">
     <div class="container"><p class="m-0 text-center text-white" style="height: 40px;">Copyright &copy; motong 2023</p></div>
 </footer>
 </body>
 </html>
+
+
 
 
 
