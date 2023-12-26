@@ -46,7 +46,7 @@
                 	<h2 style="font-weight: bold;">로그인</h2>
                 	<hr/>
                     <form action="/user/login" method="post">
-                    	<table class="table">
+                    	<table class="table" style="width:600px">
                     		<tr>
                     			<th>이메일</th>
                     			<td>

@@ -103,10 +103,7 @@
 					}
 					list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
 					//button .   p    . <div> 
-					$(".tran-btn").parent().parent().siblings().find(".tranList").html(list);		
-				},
-				error:function(){
-					alert("왜 씨ㅏ");
+					$(btnEle).next().next().next().next().html(list);	
 				}
 			});
 		}
@@ -115,7 +112,7 @@
 </head>
 <body>
 <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
         <div class="container">
             <a href="/"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -134,11 +131,13 @@
     </nav>
     <!-- Content section-->
     <section class="py-5">
+    <br/><br/>
         <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
+       		 <div class="row justify-content-center">
+                <div class="col-lg-6" style="width:1200px; overflow:auto;">
+                	<div id="myinfo" style="width:500px; float:left;">
 					<h1>나의 정보</h1>
-					<div id="myinfo">
+					<hr/>	
 						<table class="table">
 							<tr>
 								<th>이름</th>
@@ -164,9 +163,9 @@
 							</tr>
 						</table>
 					</div>
-					<br/><hr/><br/>
+					<div id="myAccount" style="width:500px;  float:right;">
 					<h1>나의 계좌</h1>
-					<div id="myAccount">
+					<hr/>
 						<button type="button" class="btn btn-outline-primary" onclick="${sessionScope.ldto.useraccesstoken == null ? 'authorization()':'already()'}">사용자인증</button>
 						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}')" >계좌 등록하기</button>
 						<table class="table">
@@ -180,12 +179,12 @@
 									<c:forEach items="${aList}" var="aTdto">
 										<tr>
 											<td>
-												<h2>${aTdto.bank_name}</h2>
+												<p style="font-size:20pt">${aTdto.bank_name}</p>
 												<span>계좌번호 : ${aTdto.account_num_masked}</span>
 												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px">잔액조회</button>
 												<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>
 												<br/><span class="amt" style="display:none;">${aTdto.balance_amt}원</span>
-												<br/><div class="tranList"></div>
+												<br/><div class="tranList" ></div>
 											</td>
 										</tr>
 									</c:forEach>
@@ -194,11 +193,12 @@
 						</table>
 					</div>
                 </div>
-            </div>
+              </div>
         </div>
     </section>
+  <br/><br/><br/><br/><br/><br/>
     <!-- Footer-->
-        <footer class="py-3"  style="background-color:#e3f2fd;" >
+        <footer class="py-3"  style="width:100%; background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
         </footer>
     <!-- Bootstrap core JS-->
