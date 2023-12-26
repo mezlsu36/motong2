@@ -21,4 +21,8 @@ public class MoimService {
    public List<String> moimLeader(int user_seq) {
 	   return moimMapper.moimLeader(user_seq);
    }
+   
+   public String moimName(int user_seq) {
+	   return moimMapper.moimName(user_seq);
+   }
 }

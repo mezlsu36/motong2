@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.MoimDto;
+import com.hk.motong.dtos.UserDto;
+import com.hk.motong.service.BankService;
 import com.hk.motong.service.MoimService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +26,8 @@ public class BankController {
 
    @Autowired
    private MoimService moimService;
+   @Autowired
+   private BankService bankService;
    
    @GetMapping("/bank_main")
    public String bank_main(Model model, HttpServletRequest request) {
@@ -37,8 +42,20 @@ public class BankController {
       List<String> leaderList=moimService.moimLeader(user_seq);
       model.addAttribute("leaderList",leaderList);
       
+      
       return "bank/bank_main";
    }
    
+   @GetMapping("/bank_moim")
+   public String bank_moim(int user_seq, Model model) {
+	   System.out.println("모임계좌 페이지로 이동");
+	   AccountDto dto=bankService.getmoimAccount(user_seq);
+	   model.addAttribute("dto",dto);
+	   
+	   // 모임 이름 뿌리기
+	   String mname=moimService.moimName(user_seq);
+	   model.addAttribute("mname",mname);
+	   return "bank/bank_moim";
+   }
    
 }

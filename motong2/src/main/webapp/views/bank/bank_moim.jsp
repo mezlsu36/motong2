@@ -25,6 +25,33 @@
    </style>
    <script type="text/javascript">
 
+ 	//거래내역조회
+	function transactionList(fintech_use_num,btnEle){
+		$.ajax({
+			url:"/banking/transactionList",
+			method:"get",
+			data:{"fintech_use_num":fintech_use_num},
+			dataType:"json",
+			success:function(data){ //data: 응답결과을 받을 변수
+				console.log(data.res_list);
+				var list="<ul>";
+				// data.res_list  -->  배열
+				for (var i = 0; i < data.res_list.length; i++) {
+					var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
+					list+="<li>"+res.tran_date
+					            +" ["+res.branch_name+"] "
+					            +res.inout_type+" "
+					            +res.print_content+":"
+					            +res.tran_amt+"</li>"
+				}
+				list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
+				//button .   p    . <div> 
+				$(btnEle).parent().next(".transaction_list").html(list);
+			}
+		});
+	}
+   
+   
    </script>
 
 </head>
@@ -53,42 +80,26 @@
         <div class="container my-5">
             <div class="row justify-content-center">
             <div class="col-lg-6">
-                <h2 style="font-weight: bold;">가입된 모임</h2>
+                <h2 style="font-weight: bold;">거래 내역</h2>
                 <hr/>
-                <form>
-                   <table class="table table-hover">
-                      <col width="50px"/>
-                      <col width="50px"/>
-                      <col width="100px"/>
-                      <col width="80px"/>
-                      <thead>
-                      <tr>
-                         <th>모임 번호 </th><th>모임장</th><th>계좌 잔액</th><th>모임이름</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                     <c:set var="list" value="${list}"/>
-                     <c:choose>
-                     	<c:when test="${empty list}">
-						<tr>
-							<td colspan="10">--가입된 모임이 없습니다.--</td>
-						</tr>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${list}" var="dto" varStatus="status">
-								<tr>
-									<td>${dto.moim_seq}</td>
-									<td>${leaderList[status.index]}</td>
-									<td>${dto.account_seq}</td>
-									<td><a href="/bank/bank_moim?user_seq=${dto.leader}">${dto.mname}</a></td>
-								</tr>
-							</c:forEach>
-						</c:otherwise>
-                     </c:choose>
-                     </tbody>
-                   </table>
-                </form>
-               </div>
+                <div id="getMoimAccount">
+                	<table class="table">
+                		<tr>
+                			<th>모임 이름</th>
+                			<td>${mname}</td>
+                		</tr>
+                		<tr>
+                			<th>bank_name</th>
+                			<td>${dto.bank_name}</td>
+                		</tr>
+                		<tr>
+                			<td colspan="2">
+                			<button type="button" class="btn btn-outline-primary" onclick="transactionList("+${dto.fintech_use_num}+")>거래 내역 조회</button>
+                			<button type="button" class="btn btn-outline-primary" onclick="">입출금</button>
+                		</tr>
+                	</table>
+                </div>
+            </div>
             </div>
         </div>
     </section>
