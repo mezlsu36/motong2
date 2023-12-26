@@ -18,9 +18,17 @@
 	<style type="text/css">
 		.box{border-bottom: 1px solid gray; margin-bottom: 10px;}
 		.box > .sub_menu{text-align: right;}
+		
 	</style>
 	<script type="text/javascript">
-		
+		$(function(){
+			$(".deleteAccount").hover(function(){
+				$(this).css("color","red");
+				},function(){
+					$(this).css("color","black");
+				});
+		});
+	
 		function isDel(email){
 			if(confirm("정말 탈퇴하시겠습니까?")){
 				location.href="/user/delUser?email="+email;
@@ -107,6 +115,14 @@
 				}
 			});
 		}
+		
+		function deleteAccount(account_seq,bank_name,account_num_masked,email){
+			if(confirm("정말 삭제하시겠습니까?("+bank_name+":"+account_num_masked+")")){
+				location.href="/banking/deleteAccount?account_seq="+account_seq+"&email="+email;
+			}else{
+				return false;
+			}
+		}
 	</script>
 
 </head>
@@ -179,7 +195,9 @@
 									<c:forEach items="${aList}" var="aTdto">
 										<tr>
 											<td>
-												<p style="font-size:20pt">${aTdto.bank_name}</p>
+												<p style=" font-size:15pt">${aTdto.bank_name}
+													<button style="text-decoration : underline; border:none; background-color:white; color:black; margin-left:240px; font-size:9pt;" class="deleteAccount" 
+														onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')" >계좌 삭제</button></p>
 												<span>계좌번호 : ${aTdto.account_num_masked}</span>
 												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px">잔액조회</button>
 												<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>

@@ -72,4 +72,8 @@ public class UserService {
 		return userMapper.updateBalanceAmt(map);
 	}
 	
+	//계좌 삭제
+	public boolean deleteAccount(int account_seq) {
+		return userMapper.deleteAccount(account_seq);
+	}
 }

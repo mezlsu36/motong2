@@ -33,4 +33,7 @@ public interface UserMapper {
 	
 	//잔액 업데이트
 	public boolean updateBalanceAmt(Map<String, Integer> map);
+	
+	//계좌 삭제
+	public boolean deleteAccount(int account_seq);
 }

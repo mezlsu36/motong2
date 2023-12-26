@@ -132,19 +132,13 @@ public class BankingController {
 		
 		return result;
 		}
-//	public List<AccountTransactionDto> transactionList(String fintech_use_num) throws IOException, ParseException {
-//		System.out.println("거래내역 조회하기");
-//		String bank_tran_id = "M202201886U" + createNum();
-//	    String inquiry_type="A";
-//	    String inquiry_base="D";
-//	    String from_date="20190101";
-//	    String to_date="20190131";
-//	    String sort_order="D";
-//	    String tran_dtime = getDateTime();
-//		AccountTransactionListDto accountTransactionListDto = openBankingFeign.requestAccountTransactionList(bank_tran_id,fintech_use_num,inquiry_type,inquiry_base,from_date,to_date,sort_order,tran_dtime);
-//		List<AccountTransactionDto> res_list = accountTransactionListDto.getRes_list();
-//		return res_list;
-//	}
+
+	//계좌 삭제
+	@GetMapping("/deleteAccount")
+	public String deleteAccount(int account_seq,String email,HttpServletRequest request) {
+		userService.deleteAccount(account_seq);
+		return "redirect:/user/myPage?email="+email;
+	}
 	
 	//계좌 정보 가져오기
 			public UserMeDto getAccount(HttpServletRequest request,String useraccesstoken) throws IOException, ParseException {
