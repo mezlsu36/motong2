@@ -16,7 +16,7 @@ public interface MoimMapper {
 
    public int getPCount();
    
-   public List<MoimDto> getMoimList();
+   public List<MoimDto> getMoimList(String pnum);
    
    public List<MoimDto> subsMoim(int user_seq);
    
@@ -28,5 +28,8 @@ public interface MoimMapper {
    
    public void addMoim(@Param("moimname") String moimname, 
 		   			   @Param("selectedAccount") String selectedAccount, 
-		   			   @Param("moimPin") String moimPin);    
+		   			   @Param("moimPin") String moimPin);
+
+
+   
 }

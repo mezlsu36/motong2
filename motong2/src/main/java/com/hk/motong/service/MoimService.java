@@ -20,8 +20,8 @@ public class MoimService {
 		return moimMapper.getPCount();
 	}
    
-   public List<MoimDto> getMoimList() {		
-		List<MoimDto> list = moimMapper.getMoimList();				
+   public List<MoimDto> getMoimList(String pnum) {		
+		List<MoimDto> list = moimMapper.getMoimList(pnum);				
 		return list;
 	}
   
@@ -40,6 +40,7 @@ public class MoimService {
    public void addMoim(String moimname, String Account, String moimPin) {
 	    moimMapper.addMoim(moimname, Account, moimPin);
    }
+
 
 
 

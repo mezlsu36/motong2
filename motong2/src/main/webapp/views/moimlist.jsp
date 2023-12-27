@@ -23,7 +23,11 @@
      float: right;
    }
    h2 { text-align: center; margin-top: 10px;}
-  
+   
+  a{text-decoration: none;}
+	.active{
+		background-color: yellow;
+	}
    </style>
 
 <script type="text/javascript">
@@ -85,7 +89,7 @@
 			<c:choose>
 				<c:when test="${empty lists}">
 					<tr>
-						<td colspan="6">--모임이 없습니다.--</td>
+						<td colspan="5">--모임이 없습니다.--</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -100,6 +104,21 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
+			<tr>
+			<td colspan="5" style="text-align: center;">
+				<!-- 페이징 처리부분 시작 -->
+				<nav>
+				  <ul class="pagination">
+				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
+				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
+				    </c:forEach> 
+				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				  </ul>
+				</nav>
+				<!-- 페이징 처리부분 종료 -->
+			</td>
+		</tr>
 			</table>
 		<div class="container">
          <div class="row">

@@ -28,7 +28,7 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signin_form">SignIN</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/moim/moimlist">모임리스트</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     </ul>
                 </div>
             </div>
