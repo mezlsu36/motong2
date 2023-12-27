@@ -34,7 +34,9 @@ public class BankController {
       System.out.println("회비관리 페이지 이동");
       
       HttpSession session=request.getSession();
-      int user_seq=(int) session.getAttribute("user_seq");
+
+      UserDto ldto = (UserDto)session.getAttribute("ldto");
+      int user_seq= ldto.getUser_seq();
  
       List<MoimDto> list=moimService.subsMoim(user_seq);
       model.addAttribute("list",list);
@@ -47,14 +49,18 @@ public class BankController {
    }
    
    @GetMapping("/bank_moim")
-   public String bank_moim(int user_seq, Model model) {
+   public String bank_moim(int account_seq, Model model) {
+	   System.out.println(account_seq);
 	   System.out.println("모임계좌 페이지로 이동");
-	   AccountDto dto=bankService.getmoimAccount(user_seq);
+	   AccountDto dto=bankService.getmoimAccount(account_seq);
+	   System.out.println(dto);
 	   model.addAttribute("dto",dto);
 	   
 	   // 모임 이름 뿌리기
-	   String mname=moimService.moimName(user_seq);
+	   String mname=moimService.moimName(account_seq);
+	   System.out.println(mname);
 	   model.addAttribute("mname",mname);
+
 	   return "bank/bank_moim";
    }
    

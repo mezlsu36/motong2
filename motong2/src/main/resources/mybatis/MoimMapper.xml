@@ -22,9 +22,6 @@
 	<select id="moimName" parameterType="Integer" resultType="String">
 		SELECT MOIM.MNAME
 		FROM moim JOIN account ON moim.LEADER=account.USER_SEQ
-		WHERE account.USER_SEQ=#{user_seq};
+		WHERE account.account_seq= #{account_seq}
 	</select>
 </mapper>
-
-
-

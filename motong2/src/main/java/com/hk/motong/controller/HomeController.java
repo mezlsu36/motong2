@@ -16,5 +16,5 @@ public class HomeController {
 	public String main() {
 		return "main";
 	}
+	
 }
-

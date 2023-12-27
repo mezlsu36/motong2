@@ -14,5 +14,6 @@ public interface MoimMapper {
    
    public List<String> moimLeader(int user_seq);
    
-   public String moimName(int user_seq);
+
+   public String moimName(int account_seq);
 }

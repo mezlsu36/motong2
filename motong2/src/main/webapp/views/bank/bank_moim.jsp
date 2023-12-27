@@ -50,8 +50,21 @@
 			}
 		});
 	}
-
-	
+   
+	//거래내역 조회 toggle
+	$(function(){
+		$("#tranList").click(function(){
+			$(".tranList").toggle();		
+		});
+	});
+			
+	// 출금 
+	function withdraw(fintech_use_num,btnEle){
+		$.ajax({
+			url:"/banking/withdraw",
+			
+		});
+	}
    </script>
 
 </head>
@@ -94,7 +107,7 @@
                 		</tr>
                 		<tr>
                 			<td colspan="2">
-                			<button type="button" class="btn btn-outline-primary" onclick="transactionList('${dto.fintech_use_num}',this)">거래 내역 조회</button>
+                			<button type="button" id="tranList" class="btn btn-outline-primary" onclick="transactionList('${dto.fintech_use_num}',this)">거래 내역 조회</button>
                 			<button type="button" class="btn btn-outline-primary" onclick="">입금</button>
                 			<button type="button" class="btn btn-outline-primary" onclick="window.open('/banking/withdraw_popup', 'withdrawpopup','width=450, height=400, top=150, left=200')">출금</button>
                 			<br/><br/><div class="tranList"></div>

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import com.hk.motong.dtos.AccountTableDto;
+import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.mapper.UserMapper;
 
@@ -47,7 +47,7 @@ public class UserService {
 	}
 	
 	@Transactional(propagation =  Propagation.REQUIRED) //선언적
-	public boolean registTokenAccount(UserDto dto, AccountTableDto adto) {
+	public boolean registTokenAccount(UserDto dto, AccountDto adto) {
 		int count =0 ;
 		
 		userMapper.registToken(dto);
@@ -57,12 +57,12 @@ public class UserService {
 	}
 
 	
-	public boolean registAccount(AccountTableDto adto) {
+	public boolean registAccount(AccountDto adto) {
 		return userMapper.registAccount(adto);
 	}
 	
 	//계좌 리스트 불러오기
-	public List<AccountTableDto> getAccountList(int user_seq){
+	public List<AccountDto> getAccountList(int user_seq){
 		
 		return userMapper.getAccountList(user_seq);
 	}
@@ -72,4 +72,8 @@ public class UserService {
 		return userMapper.updateBalanceAmt(map);
 	}
 	
+	//계좌 삭제
+	public boolean deleteAccount(int account_seq) {
+		return userMapper.deleteAccount(account_seq);
+	}
 }

@@ -4,12 +4,10 @@
 <mapper namespace="com.hk.motong.mapper.BankMapper">
    
    <select id="getmoimAccount" parameterType="Integer" resultType="AccountDto">
-   		SELECT *
+   		SELECT account_seq,user_seq,fintech_use_num,account_num_masked,balance_amt, bank_name
 		FROM account 
-		WHERE USER_SEQ = #{user_seq};
+		WHERE account_seq = #{account_seq}
    </select>
 	
 </mapper>
-
-
 

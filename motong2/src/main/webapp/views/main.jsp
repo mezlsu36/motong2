@@ -35,7 +35,7 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">모임 목록</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">모임 목록</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
@@ -79,13 +79,23 @@
             </div>
         </section>
     <!-- Footer-->
+<<<<<<< HEAD
     <footer class="py-3 bg-dark">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
     </footer>
+=======
+    <footer class="py-3"  style="background-color:#e3f2fd;" >
+            <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
+        </footer>
+>>>>>>> refs/remotes/origin/jueun
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
 <!--     <script src="resources/js/scripts.js"></script> -->
 </body>
+<<<<<<< HEAD
 </html>
 
+=======
+</html>
+>>>>>>> refs/remotes/origin/jueun

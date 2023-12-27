@@ -22,7 +22,7 @@ public class MoimService {
 	   return moimMapper.moimLeader(user_seq);
    }
    
-   public String moimName(int user_seq) {
-	   return moimMapper.moimName(user_seq);
+   public String moimName(int account_seq) {
+	   return moimMapper.moimName(account_seq);
    }
 }

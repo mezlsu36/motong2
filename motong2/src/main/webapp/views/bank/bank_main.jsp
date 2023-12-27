@@ -56,14 +56,14 @@
                 <h2 style="font-weight: bold;">가입된 모임</h2>
                 <hr/>
                 <form>
-                   <table class="table table-hover">
+                   <table class="table table-hover" style="text-align:center;">
                       <col width="50px"/>
                       <col width="50px"/>
                       <col width="100px"/>
                       <col width="80px"/>
                       <thead>
                       <tr>
-                         <th>모임 번호 </th><th>모임장</th><th>계좌 잔액</th><th>모임이름</th>
+                         <th>모임 번호 </th><th>모임장</th><th>모임이름</th><th></th>
                       </tr>
                       </thead>
                       <tbody>
@@ -71,7 +71,7 @@
                      <c:choose>
                      	<c:when test="${empty list}">
 						<tr>
-							<td colspan="10">--가입된 모임이 없습니다.--</td>
+							<td colspan="4">--가입된 모임이 없습니다.--</td>
 						</tr>
 						</c:when>
 						<c:otherwise>
@@ -79,8 +79,8 @@
 								<tr>
 									<td>${dto.moim_seq}</td>
 									<td>${leaderList[status.index]}</td>
-									<td>${dto.account_seq}</td>
-									<td><a href="/bank/bank_moim?user_seq=${dto.leader}">${dto.mname}</a></td>
+									<td>${dto.mname}</td>													
+									<td><button type="button" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">입장</button></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>

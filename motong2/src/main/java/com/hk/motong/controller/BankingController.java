@@ -25,7 +25,7 @@ import com.hk.motong.apidto.AccountTransactionDto;
 import com.hk.motong.apidto.AccountTransactionListDto;
 import com.hk.motong.apidto.UserMeAccountDto;
 import com.hk.motong.apidto.UserMeDto;
-import com.hk.motong.dtos.AccountTableDto;
+import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.feignMapper.OpenBankingFeign;
 import com.hk.motong.service.UserService;
@@ -70,7 +70,7 @@ public class BankingController {
 		AccountBalanceDto accountBalanceDto = getAccountBalanceDto(request,useraccesstoken,fintech_use_num);
 		System.out.println(accountBalanceDto);
 		
-		AccountTableDto aDto = new AccountTableDto();
+		AccountDto aDto = new AccountDto();
 		aDto.setUser_seq(dto.getUser_seq());
 		aDto.setFintech_use_num(fintech_use_num);
 		aDto.setAccount_num_masked(account_num_masked);
@@ -134,19 +134,13 @@ public class BankingController {
 		
 		return result;
 		}
-//	public List<AccountTransactionDto> transactionList(String fintech_use_num) throws IOException, ParseException {
-//		System.out.println("거래내역 조회하기");
-//		String bank_tran_id = "M202201886U" + createNum();
-//	    String inquiry_type="A";
-//	    String inquiry_base="D";
-//	    String from_date="20190101";
-//	    String to_date="20190131";
-//	    String sort_order="D";
-//	    String tran_dtime = getDateTime();
-//		AccountTransactionListDto accountTransactionListDto = openBankingFeign.requestAccountTransactionList(bank_tran_id,fintech_use_num,inquiry_type,inquiry_base,from_date,to_date,sort_order,tran_dtime);
-//		List<AccountTransactionDto> res_list = accountTransactionListDto.getRes_list();
-//		return res_list;
-//	}
+
+	//계좌 삭제
+	@GetMapping("/deleteAccount")
+	public String deleteAccount(int account_seq,String email,HttpServletRequest request) {
+		userService.deleteAccount(account_seq);
+		return "redirect:/user/myPage?email="+email;
+	}
 	
 	@GetMapping("/withdraw_popup")
 	public String withdraw_popup(Model model, HttpServletRequest request) {
