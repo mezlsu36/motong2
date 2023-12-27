@@ -60,7 +60,10 @@
     <h2>모임 개설하기</h2>
     <br/><br/><br/><br/>
     <div class='my-div'>	  	   	 
-	    <form action="/moim/addMoim" method="post">	       
+	    <form action="/moim/addMoim" method="post">	    
+	       			  <input type="hidden" name="moim_seq" value="모임번호"/>
+	       			  <input type="hidden" name="leader" value="모임장"/>
+	       			  <input type="hidden" name="mname" value="모임이름"/>
 		              <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" >
 				      <select>
 				      	 <option value="Account" selected="selected">-----------</option> 

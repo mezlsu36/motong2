@@ -36,6 +36,10 @@ public class MoimService {
    public List<String> getMyAccountList(int user_seq){
 	   return moimMapper.getMyAccountList(user_seq);
    }
+   
+   public void addMoim(String moimname, String Account, String moimPin) {
+	    moimMapper.addMoim(moimname, Account, moimPin);
+   }
 
 
 

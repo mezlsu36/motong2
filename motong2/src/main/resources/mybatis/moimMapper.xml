@@ -16,7 +16,6 @@
 				FROM moim LEFT OUTER JOIN user ON moim.leader = user.USER_SEQ) a
 		-- WHERE rn BETWEEN 11 AND 20;
 		WHERE CEIL(rn/10)=1;
-
 	</select>
 	
 	<select id="getMyAccountList" parameterType="Integer" resultType="String">
@@ -25,4 +24,11 @@
 		WHERE user_seq = #{user_seq}
 	</select>
 	
+	<insert id="addMoim" parameterType="MoimDto">
+		INSERT INTO moim
+		VALUES (NULL, #{leader}, #{account_seq}, #{mname}, #{pin}, #{name})
+	</insert>
+	
 </mapper>
+
+
