@@ -8,7 +8,7 @@
 		FROM moim
 	</select>
 	
-	<select id="getMoimList" parameterType="ListDto">
+	<select id="getMoimList" parameterType="MoimDto">
 		SELECT moim_seq,leader,account_seq,mname,pin,NAME
 		FROM (
 				SELECT ROW_NUMBER() over(ORDER BY moim_seq) rn,

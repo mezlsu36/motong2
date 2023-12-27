@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.hk.motong.dtos.ListDto"%>
+<%@page import="com.hk.motong.dtos.MoimDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -37,6 +37,8 @@
 		var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 		if(pinNum == pin){
 			alert("입장~");
+//			window.location.href = "";
+			
 		}else{
 			alert("PIN번호가 일치하지 않습니다.");
 			pinNum.focus
@@ -103,19 +105,13 @@
          <div class="row">
          <form method="post" name="search" action="">
             <table class="pull-right">
-            <col width="120px;" />
             <col width="300px;" />
             <col width="100px;" />
             <col width="600px;" />
                <tr>
-                  <td><select class="form-control" name="search_node">
-                        <option value="1">선택</option>
-                        <option value="2">모임이름</option>
-                        <option value="3">모임장</option>
-                  </select></td>
                   <td><input type="text" class="form-control"
-                     placeholder="검색어 입력" name="searchText" maxlength="100"  value="${map.keyword}"></td>
-                  <td><input type="submit" class="btn btn-secondary" value="검색"></td>
+                     placeholder="검색어 입력" name="research" maxlength="100"  value="${map.keyword}"></td>
+                  <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="location.href='/moim/newmoim'">모임개설</button>                  
                   </td>  

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.hk.motong.dtos.ListDto;
+import com.hk.motong.dtos.MoimDto;
 import com.hk.motong.dtos.MoimDto;
 
 
@@ -13,7 +13,7 @@ public interface MoimMapper {
 
    public int getPCount();
    
-   public List<ListDto> getMoimList();
+   public List<MoimDto> getMoimList();
    
    public List<MoimDto> subsMoim(int user_seq);
    

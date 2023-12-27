@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.motong.dtos.AccountTableDto;
-import com.hk.motong.dtos.ListDto;
+import com.hk.motong.dtos.MoimDto;
 import com.hk.motong.dtos.MoimDto;
 import com.hk.motong.mapper.MoimMapper;
 
@@ -20,8 +20,8 @@ public class MoimService {
 		return moimMapper.getPCount();
 	}
    
-   public List<ListDto> getMoimList() {		
-		List<ListDto> list = moimMapper.getMoimList();				
+   public List<MoimDto> getMoimList() {		
+		List<MoimDto> list = moimMapper.getMoimList();				
 		return list;
 	}
   

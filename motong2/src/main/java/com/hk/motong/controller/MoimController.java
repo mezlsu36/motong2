@@ -1,5 +1,6 @@
 package com.hk.motong.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hk.motong.dtos.ListDto;
+import com.hk.motong.dtos.MoimDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.service.MoimService;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/moim")
@@ -27,7 +30,7 @@ public class MoimController {
 	public String moimList(Model model) {		
 		System.out.println("moimlist요청");
 		
-		List<ListDto>list=moimService.getMoimList();
+		List<MoimDto>list=moimService.getMoimList();
 		model.addAttribute("list", list);
 		System.out.println(list);
 		return "moimlist";
@@ -45,7 +48,5 @@ public class MoimController {
 		System.out.println(acList);
         return "newmoim";
 	}
-	
-	
 	
 }
