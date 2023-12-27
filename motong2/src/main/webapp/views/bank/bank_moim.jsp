@@ -58,13 +58,7 @@
 		});
 	});
 			
-	// 출금 
-	function withdraw(fintech_use_num,btnEle){
-		$.ajax({
-			url:"/banking/withdraw",
-			
-		});
-	}
+
    </script>
 
 </head>

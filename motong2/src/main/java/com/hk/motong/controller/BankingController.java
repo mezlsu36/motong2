@@ -142,17 +142,17 @@ public class BankingController {
 		return "redirect:/user/myPage?email="+email;
 	}
 	
+	
+	// 출금 팝업
 	@GetMapping("/withdraw_popup")
 	public String withdraw_popup(Model model, HttpServletRequest request) {
 		System.out.println("출금 팝업");
 		
 		HttpSession session=request.getSession();
-		String fintech_use_num=(String) session.getAttribute("fintech_use_num");
 		
 		UserDto ldto=(UserDto)session.getAttribute("ldto");
 		model.addAttribute("ldto",ldto);
 		
-		model.addAttribute("fintech_use_num",fintech_use_num);
 		
 		return "bank/withdraw_popup";
 	}

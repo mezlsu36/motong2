@@ -17,18 +17,6 @@
 </style>
 
 <script type="text/javascript">
-	// 출금
-	function withdraw(fintech_use_num,btnEle){
-		$.ajax({
-			url:"/v2.0/transfer/withdraw/fin_num",
-			method:"POST",
-			headers:{
-				"Content-Type":"application/json; charset=UTF-8",
-				Authorization: 'Bearer '+
-			}
-		})
-		
-	}
 </script>
 </head>
 <body style="background-color: #e3f2fd">
@@ -51,8 +39,8 @@
 			<td><input type="text" name="tran_amt" class="form-control"/></td>
 		</tr>
 		<tr>
-		   	<td colspan="3">
-			<button type="button" class="btn btn-outline-primary" onclick="withdraw('${fintech_use_num}',this)" >출금</button>
+		   	<td colspan="2">
+			<button type="submit" class="btn btn-outline-primary" >출금</button>
 			</td>
 		</tr>
 	</table>

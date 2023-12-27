@@ -61,4 +61,6 @@ public interface OpenBankingFeign {
 			  @RequestParam("to_date") String to_date, 
 			  @RequestParam("sort_order") String sort_order, 
 			  @RequestParam("tran_dtime") String tran_dtime);
+	  
+
 }
