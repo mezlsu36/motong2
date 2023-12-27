@@ -8,4 +8,10 @@
 		FROM moim
 	</select>
 	
+	<select id="getMyAccountList" parameterType="Integer" resultType="String">
+		SELECT account_num_masked
+		FROM account
+		WHERE user_seq = #{user_seq}
+	</select>
+	
 </mapper>
