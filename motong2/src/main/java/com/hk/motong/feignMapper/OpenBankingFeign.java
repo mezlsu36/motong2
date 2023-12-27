@@ -1,18 +1,23 @@
 package com.hk.motong.feignMapper;
 
 
+import org.json.simple.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.motong.apidto.AccountBalanceDto;
 import com.hk.motong.apidto.AccountListDto;
 import com.hk.motong.apidto.AccountTransactionListDto;
 import com.hk.motong.apidto.TokenResponseDto;
 import com.hk.motong.apidto.UserMeDto;
+import com.hk.motong.apidto.WithdrawDto;
+import com.hk.motong.apidto.WithdrawReqDto;
 
 //restAPI 서버(openbanking)에 요청하고, 결과값을 받아 주는 기능 
 @FeignClient(name = "feign", url = "https://testapi.openbanking.or.kr")
@@ -61,4 +66,11 @@ public interface OpenBankingFeign {
 			  @RequestParam("to_date") String to_date, 
 			  @RequestParam("sort_order") String sort_order, 
 			  @RequestParam("tran_dtime") String tran_dtime);
+	  
+	  //출금
+	  @PostMapping(path = "/v2.0/transfer/withdraw/fin_num",produces = "application/json")
+	  public WithdrawDto requestWithdraw(
+			  @RequestHeader("Authorization") String access_token,
+			  @RequestBody WithdrawReqDto reqDto);
+
 }

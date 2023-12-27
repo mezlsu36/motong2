@@ -109,7 +109,7 @@
                 			<td colspan="2">
                 			<button type="button" id="tranList" class="btn btn-outline-primary" onclick="transactionList('${dto.fintech_use_num}',this)">거래 내역 조회</button>
                 			<button type="button" class="btn btn-outline-primary" onclick="">입금</button>
-                			<button type="button" class="btn btn-outline-primary" onclick="withdraw('${dto.fintech_use_num}',this)">출금</button>
+                			<button type="button" class="btn btn-outline-primary" onclick="window.open('/banking/withdraw_popup?fintech_use_num=${dto.fintech_use_num}', 'withdrawpopup','width=450, height=400, top=150, left=200')">출금</button>
                 			<br/><br/><div class="tranList"></div>
                 		</tr>
                 	</table>
@@ -117,11 +117,12 @@
             </div>
             </div>
         </div>
+         <br/><br/><br/><br/><br/>
     </section>
     <!-- Footer-->
-    <footer style="bottom: 0px; position: fixed; width: 100%" class="py-3 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
-    </footer>
+    <footer class="py-3"  style="width:100%; background-color:#e3f2fd;" >
+            <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
+        </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

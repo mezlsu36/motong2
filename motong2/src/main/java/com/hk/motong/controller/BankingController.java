@@ -14,7 +14,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,6 +25,8 @@ import com.hk.motong.apidto.AccountTransactionDto;
 import com.hk.motong.apidto.AccountTransactionListDto;
 import com.hk.motong.apidto.UserMeAccountDto;
 import com.hk.motong.apidto.UserMeDto;
+import com.hk.motong.apidto.WithdrawDto;
+import com.hk.motong.apidto.WithdrawReqDto;
 import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.feignMapper.OpenBankingFeign;
@@ -140,6 +144,57 @@ public class BankingController {
 		return "redirect:/user/myPage?email="+email;
 	}
 	
+	
+	//출금 팝업
+	@GetMapping("/withdraw_popup")
+	public String withdraw_popup(Model model, String fintech_use_num) {
+		System.out.println("출금 팝업");
+		
+		model.addAttribute("fintech_use_num",fintech_use_num);
+		
+		return "bank/withdraw_popup";
+	}
+	
+	//출금하기
+	@ResponseBody
+	@PostMapping("/withdraw")
+	public String withdraw(HttpServletRequest request,String dps_print_content,String fintech_use_num,String tran_amt,String recv_client_name,String recv_client_account_num) {
+		System.out.println("될까?");
+		HttpSession session=request.getSession();
+		UserDto dto = (UserDto)session.getAttribute("ldto");
+		String useraccesstoken = dto.getUseraccesstoken();
+		
+		WithdrawReqDto reqDto = new WithdrawReqDto();
+		System.out.println("초반:"+reqDto);
+		
+		reqDto.setBank_tran_id(createNum());
+		reqDto.setCntr_account_type("N");
+		reqDto.setCntr_account_num("100000000008"); 
+		reqDto.setDps_print_content(dps_print_content);
+		reqDto.setFintech_use_num(fintech_use_num); 
+		reqDto.setTran_amt(tran_amt); 
+		reqDto.setTran_dtime(getDateTime());
+		reqDto.setReq_client_name("김지우(출금기관)");
+		reqDto.setReq_client_fintech_use_num("120220188688941194787135");
+		reqDto.setReq_client_num("JJWOOKIMMML1234");
+		reqDto.setTransfer_purpose("TR");
+		reqDto.setRecv_client_name(recv_client_name); 
+		reqDto.setRecv_client_bank_code("097");
+		reqDto.setRecv_client_account_num(recv_client_account_num);
+		
+		System.out.println(reqDto);
+		
+		WithdrawDto withdrawDto	=openBankingFeign.requestWithdraw("Bearer "+useraccesstoken, reqDto);
+		System.out.println(withdrawDto);
+		
+
+		//팝업창을 닫아 주기 위해서
+		String str="<script type='text/javascript'>"
+				  +"     self.close();"
+				  +"     alert('출금 완료');"
+				  +"</script>";
+		return str;
+	}
 	//계좌 정보 가져오기
 			public UserMeDto getAccount(HttpServletRequest request,String useraccesstoken) throws IOException, ParseException {
 					
