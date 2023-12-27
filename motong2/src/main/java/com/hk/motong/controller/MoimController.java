@@ -29,7 +29,7 @@ public class MoimController {
 		
 		List<ListDto>list=moimService.getMoimList();
 		model.addAttribute("list", list);
-		
+		System.out.println(list);
 		return "moimlist";
 	}
 	

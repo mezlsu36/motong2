@@ -16,6 +16,10 @@ public class MoimService {
    @Autowired
    private MoimMapper moimMapper;
    
+	public int getPCount() {
+		return moimMapper.getPCount();
+	}
+   
    public List<ListDto> getMoimList() {		
 		List<ListDto> list = moimMapper.getMoimList();				
 		return list;

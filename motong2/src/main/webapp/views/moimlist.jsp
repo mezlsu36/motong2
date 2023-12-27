@@ -13,6 +13,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Motong</title>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
       <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
@@ -22,10 +23,26 @@
      float: right;
    }
    h2 { text-align: center; margin-top: 10px;}
+  
    </style>
 
 <script type="text/javascript">
-
+	$(function(){
+		$(".listContents").click(function(){
+			$(this).find("input").focus();
+		});
+	});
+	
+	function enter(pin,btnEle){
+		var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
+		if(pinNum == pin){
+			alert("입장~");
+		}else{
+			alert("PIN번호가 일치하지 않습니다.");
+			pinNum.focus
+		}
+	}
+	
  </script>
 </head>
 
@@ -48,18 +65,17 @@
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
 		<h1>모임 목록 </h1>
-	 	<table class="table table-striped">
-	 		<col width="50px;" />
-            <col width="100px;" />
-            <col width="300px;" />
+		<hr/>
+	 	<table class="table" style="text-align: center;">	 	
+            <col width="150px;" />
+            <col width="150px;" />
             <col width="600px;" />
             <col width="120px;" />
             <col width="200px;" />
 	 		<tr>
-	 			<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /> </th>
 	 			<th>모임번호</th>
 	 			<th>모임장</th>
-	 			<th>모임이름</th>	 			
+	 			<th >모임이름</th>	 			
 	 			<th>PIN번호</th>
 	 			<th></th>
 	 		</tr>
@@ -72,13 +88,12 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${lists}" var="dto">
-					    <tr>
-					        <td><input type="checkbox" name="chk" value="${dto.moim_seq}"/></td>
+					    <tr class="listContents">					        
 					        <td>${dto.moim_seq}</td>
-					        <td>${dto.leader}</td>
+					        <td>${dto.name}</td>
 					        <td>${dto.mname}</td>   
-					        <td><input type="password" name="pinNum"/></td>
-					        <td><button>입장</button></td>
+					        <td><input type="password" name="pin" class="pinNum form-control"/></td>
+					        <td><button onclick="enter('${dto.pin}',this)" >입장</button></td>
 					    </tr>
 					</c:forEach>
 				</c:otherwise>
@@ -113,8 +128,8 @@
     </div>
   </div>
   </div>
-<footer class="py-3 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white" style="height: 40px;">Copyright &copy; motong 2023</p></div>
+<footer class="py-3" style="background-color:#e3f2fd;">
+    <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
 </footer>
 </body>
 </html>

@@ -10,7 +10,9 @@ import com.hk.motong.dtos.MoimDto;
 
 @Mapper
 public interface MoimMapper {
-	
+
+   public int getPCount();
+   
    public List<ListDto> getMoimList();
    
    public List<MoimDto> subsMoim(int user_seq);

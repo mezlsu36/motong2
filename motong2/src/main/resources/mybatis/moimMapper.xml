@@ -3,9 +3,20 @@
 
 <mapper namespace="com.hk.motong.mapper.MoimMapper">
 	
-	<select id="getMoimList" parameterType="ListDto">
-		SELECT *
+	<select id="getPCount" resultType="int">
+		SELECT CEIL(COUNT(*)/10) pageCount 
 		FROM moim
+	</select>
+	
+	<select id="getMoimList" parameterType="ListDto">
+		SELECT moim_seq,leader,account_seq,mname,pin,NAME
+		FROM (
+				SELECT ROW_NUMBER() over(ORDER BY moim_seq) rn,
+						 moim_seq,leader,account_seq,mname,pin,NAME
+				FROM moim LEFT OUTER JOIN user ON moim.leader = user.USER_SEQ) a
+		-- WHERE rn BETWEEN 11 AND 20;
+		WHERE CEIL(rn/10)=1;
+
 	</select>
 	
 	<select id="getMyAccountList" parameterType="Integer" resultType="String">
