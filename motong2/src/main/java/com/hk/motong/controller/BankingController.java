@@ -14,7 +14,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -97,6 +99,7 @@ public class BankingController {
 		
 		HttpSession session=request.getSession();
 		UserDto ldto=(UserDto)session.getAttribute("ldto");
+		session.setAttribute("fintech_use_num",fintech_use_num);
 		
 		URL url=new URL("https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?"
 		+ "bank_tran_id=M202201886U"+createNum()
@@ -145,6 +148,20 @@ public class BankingController {
 //		return res_list;
 //	}
 	
+	@GetMapping("/withdraw_popup")
+	public String withdraw_popup(Model model, HttpServletRequest request) {
+		System.out.println("출금 팝업");
+		
+		HttpSession session=request.getSession();
+		String fintech_use_num=(String) session.getAttribute("fintech_use_num");
+		
+		UserDto ldto=(UserDto)session.getAttribute("ldto");
+		model.addAttribute("ldto",ldto);
+		
+		model.addAttribute("fintech_use_num",fintech_use_num);
+		
+		return "bank/withdraw_popup";
+	}
 	
 	
 	
