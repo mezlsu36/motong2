@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hk.motong.dtos.AccountTableDto;
+import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.feignMapper.OpenBankingFeign;
 import com.hk.motong.service.UserService;
@@ -108,7 +108,7 @@ public class UserController {
 			HttpSession session=request.getSession();
 			session.setAttribute("ldto", ldto);
 			session.setMaxInactiveInterval(60*10);
-			return "main";
+			return "redirect:/main";
 		}
 	}
 	
@@ -131,16 +131,16 @@ public class UserController {
 	//마이페이지 창 이동
 	@GetMapping("/myPage")
 	public String myPage(HttpServletRequest request,String email,Model model) throws IOException, ParseException {
-		System.out.println("마이페이지로 이동");
+//		System.out.println("마이페이지로 이동");
 		UserDto dto=userService.myInfo(email);
 		model.addAttribute("dto", dto);
-		System.out.println(dto);
+//		System.out.println(dto);
 		if(dto.getUseraccesstoken() ==null || dto.getUseraccesstoken()=="null" || dto.getUseraccesstoken() == "") {
 			System.out.println(dto.getUseraccesstoken());
 			model.addAttribute("exitAccessToken", "사용자 인증 안된 회원");
 		}else {
 			//DB 계좌 리스트 불러오기
-			List<AccountTableDto> acList = userService.getAccountList(dto.getUser_seq());
+			List<AccountDto> acList = userService.getAccountList(dto.getUser_seq());
 			
 			//계좌 리스트 불러오기 - 잔액 새로 가져올라고 ㅜㅜ
 			UserMeDto userMeDto = getAccount(request,dto.getUseraccesstoken());
@@ -156,9 +156,9 @@ public class UserController {
 					
 					if(acList.get(j).getFintech_use_num().equals(fintech_use_num)) {
 						int balance_amt = Integer.parseInt(accountBalanceDto.getBalance_amt());
-						System.out.println("balance_amt"+balance_amt);
+//						System.out.println("balance_amt"+balance_amt);
 						int account_seq = acList.get(j).getAccount_seq();
-						System.out.println("account_seq:"+account_seq);
+//						System.out.println("account_seq:"+account_seq);
 						Map<String, Integer> map = new HashMap<String, Integer>();
 						map.put("balance_amt", balance_amt);
 						map.put("account_seq",account_seq);
@@ -167,7 +167,7 @@ public class UserController {
 				}
 				
 			}
-			List<AccountTableDto> aList = userService.getAccountList(dto.getUser_seq());
+			List<AccountDto> aList = userService.getAccountList(dto.getUser_seq());
 			//이제 잔액이랑 계좌 목록 띄울거 보내시오~
 			model.addAttribute("aList", aList);
 		}
@@ -270,7 +270,7 @@ public class UserController {
 			//계좌 잔액 정보 들은 dto 가져오기
 			AccountBalanceDto accountBalanceDto = getAccountBalanceDto(request,access_token,fintech_use_num);
 			System.out.println(accountBalanceDto);
-			AccountTableDto aDto = new AccountTableDto();
+			AccountDto aDto = new AccountDto();
 			aDto.setUser_seq(dto.getUser_seq());
 			aDto.setFintech_use_num(fintech_use_num);
 			aDto.setAccount_num_masked(account_num_masked);

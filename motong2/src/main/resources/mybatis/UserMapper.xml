@@ -41,12 +41,12 @@
 		WHERE EMAIL=#{email}
 	</update>
 	
-	<insert id="registAccount" parameterType="AccountTableDto">
+	<insert id="registAccount" parameterType="AccountDto">
 		INSERT INTO account
 		VALUES (NULL, #{user_seq}, #{fintech_use_num}, #{account_num_masked},#{balance_amt}, #{bank_name})
 	</insert>
 	
-	<select id="getAccountList" parameterType="int" resultType="AccountTableDto">
+	<select id="getAccountList" parameterType="int" resultType="AccountDto">
 		SELECT *
 		FROM account
 		WHERE user_seq= #{user_seq}

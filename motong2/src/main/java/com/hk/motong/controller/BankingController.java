@@ -23,7 +23,7 @@ import com.hk.motong.apidto.AccountTransactionDto;
 import com.hk.motong.apidto.AccountTransactionListDto;
 import com.hk.motong.apidto.UserMeAccountDto;
 import com.hk.motong.apidto.UserMeDto;
-import com.hk.motong.dtos.AccountTableDto;
+import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.feignMapper.OpenBankingFeign;
 import com.hk.motong.service.UserService;
@@ -68,7 +68,7 @@ public class BankingController {
 		AccountBalanceDto accountBalanceDto = getAccountBalanceDto(request,useraccesstoken,fintech_use_num);
 		System.out.println(accountBalanceDto);
 		
-		AccountTableDto aDto = new AccountTableDto();
+		AccountDto aDto = new AccountDto();
 		aDto.setUser_seq(dto.getUser_seq());
 		aDto.setFintech_use_num(fintech_use_num);
 		aDto.setAccount_num_masked(account_num_masked);

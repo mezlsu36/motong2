@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.motong.mapper.MoimMapper">
+   
+   <select id="subsMoim" parameterType="Integer" resultType="MoimDto">
+      SELECT moim.MOIM_SEQ, moim.LEADER, moim.ACCOUNT_SEQ, moim.MNAME
+	  FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
+			JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
+	  WHERE user_moim.USER_SEQ=#{user_seq};
+   </select>
+
+	<select id="moimLeader" parameterType="Integer" resultType="String">
+		SELECT user.NAME
+		FROM user 
+		WHERE user.USER_SEQ IN (SELECT moim.leader
+				FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
+				JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
+				WHERE user_moim.USER_SEQ=#{user_seq});
+	</select>
+	
+	<select id="moimName" parameterType="Integer" resultType="String">
+		SELECT MOIM.MNAME
+		FROM moim JOIN account ON moim.LEADER=account.USER_SEQ
+		WHERE account.account_seq= #{account_seq}
+	</select>
+</mapper>

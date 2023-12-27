@@ -130,15 +130,15 @@
 <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
         <div class="container">
-            <a href="/"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
+            <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/main">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">모임 목록</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">모임 목록</a></li>
                     <li class="nav-item"><a class="nav-link" href="">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
@@ -199,7 +199,7 @@
 													<button style="text-decoration : underline; border:none; background-color:white; color:black; margin-left:240px; font-size:9pt;" class="deleteAccount" 
 														onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')" >계좌 삭제</button></p>
 												<span>계좌번호 : ${aTdto.account_num_masked}</span>
-												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px">잔액조회</button>
+												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px;">잔액조회</button>
 												<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>
 												<br/><span class="amt" style="display:none;">${aTdto.balance_amt}원</span>
 												<br/><div class="tranList" ></div>

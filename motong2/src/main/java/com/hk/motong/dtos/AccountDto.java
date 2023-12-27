@@ -1,17 +1,17 @@
 package com.hk.motong.dtos;
 
-public class AccountTableDto {
+public class AccountDto {
 	private int account_seq;
 	private int user_seq;
 	private String fintech_use_num;
 	private String account_num_masked;
 	private int balance_amt;
 	private String bank_name;
-	public AccountTableDto() {
+	public AccountDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AccountTableDto(int account_seq, int user_seq, String fintech_use_num, String account_num_masked,
+	public AccountDto(int account_seq, int user_seq, String fintech_use_num, String account_num_masked,
 			int balance_amt, String bank_name) {
 		super();
 		this.account_seq = account_seq;
