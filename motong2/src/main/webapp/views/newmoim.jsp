@@ -11,6 +11,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Motong</title>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
       <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,11 +34,18 @@
       }    
 
       </style>
-<script type="text/javascript">
-    
+	<script type="text/javascript">
+    function addMoim(){
+    	var select= document.getElementsByName("account_seq")[0].value;
+    	if(select == "no" || select == "noAccount"){
+	    	return false;    		
+    	}else{
+    		return true;	
+    	}    	
+    }
     
      
-</script>
+	</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
@@ -60,38 +68,35 @@
     <h2>모임 개설하기</h2>
     <br/><br/><br/><br/>
     <div class='my-div'>	  	   	 
-	    <form action="/moim/addMoim" method="post">	    
-	       			  <input type="hidden" name="moim_seq" value="모임번호"/>
-	       			  <input type="hidden" name="leader" value="모임장"/>
-	       			  <input type="hidden" name="mname" value="모임이름"/>
-		              <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" >
-				      <select>
-				      	 <option value="Account" selected="selected">-----------</option> 
-				      <c:set var="lists" value="${acList}" />
+	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()">	    
+	       			  <input type="hidden" name="leader" value="${sessionScope.ldto.user_seq}"/>
+		              <input type="text" name="mname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" >
+				      <select name="account_seq" class="ssibal">
+				      	<option value="no" selected="selected">----------------------------</option> 
+				      		<c:set var="lists" value="${acList}" />
 							<c:choose>
 								<c:when test="${empty lists}">
 									<option value="noAccount">등록된 계좌번호가 없음</option>
 								</c:when>
 								<c:otherwise>
-									<c:forEach items="${lists}" var="op">
-									        <option value="Account">${op}</option> 
+									<c:forEach items="${lists}" var="dto">
+									        <option value="${dto.account_seq}">${dto.bank_name}[${dto.account_num_masked}]</option> 
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
 						</select>
 					  <input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="newmoim-control" >
-				      <button  class="btn btn-secondary" type="submit">모임개설!</button>				      
 		
-	        <br/><br/><br/><br/>
+				      <button class="btn btn-secondary" type="submit">모임개설!</button>				      
 	     </form>	     
+	     <br/><br/><br/><br/>
     </div>
     
    <footer class="py-3" style="background-color:#e3f2fd;">
        <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
-<!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="resources/js/scripts.js"></script>
     </footer>
+		<!-- Bootstrap core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

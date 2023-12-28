@@ -1,6 +1,7 @@
 package com.hk.motong.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,11 +24,15 @@ public interface MoimMapper {
    
    public List<MoimDto> getMoimList(String pnum);
    
-   public List<String> getMyAccountList(int user_seq);
+   public List<MoimDto> getMyAccountList(int user_seq);
    
-   public int addMoim(MoimDto dto);
+   public boolean addMoim(MoimDto dto);
    
-   public void addMoim(@Param("moimname") String moimname, 
-		   			   @Param("selectedAccount") String selectedAccount, 
-		   			   @Param("moimPin") String moimPin);
+   public int getMoimSeq(int account_seq);
+   
+   public boolean addUserMoim(Map<String, Integer> map);
+   
+//   public void addMoim(@Param("moimname") String moimname, 
+//		   			   @Param("selectedAccount") String selectedAccount, 
+//		   			   @Param("moimPin") String moimPin);
 }
