@@ -31,6 +31,7 @@
 		padding-left: 550px;
 		font-family: sans-serif;
 		font-weight: bold;		
+		font-size: 17px;
 	}
 	
 	
@@ -115,11 +116,11 @@
 				<!-- 페이징 처리부분 시작 -->
 				<nav>
 				  <ul class="pagination">
-				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">◀</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
 				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
 				    </c:forEach> 
-				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">▶</span></a></li>
 				  </ul>
 				</nav>
 				<!-- 페이징 처리부분 종료 -->
