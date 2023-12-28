@@ -24,10 +24,16 @@
    }
    h2 { text-align: center; margin-top: 10px;}
    
-  a{text-decoration: none;}
-	.active{
-		background-color: yellow;
+ 	a{text-decoration: none;}
+	
+	.pagination{
+		display: flex;
+		padding-left: 300px;
+		font-family: sans-serif;
+		font-weight: bold;		
 	}
+	
+	
    </style>
 
 <script type="text/javascript">
@@ -104,8 +110,8 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<tr>
-			<td colspan="5" style="text-align: center;">
+			<tr>			
+			<td colspan="5" style="text-align: center;"> 
 				<!-- 페이징 처리부분 시작 -->
 				<nav>
 				  <ul class="pagination">
