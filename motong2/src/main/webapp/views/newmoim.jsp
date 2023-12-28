@@ -31,7 +31,8 @@
         display: flex;
       	text-align: center;
       	margin-left : 620px; 
-      	flex-direction: column;    	
+      	flex-direction: column;   
+        width : 900px; 	
       }
 
       </style>
@@ -70,6 +71,7 @@
             </div>
         </div>
     </nav>
+    <br/><br/><br/>
     <h2>모임 개설하기</h2>
     <br/><br/><br/><br/>
     <div class='my-div'>	  	   	 
