@@ -29,21 +29,21 @@ public class BankController {
    @Autowired
    private BankService bankService;
    
-   @GetMapping("/bank_main")
-   public String bank_main(Model model, HttpServletRequest request) {
-      System.out.println("회비관리 페이지 이동");
-      
-      HttpSession session=request.getSession();
+	@GetMapping("/my_moim")
+	   public String bank_main(Model model, HttpServletRequest request) {
+	      System.out.println("회비관리 페이지 이동");
+	      
+	      HttpSession session=request.getSession();
 
-      UserDto ldto = (UserDto)session.getAttribute("ldto");
-      int user_seq= ldto.getUser_seq();
- 
-      List<MoimDto> list=moimService.subsMoim(user_seq);
-      model.addAttribute("list",list);
-      
-      
-      return "bank/bank_main";
-   }
+	      UserDto ldto = (UserDto)session.getAttribute("ldto");
+	      int user_seq= ldto.getUser_seq();
+	 
+	      List<MoimDto> list=moimService.subsMoim(user_seq);
+	      model.addAttribute("list",list);
+	      
+	      
+	      return "my_moim";
+	   }
    
    @GetMapping("/bank_moim")
    public String bank_moim(int account_seq, Model model) {

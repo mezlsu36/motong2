@@ -20,9 +20,9 @@
 	</select>
 	
 	<select id="moimName" parameterType="Integer" resultType="String">
-		SELECT MOIM.MNAME
-		FROM moim JOIN account ON moim.LEADER=account.USER_SEQ
-		WHERE account.account_seq= #{account_seq}
+		SELECT MNAME
+		FROM moim 
+		WHERE account_seq = #{account_seq};
 	</select>
 	
 	<!-- 모임리스트 -->

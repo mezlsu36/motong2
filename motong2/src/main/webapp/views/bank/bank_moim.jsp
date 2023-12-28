@@ -69,18 +69,13 @@
            <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<<<<<<< HEAD
-            <a style="font-weight: bold;" class="navbar-brand" href="/main"></a>
-=======
->>>>>>> refs/remotes/origin/jueun
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
@@ -90,7 +85,7 @@
         <div class="container my-5">
             <div class="row justify-content-center">
             <div class="col-lg-6">
-                <h2 style="font-weight: bold;">거래 내역</h2>
+                <h2 style="font-weight: bold;">회비 관리</h2>
                 <hr/>
                 <div id="getMoimAccount">
                 	<table class="table">

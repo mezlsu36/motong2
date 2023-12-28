@@ -140,9 +140,7 @@
 
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                   <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
