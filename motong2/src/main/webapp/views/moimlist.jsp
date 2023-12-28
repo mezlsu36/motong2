@@ -28,11 +28,9 @@
 	
 	.pagination{
 		display: flex;
-		padding-left: 540px;
+		padding-left: 550px;
 		font-family: sans-serif;
 		font-weight: bold;		
-		font-size: 17px;
-		letter-spacing: 2px;	
 	}
 	
 	
@@ -45,15 +43,28 @@
 		});
 	});
 	
-	function enter(pin,btnEle){
-		var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
-		if(pinNum == pin){
-			alert("입장~");
-//			window.location.href = "";
-			
+	function enter(pin,email,btnEle){
+		console.log(email);
+		if(email == null || email==""){
+			alert("회원이 아닙니다. 로그인하세요");
 		}else{
-			alert("PIN번호가 일치하지 않습니다.");
-			pinNum.focus
+			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
+			if(pinNum == pin){
+				alert("입장~");
+	//			window.location.href = "";
+				
+			}else{
+				alert("PIN번호가 일치하지 않습니다.");
+				pinNum.focus
+			}				
+		}
+	}
+	
+	function addMoimForm(email){
+		if(email == null || email==""){
+			alert("회원이 아닙니다. 로그인하세요");
+		}else{
+			location.href="/moim/newmoim";
 		}
 	}
 	
@@ -65,14 +76,32 @@
 	     <div class="container">
 	     	<a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
 	         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-	         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-	                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-	                 <li class="nav-item"><a class="nav-link" href="">SignIN</a></li>
-	                 <li class="nav-item"><a class="nav-link" href="">SignUp</a></li>
-	                 <li class="nav-item"><a class="nav-link" href="">모임리스트</a></li>
-	             </ul>
-	         </div>
+	         
+	         <c:choose>
+				<c:when test="${sessionScope.ldto.email != null}">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	                	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+		                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
+		                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
+		                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
+		                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
+		                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+		                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
+		                    <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
+	                    </ul>
+	         	   </div>
+				</c:when>
+				<c:otherwise>
+		            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		            	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+		                	<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+		                	<li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+		                	<li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
+		                	<li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
+		               	</ul>
+	                </div>
+				</c:otherwise>
+			</c:choose>
 	     </div>
 	 </nav>
 	<div class="container my-5">
@@ -107,27 +136,23 @@
 					        <td>${dto.name}</td>
 					        <td>${dto.mname}</td>   
 					        <td><input type="password" name="pin" class="pinNum form-control"/></td>
-					        <td><button onclick="enter('${dto.pin}',this)" >입장</button></td>
+					        <td><button onclick="enter('${dto.pin}','${sessionScope.ldto.email}',this)" >입장</button></td>
 					    </tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<tr>			
-			<td colspan="5" style="text-align: center;"> 
-				<!-- 페이징 처리부분 시작 -->
-				<nav>
+			</table>
+			<!-- 페이징 처리부분 시작 -->
+				<nav style="text-align: center;">
 				  <ul class="pagination">
-				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">◀</span></a></li>
+				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
 				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
 				    </c:forEach> 
-				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">▶</span></a></li>
+				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
 				</nav>
 				<!-- 페이징 처리부분 종료 -->
-			</td>
-		</tr>
-			</table>
 		<div class="container">
          <div class="row">
          <form method="post" name="search" action="">
@@ -140,7 +165,7 @@
                      placeholder="검색어 입력" name="research" maxlength="100"  value="${map.keyword}"></td>
                   <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
                   <td style="text-align: right;">
-		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="location.href='/moim/newmoim'">모임개설</button>                  
+		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  
                   </td>  
                </tr>
             </table>
@@ -156,19 +181,3 @@
 </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

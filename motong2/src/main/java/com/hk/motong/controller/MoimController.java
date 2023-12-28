@@ -1,6 +1,5 @@
 package com.hk.motong.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hk.ansboard.utils.Paging;
+import com.hk.motong.utils.Paging;
 import com.hk.motong.dtos.MoimDto;
+import com.hk.motong.dtos.UserDto;
 import com.hk.motong.service.MoimService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -67,30 +67,39 @@ public class MoimController {
 	
 	@GetMapping("/newmoim")
 	public String newmoim(Model model, HttpServletRequest request) {
-//		HttpSession session=request.getSession();
+		HttpSession session=request.getSession();
 		
-//		UserDto userDto =  (UserDto)session.getAttribute("ldto");
-//		int user_seq= userDto.getUser_seq();
-		int user_seq=1;
-		List<String>acList=moimService.getMyAccountList(user_seq);
-		model.addAttribute("acList", acList);
+		UserDto userDto =  (UserDto)session.getAttribute("ldto");
+		int user_seq= userDto.getUser_seq();
+		
+		List<MoimDto>acList=moimService.getMyAccountList(user_seq);
+		System.out.println("ac리스트");
 		System.out.println(acList);
+		model.addAttribute("acList", acList);
         return "newmoim";
 	}
 	
-	@PostMapping("/addmoim")
-	public String addMoim(@RequestParam("moimname") String moimname,
-			              @RequestParam("Account") String Account,
-			              @RequestParam("moimPin") String moimPin) {
+	@PostMapping("/addMoim")
+	public String addMoim(int leader,String mname, int account_seq,int moimPin) { //account = accoun_num_masked
+		MoimDto mdto = new MoimDto();
+		mdto.setLeader(leader);
+		mdto.setMname(mname);
+		mdto.setAccount_seq(account_seq);
+		mdto.setPin(moimPin);
+		System.out.println("addMoim씨발 : "+mdto);
+		moimService.addMoim(mdto);
+		
+		int moim_seq = moimService.getMoimSeq(account_seq);
+		System.out.println(moim_seq);
+		
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("user_seq", leader);
+		map.put("moim_seq", moim_seq);
+		System.out.println(map);
+		moimService.addUserMoim(map);
 			
-			moimService.addMoim(moimname, Account, moimPin);
-			
-			return "/moimlist";
+		return "redirect:/moim/moimlist";
 	}
 	
 }
-
-
-
-
 

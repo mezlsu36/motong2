@@ -11,6 +11,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Motong</title>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
       <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
@@ -21,28 +22,35 @@
         .my-div {
         text-align : center;
       }
-      .newmoim-control {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; 
-        
-      }
+      
+
        .newmoim-control, select,button {
         margin-bottom: 10px;
       }    
       .table{
         display: flex;
       	text-align: center;
-      	margin-left: 620px;  
+      	margin-left : 620px; 
       	flex-direction: column;    	
       }
 
       </style>
-<script type="text/javascript">
-    
+	<script type="text/javascript">
+    function addMoim(){
+    	var select= document.getElementsByName("account_seq")[0].value;
+    	if(select == "no"){
+    		alert('계좌번호를 선택하세요.');
+	    	return false;    		
+    	}else if(select == "noAccount") {
+    		alert('계좌를 등록하세요.');
+	    	return false;    		
+    	}else{
+    		return true;	
+    	}    	
+    }
     
      
-</script>
+	</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
@@ -62,12 +70,12 @@
             </div>
         </div>
     </nav>
-    <br/><br/><br/>
     <h2>모임 개설하기</h2>
     <br/><br/><br/><br/>
     <div class='my-div'>	  	   	 
-	    <form action="/moim/addMoim" method="post">	  	    
-	   		<table class="table">
+	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()">	  
+	      <input type="hidden" name="leader" value="${sessionScope.ldto.user_seq}">
+	      <table class="table">
 	   			<tr>
 	   				<th>이름</th>
 	   				<td> <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" ></td>
@@ -75,16 +83,16 @@
 	   			<tr>
 	   				<th>계좌</th>
 	   				<td>
-	   					<select name="selectedAccount">
-						      <option value="Account" selected="selected">-----------</option> 
+	   					<select name="account_seq" class="acseq">
+						      <option value="no" selected="selected">---------------</option> 
 						      <c:set var="lists" value="${acList}" />
 							      <c:choose>
 							          <c:when test="${empty lists}">
 							              <option value="noAccount">등록된 계좌번호가 없음</option>
 							          </c:when>
 							          <c:otherwise>
-							              <c:forEach items="${lists}" var="op">
-							                  <option value="${op}">${op}</option> 
+							              <c:forEach items="${lists}" var="dto">
+							                  <option value="${dto.account_seq}">${dto.bank_name}[${dto.account_num_masked}]</option> 
 							              </c:forEach>
 							          </c:otherwise>
 							      </c:choose>
@@ -104,10 +112,9 @@
     
    <footer class="py-3" style="background-color:#e3f2fd;">
        <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
-<!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="resources/js/scripts.js"></script>
     </footer>
+		<!-- Bootstrap core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
