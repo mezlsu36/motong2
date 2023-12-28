@@ -38,30 +38,25 @@
    
    function wsEvt() {
       //채팅이 시작되면 실행되는 함수
-      ws.onopen = function(data){
+     // ws.onopen = function(data){
          
-         var user = $("#userId").val();
-         var  str = $("#userId").val() + "님이 입장하셨습니다."
+     //    var user = $("#userId").val();
+      //   var  str = $("#userId").val() + "님이 입장하셨습니다."
 
-         $("#chatting").append(str);
-      }
+      //   $("#chatting").append(str);
+      
+     // }
       
    
-      ws.onclose = function(data){
+   //   ws.onclose = function(data){
          
-      //   var user = $("#userId").val();
-       //  var str = $("#userId").val() + "님이 퇴장하셨습니다.";
+     //    var user = $("#userId").val();
+     //   var str = $("#userId").val() + "님이 퇴장하셨습니다.";
           
-       //  $("#chatting").append(str);
+      //   $("#chatting").append(str);
          
-         var option ={
-             type : "bye",
-              userId: $("#userId").val(),
-              roomNo : $("#roomNo").val(),
-              msg : $("#userId").val() + "님이 퇴장하셨습니다."
-           }
-          ws.send(JSON.stringify(option));
-      }
+     
+    //  }
       
       
       //서버에서 메시지를 받으면 실행하는 함수
@@ -72,7 +67,7 @@
          
          if (json.userId == "${sessionScope.ldto.name}" ) {
             $("#chatting").append("<div id='id_content'><p>" + "</p><span id='content'>" + json.userId + ": " + json.msg + "</span></div>");
-         } else {
+         }else {
             $("#chatting").append("<div id='id_content2'><p>" + "</p><a id='content'>" + json.userId + ": " + json.msg + "</a></div>");   
          } 
          
@@ -120,6 +115,7 @@
       border:1px solid gray;
       width:1175px;
       height:500px;
+      padding:10px ;
    }
    #chat{
       width:295px;
@@ -130,7 +126,7 @@
       border-radius:5px;
       padding:5px 5px;
       text-align: center;
-      margin-left: 25px;
+      margin-left: 10px;
    }
    #id_content > span{
       width:1120px;
@@ -139,7 +135,7 @@
       padding:5px 5px;
       border-radius:7px 7px 7px 7px;
       border:none;
-      margin-left: 25px;
+      margin-left: 10px;
       background-color: lightyellow;
    }
     #id_content2 > a{
@@ -149,7 +145,7 @@
       padding:5px 5px;
       border-radius:7px 7px 7px 7px;
       border:none;
-      margin-left: 25px;
+      margin-left: 12px;
       background-color: lightgray;
    }
 </style>
