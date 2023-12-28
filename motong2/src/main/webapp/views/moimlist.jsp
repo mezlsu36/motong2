@@ -106,6 +106,7 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
+    	<br/>
 		<h1>모임 목록 </h1>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
@@ -175,6 +176,7 @@
     </div>
   </div>
   </div>
+  <br/><br/><br/><br/><br/><br/><br/>
 <footer class="py-3" style="background-color:#e3f2fd;">
     <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
 </footer>

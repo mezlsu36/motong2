@@ -22,16 +22,18 @@
         .my-div {
         text-align : center;
       }
-      .newmoim-control {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; 
-        margin-left: 675px;
-      }
+      
 
        .newmoim-control, select,button {
         margin-bottom: 10px;
       }    
+      .table{
+        display: flex;
+      	text-align: center;
+      	margin-left : 620px; 
+      	flex-direction: column;   
+        width : 900px; 	
+      }
 
       </style>
 	<script type="text/javascript">
@@ -64,31 +66,45 @@
             </div>
         </div>
     </nav>
-    <h2>모임 개설하기</h2>
     <br/><br/><br/><br/>
+    <h2>모임 개설하기</h2>
+    <br/>
     <div class='my-div'>	  	   	 
-	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()">	    
-	       			  <input type="hidden" name="leader" value="${sessionScope.ldto.user_seq}"/>
-		              <input type="text" name="mname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" >
-				      <select name="account_seq" class="ssibal">
-				      	<option value="no" selected="selected">----------------------------</option> 
-				      		<c:set var="lists" value="${acList}" />
-							<c:choose>
-								<c:when test="${empty lists}">
-									<option value="noAccount">등록된 계좌번호가 없음</option>
-								</c:when>
-								<c:otherwise>
-									<c:forEach items="${lists}" var="dto">
-									        <option value="${dto.account_seq}">${dto.bank_name}[${dto.account_num_masked}]</option> 
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-						</select>
-					  <input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="newmoim-control" >
-		
-				      <button class="btn btn-secondary" type="submit">모임개설!</button>				      
+	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()">	  
+	      <input type="hidden" name="leader" value="${sessionScope.ldto.user_seq}">
+	      <table class="table">
+	   			<tr>
+	   				<th style="width:100px">이름</th>
+	   				<td> <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" ></td>
+	   			</tr>
+	   			<tr>
+	   				<th>계좌</th>
+	   				<td>
+	   					<select name="account_seq" class="acseq">
+						      <option value="no" selected="selected">---------------</option> 
+						      <c:set var="lists" value="${acList}" />
+							      <c:choose>
+							          <c:when test="${empty lists}">
+							              <option value="noAccount">등록된 계좌번호가 없음</option>
+							          </c:when>
+							          <c:otherwise>
+							              <c:forEach items="${lists}" var="dto">
+							                  <option value="${dto.account_seq}">${dto.bank_name}[${dto.account_num_masked}]</option> 
+							              </c:forEach>
+							          </c:otherwise>
+							      </c:choose>
+						  </select>
+	   				  </td>
+	   			</tr>
+	   			<tr>
+	   				<th>PIN번호</th>
+	   				<td><input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="newmoim-control" ></td>
+				
+	   			</tr>
+	   		</table>
+	   		<button  class="btn btn-secondary" type="submit">모임개설!</button>
+	   		<br/><br/><br/><br/><br/><br/><br/><br/>
 	     </form>	     
-	     <br/><br/><br/><br/>
     </div>
     
    <footer class="py-3" style="background-color:#e3f2fd;">
