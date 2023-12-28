@@ -51,7 +51,7 @@
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
 				alert("입장~");
-	//			window.location.href = "";
+				window.location.href = "/chat";
 				
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
@@ -67,6 +67,8 @@
 			location.href="/moim/newmoim";
 		}
 	}
+	
+
 	
  </script>
 </head>
@@ -136,7 +138,7 @@
 					        <td>${dto.name}</td>
 					        <td>${dto.mname}</td>   
 					        <td><input type="password" name="pin" class="pinNum form-control"/></td>
-					        <td><button onclick="enter('${dto.pin}','${sessionScope.ldto.email}',this)" >입장</button></td>
+					        <td><button onclick="enter('${dto.pin}','${sessionScope.ldto.email}',this)">입장</button></td>
 					    </tr>
 					</c:forEach>
 				</c:otherwise>
