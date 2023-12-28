@@ -41,9 +41,6 @@ public class BankController {
       List<MoimDto> list=moimService.subsMoim(user_seq);
       model.addAttribute("list",list);
       
-      List<String> leaderList=moimService.moimLeader(user_seq);
-      model.addAttribute("leaderList",leaderList);
-      
       
       return "bank/bank_main";
    }

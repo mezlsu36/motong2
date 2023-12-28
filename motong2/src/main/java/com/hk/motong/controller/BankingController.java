@@ -172,7 +172,8 @@ public class BankingController {
 		WithdrawReqDto reqDto = new WithdrawReqDto();
 		System.out.println("초반:"+reqDto);
 		
-		reqDto.setBank_tran_id("M202201886U" + createNum());
+
+		reqDto.setBank_tran_id("M202201886U" +createNum());
 		reqDto.setCntr_account_type("N");
 		reqDto.setCntr_account_num("100000000008"); 
 		reqDto.setDps_print_content(dps_print_content);

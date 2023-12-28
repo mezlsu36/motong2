@@ -16,8 +16,12 @@
 
     <style type="text/css">
     	.hi{
-    		width:500px;
+    		width:400px;
     	}
+		
+		th{
+			text-align:left;
+		}
     </style>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
@@ -88,6 +92,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
                     </ul>
@@ -99,14 +104,16 @@
         <div class="container my-5">
             <div class="row justify-content-center"> 
                 <div class="col-lg-6">
+                <br/>
                 	<h2 style="font-weight: bold;">회원가입</h2>
                 	<hr/>
 
-                    <form action="/user/addUser" method="post" onsubmit="return checkPW(this)">
-                    	<table class="table">
+                    <form action="/user/addUser" method="post" onsubmit="return checkPW(this)" style="text-align:center;">
+                    	<table class="table" >
                     		<tr>
+
                     			<th>이메일</th>
-                    			<td><input type="text" name="email" class="form-control hi" required/>
+                    			<td><input type="text"name="email" class="form-control hi" required/>
                     				<a href="#" onclick="idChk()">중복체크</a>
                     				<span id="idChk" style="display:none;">n</span>
                     				<span id="enabledEmail"></span>
@@ -131,12 +138,8 @@
                     			<th>핸드폰번호</th>
                     			<td><input type="text" name="phone" class="form-control hi" required/></td>
                     		</tr>
-                    		<tr>
-                    			<td colspan="2">
-                    				<input style="font-weight: bold;" type="submit" value="가입하기" class="btn btn-outline-primary">
-                    			</td>
-                    		</tr>
                     	</table>
+                    	<button style="font-weight: bold;" type="submit" class="btn btn-outline-primary">가입하기</button>
                     </form>
                 </div>
             </div>

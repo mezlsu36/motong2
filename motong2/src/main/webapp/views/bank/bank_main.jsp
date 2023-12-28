@@ -35,13 +35,12 @@
            <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a style="font-weight: bold;" class="navbar-brand" href="/main"></a>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
-                    <li class="nav-item">${sessionScope.ldto.name}님</li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">모임 목록</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
@@ -78,7 +77,7 @@
 							<c:forEach items="${list}" var="dto" varStatus="status">
 								<tr>
 									<td>${dto.moim_seq}</td>
-									<td>${leaderList[status.index]}</td>
+									<td>${dto.name}</td>
 									<td>${dto.mname}</td>													
 									<td><button type="button" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">입장</button></td>
 								</tr>
