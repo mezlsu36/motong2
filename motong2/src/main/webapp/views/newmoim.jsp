@@ -25,12 +25,17 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start; 
-        margin-left: 675px;
+        
       }
-
        .newmoim-control, select,button {
         margin-bottom: 10px;
       }    
+      .table{
+        display: flex;
+      	text-align: center;
+      	margin-left: 620px;  
+      	flex-direction: column;    	
+      }
 
       </style>
 <script type="text/javascript">
@@ -47,42 +52,53 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
-                    <li class="nav-item">${sessionScope.ldto.name}님</li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/mypage" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">회비 관리</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <br/><br/><br/>
     <h2>모임 개설하기</h2>
     <br/><br/><br/><br/>
     <div class='my-div'>	  	   	 
-	    <form action="/moim/addMoim" method="post">	    
-	       			  <input type="hidden" name="moim_seq" value="모임번호"/>
-	       			  <input type="hidden" name="leader" value="모임장"/>
-	       			  <input type="hidden" name="mname" value="모임이름"/>
-		              <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" >
-				      <select>
-				      	 <option value="Account" selected="selected">-----------</option> 
-				      <c:set var="lists" value="${acList}" />
-							<c:choose>
-								<c:when test="${empty lists}">
-									<option value="noAccount">등록된 계좌번호가 없음</option>
-								</c:when>
-								<c:otherwise>
-									<c:forEach items="${lists}" var="op">
-									        <option value="Account">${op}</option> 
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-						</select>
-					  <input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="newmoim-control" >
-				      <button  class="btn btn-secondary" type="submit">모임개설!</button>				      
-		
-	        <br/><br/><br/><br/>
+	    <form action="/moim/addMoim" method="post">	  	    
+	   		<table class="table">
+	   			<tr>
+	   				<th>이름</th>
+	   				<td> <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" ></td>
+	   			</tr>
+	   			<tr>
+	   				<th>계좌</th>
+	   				<td>
+	   					<select name="selectedAccount">
+						      <option value="Account" selected="selected">-----------</option> 
+						      <c:set var="lists" value="${acList}" />
+							      <c:choose>
+							          <c:when test="${empty lists}">
+							              <option value="noAccount">등록된 계좌번호가 없음</option>
+							          </c:when>
+							          <c:otherwise>
+							              <c:forEach items="${lists}" var="op">
+							                  <option value="${op}">${op}</option> 
+							              </c:forEach>
+							          </c:otherwise>
+							      </c:choose>
+						  </select>
+	   				  </td>
+	   			</tr>
+	   			<tr>
+	   				<th>PIN번호</th>
+	   				<td><input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="newmoim-control" ></td>
+				
+	   			</tr>
+	   		</table>
+	   		<button  class="btn btn-secondary" type="submit">모임개설!</button>
+	   		<br/><br/><br/><br/><br/>
 	     </form>	     
     </div>
     
