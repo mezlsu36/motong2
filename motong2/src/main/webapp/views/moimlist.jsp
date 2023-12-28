@@ -28,10 +28,11 @@
 	
 	.pagination{
 		display: flex;
-		padding-left: 550px;
+		padding-left: 540px;
 		font-family: sans-serif;
 		font-weight: bold;		
 		font-size: 17px;
+		letter-spacing: 2px;	
 	}
 	
 	
