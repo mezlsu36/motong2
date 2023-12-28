@@ -25,4 +25,22 @@ public class MoimService {
    public String moimName(int account_seq) {
 	   return moimMapper.moimName(account_seq);
    }
+
+   //모임리스트
+   public int getPCount() {
+		return moimMapper.getPCount();
+	}
+
+   public List<MoimDto> getMoimList(String pnum) {		
+	   List<MoimDto> list = moimMapper.getMoimList(pnum);				
+	   return list;
+   }
+   
+   public List<String> getMyAccountList(int user_seq){
+	   return moimMapper.getMyAccountList(user_seq);
+   }
+   
+   public void addMoim(String moimname, String Account, String moimPin) {
+	    moimMapper.addMoim(moimname, Account, moimPin);
+   }
 }

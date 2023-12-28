@@ -24,4 +24,30 @@
 		FROM moim JOIN account ON moim.LEADER=account.USER_SEQ
 		WHERE account.account_seq= #{account_seq}
 	</select>
+	
+	<!-- 모임리스트 -->
+	<select id="getPCount" resultType="int">
+		SELECT CEIL(COUNT(*)/10) pageCount 
+		FROM moim
+	</select>
+	
+	<select id="getMoimList" parameterType="String" resultType="MoimDto">
+		SELECT moim_seq,leader,account_seq,mname,pin,NAME
+		FROM (
+				SELECT ROW_NUMBER() over(ORDER BY moim_seq) rn,
+						 moim_seq,leader,account_seq,mname,pin,NAME
+				FROM moim LEFT OUTER JOIN user ON moim.leader = user.USER_SEQ) a
+		where CEIL(rn/10)=#{pnum}		
+	</select>
+
+	<select id="getMyAccountList" parameterType="Integer" resultType="String">
+		SELECT account_num_masked
+		FROM account
+		WHERE user_seq = #{user_seq}
+	</select>
+	
+	<insert id="addMoim" parameterType="MoimDto">
+		INSERT INTO moim
+		VALUES (NULL, #{leader}, #{account_seq}, #{mname}, #{pin}, #{name})
+	</insert>
 </mapper>
