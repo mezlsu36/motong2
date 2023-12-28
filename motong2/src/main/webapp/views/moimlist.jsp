@@ -28,7 +28,7 @@
 	
 	.pagination{
 		display: flex;
-		padding-left: 300px;
+		padding-left: 550px;
 		font-family: sans-serif;
 		font-weight: bold;		
 	}
