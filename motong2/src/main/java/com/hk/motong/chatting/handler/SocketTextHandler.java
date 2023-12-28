@@ -1,5 +1,4 @@
 package com.hk.motong.chatting.handler;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -50,16 +49,10 @@ public class SocketTextHandler extends TextWebSocketHandler{
    @Override
    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
       
-      map.get(roomNo).remove(session.getId());
-      String userId=(String)session.getAttributes().get("userId");
+      String path = session.getUri().getPath();
+       map.get(roomNo).remove(session.getId());
+       System.out.println(path+ "님이 퇴장하셨습니다.");
       
-      System.out.println("채팅종료:"+userId);
-       HashMap<String, WebSocketSession> room = map.get(roomNo);
-       for (var v : room.values()) {//참여자들에게 각각 메시지를 전달하기 위해 session 값들을 구한다.
-          if (v.isOpen()) {//참여자들이 채팅연결이 되어 있다면
-             v.sendMessage(new TextMessage(
-                   "{\"type\":\"bye\",\"userId\":\"kk\",\"roomNo\":\"1\",\"msg\":\"님이 퇴장하셨습니다.\"}"));
-          }
-       }
+   
    }
 }
