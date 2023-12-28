@@ -35,7 +35,7 @@
            <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a style="font-weight: bold;" class="navbar-brand" href="/main">MOTONG</a>
+            <a style="font-weight: bold;" class="navbar-brand" href="/main"></a>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
                     <li class="nav-item">${sessionScope.ldto.name}님</li>
@@ -93,9 +93,9 @@
         </div>
     </section>
     <!-- Footer-->
-    <footer style="bottom: 0px; position: fixed; width: 100%" class="py-3 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
-    </footer>
+    <footer class="py-3"  style="background-color:#e3f2fd;" >
+            <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
+        </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

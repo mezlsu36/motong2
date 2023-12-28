@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -23,8 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.motong.apidto.AccountBalanceDto;
 import com.hk.motong.apidto.AccountTransactionDto;
 import com.hk.motong.apidto.AccountTransactionListDto;
+import com.hk.motong.apidto.DepositReqDto;
+import com.hk.motong.apidto.DepositReqListDto;
+import com.hk.motong.apidto.DepositResDto;
 import com.hk.motong.apidto.UserMeAccountDto;
 import com.hk.motong.apidto.UserMeDto;
+import com.hk.motong.apidto.UserOobDto;
+import com.hk.motong.apidto.WithdrawDto;
+import com.hk.motong.apidto.WithdrawReqDto;
 import com.hk.motong.dtos.AccountDto;
 import com.hk.motong.dtos.UserDto;
 import com.hk.motong.feignMapper.OpenBankingFeign;
@@ -143,22 +150,129 @@ public class BankingController {
 	}
 	
 	
-	// 출금 팝업
+	//출금 팝업
 	@GetMapping("/withdraw_popup")
-	public String withdraw_popup(Model model, HttpServletRequest request) {
+	public String withdraw_popup(Model model, String fintech_use_num) {
 		System.out.println("출금 팝업");
 		
-		HttpSession session=request.getSession();
-		
-		UserDto ldto=(UserDto)session.getAttribute("ldto");
-		model.addAttribute("ldto",ldto);
-		
+		model.addAttribute("fintech_use_num",fintech_use_num);
 		
 		return "bank/withdraw_popup";
 	}
 	
+	//출금하기
+	@ResponseBody
+	@PostMapping("/withdraw")
+	public String withdraw(HttpServletRequest request,String dps_print_content,String fintech_use_num,String tran_amt,String recv_client_name,String recv_client_account_num) {
+		System.out.println("될까?");
+		HttpSession session=request.getSession();
+		UserDto dto = (UserDto)session.getAttribute("ldto");
+		String useraccesstoken = dto.getUseraccesstoken();
+		
+		WithdrawReqDto reqDto = new WithdrawReqDto();
+		System.out.println("초반:"+reqDto);
+		
+		reqDto.setBank_tran_id("M202201886U" + createNum());
+		reqDto.setCntr_account_type("N");
+		reqDto.setCntr_account_num("100000000008"); 
+		reqDto.setDps_print_content(dps_print_content);
+		reqDto.setFintech_use_num(fintech_use_num); 
+		reqDto.setTran_amt(tran_amt); 
+		reqDto.setTran_dtime(getDateTime());
+		reqDto.setReq_client_name("김지우(출금기관)");
+		reqDto.setReq_client_fintech_use_num("120220188688941194787135");
+		reqDto.setReq_client_num("JJWOOKIMMML1234");
+		reqDto.setTransfer_purpose("TR");
+		reqDto.setRecv_client_name(recv_client_name); 
+		reqDto.setRecv_client_bank_code("097");
+		reqDto.setRecv_client_account_num(recv_client_account_num);
+		
+		System.out.println(reqDto);
+		
+		WithdrawDto withdrawDto	=openBankingFeign.requestWithdraw("Bearer "+useraccesstoken, reqDto);
+		System.out.println(withdrawDto);
+		
+
+		//팝업창을 닫아 주기 위해서
+		String str="<script type='text/javascript'>"
+				  +"     self.close();"
+				  +"     alert('출금 완료');"
+				  +"</script>";
+		return str;
+	}
 	
-	
+	//입금 팝업
+	@GetMapping("/deposit_popup")
+	public String deposit_popup(HttpServletRequest request,Model model, String fintech_use_num) {
+		System.out.println("입금 팝업");
+			
+		HttpSession session=request.getSession();
+		UserDto dto = (UserDto)session.getAttribute("ldto");
+
+		model.addAttribute("fintech_use_num",fintech_use_num);
+			
+		// 로그인 된 계정의 계좌 드롭다운
+		List<AccountDto> alist = userService.getAccountList(dto.getUser_seq());
+		
+		model.addAttribute("alist",alist);
+		
+		return "bank/deposit_popup";
+	}
+		
+	//입금하기
+	@ResponseBody
+	@PostMapping("/deposit")
+	public String deposit(HttpServletRequest request,String wd_print_content,String fintech_use_num,String deposit_fintech_use_num, String tran_amt) {
+
+		HttpSession session=request.getSession();
+		UserDto dto = (UserDto)session.getAttribute("ldto");
+		String useraccesstoken = dto.getUseraccesstoken();
+			
+		// oob 토큰 등록
+		UserOobDto odto=openBankingFeign.requestOobToken("4987e938-f84b-4e23-b0a2-3b15b00f4ffd",
+						"3ff7570f-fdfb-4f9e-8f5a-7b549bf2adec", "oob", "client_credentials");
+		System.out.println(odto);
+		//
+		
+		DepositReqDto reqDto = new DepositReqDto();
+		
+		reqDto.setCntr_account_type("N");
+		reqDto.setCntr_account_num("200000000006"); 
+		reqDto.setWd_pass_phrase("NONE");
+		reqDto.setWd_print_content(wd_print_content);
+		reqDto.setName_check_option("off");
+		reqDto.setTran_dtime(getDateTime());
+		reqDto.setReq_cnt("1");
+
+		DepositReqListDto reqldto = new DepositReqListDto();
+		
+		reqldto.setTran_no("1");
+		reqldto.setBank_tran_id("M202201886U" + createNum());
+		reqldto.setFintech_use_num(deposit_fintech_use_num); 
+		reqldto.setPrint_content(wd_print_content);
+		reqldto.setTran_amt(tran_amt);
+		reqldto.setReq_client_fintech_use_num(deposit_fintech_use_num);
+		reqldto.setReq_client_name("김지우(입금기관)");
+		reqldto.setReq_client_num("JJWOOKIMMML1234");
+		reqldto.setTransfer_purpose("TR");
+
+		List<DepositReqListDto> reqldtos = new ArrayList<>();
+		reqldtos.add(reqldto);
+		
+		reqDto.setReq_list(reqldtos);
+		
+		DepositResDto depositResDto=openBankingFeign.requestDeposit("Bearer "+odto.getAccess_token(), reqDto);
+		
+		System.out.println(depositResDto);		
+
+		//팝업창을 닫아 주기 위해서
+		String str="<script type='text/javascript'>"
+				  +"     self.close();"
+				  +"     alert('입금 완료');"
+				  +"</script>";
+		return str;
+	}
+		
 	//계좌 정보 가져오기
 	public UserMeDto getAccount(HttpServletRequest request,String useraccesstoken) throws IOException, ParseException {
 					

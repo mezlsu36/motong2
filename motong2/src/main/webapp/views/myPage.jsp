@@ -139,7 +139,9 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">모임 목록</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
+
+                   <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
                 </ul>
             </div>

@@ -23,27 +23,32 @@
 <div class="container my-5">
 	<div class="row justify-content-center">
 	<div class="col-lg-6">
-	<h2 style="text-align: center; padding: 20px;">출금하기</h2>
+	<h2 style="text-align: center; padding: 20px;">입금하기</h2>
 
 	<hr/>
 	<div style="text-align: center;">
-	<form action="/banking/withdraw" method="post">
+	<form action="/banking/deposit" method="post">
 		<input type="hidden" name="fintech_use_num" value="${fintech_use_num}"/>
 		<table class="table" style="width: 500px; height:200px;" >
 			<tr>	
-				<th>출금 메모</th>
-				<td><input type="text" name="dps_print_content" class="form-control"/></td>
+				<th>출금 계좌</th>
+				<td>
+				<select id="deposit_fintech_use_num" name="deposit_fintech_use_num">
+					<c:forEach items="${alist}" var="account">
+						<option value="${account.fintech_use_num}">
+<%-- 							<c:out value="${account.fintech_use_num}"/> --%>
+								${account.account_num_masked}
+						</option>
+					</c:forEach>
+				</select>	
+				</td>
 			</tr>
 			<tr>	
-				<th>수취인</th>
-				<td><input type="text" name="recv_client_name" class="form-control"/></td>
+				<th>입금 메모</th>
+				<td><input type="text" name="wd_print_content" class="form-control"/></td>
 			</tr>
 			<tr>	
-				<th>수취 계좌번호</th>
-				<td><input type="text" name="recv_client_account_num" class="form-control"/></td>
-			</tr>
-			<tr>	
-				<th>출금액</th>
+				<th>입금액</th>
 				<td><input type="text" name="tran_amt" class="form-control"/></td>
 			</tr>
 		</table>

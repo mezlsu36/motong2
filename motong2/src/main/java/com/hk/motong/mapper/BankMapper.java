@@ -9,6 +9,4 @@ public interface BankMapper {
    
 	public AccountDto getmoimAccount(int account_seq);
 
-  
-   
 }
