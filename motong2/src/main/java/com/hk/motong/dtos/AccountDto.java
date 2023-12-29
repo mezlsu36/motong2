@@ -7,12 +7,13 @@ public class AccountDto {
 	private String account_num_masked;
 	private int balance_amt;
 	private String bank_name;
+	private String delflag;
 	public AccountDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AccountDto(int account_seq, int user_seq, String fintech_use_num, String account_num_masked,
-			int balance_amt, String bank_name) {
+	public AccountDto(int account_seq, int user_seq, String fintech_use_num, String account_num_masked, int balance_amt,
+			String bank_name, String delflag) {
 		super();
 		this.account_seq = account_seq;
 		this.user_seq = user_seq;
@@ -20,6 +21,7 @@ public class AccountDto {
 		this.account_num_masked = account_num_masked;
 		this.balance_amt = balance_amt;
 		this.bank_name = bank_name;
+		this.delflag = delflag;
 	}
 	public int getAccount_seq() {
 		return account_seq;
@@ -57,11 +59,18 @@ public class AccountDto {
 	public void setBank_name(String bank_name) {
 		this.bank_name = bank_name;
 	}
+	public String getDelflag() {
+		return delflag;
+	}
+	public void setDelflag(String delflag) {
+		this.delflag = delflag;
+	}
 	@Override
 	public String toString() {
-		return "AccountTableDto [account_seq=" + account_seq + ", user_seq=" + user_seq + ", fintech_use_num="
+		return "AccountDto [account_seq=" + account_seq + ", user_seq=" + user_seq + ", fintech_use_num="
 				+ fintech_use_num + ", account_num_masked=" + account_num_masked + ", balance_amt=" + balance_amt
-				+ ", bank_name=" + bank_name + "]";
+				+ ", bank_name=" + bank_name + ", delflag=" + delflag + "]";
 	}
+	
 	
 }

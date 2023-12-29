@@ -24,6 +24,7 @@
       .box > .sub_menu{text-align: right;}
    </style>
    <script type="text/javascript">
+
    </script>
 
 </head>
@@ -40,8 +41,7 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
@@ -51,17 +51,20 @@
         <div class="container my-5">
             <div class="row justify-content-center">
             <div class="col-lg-6">
+            	<br/>
                 <h2 style="font-weight: bold;">가입된 모임</h2>
                 <hr/>
                 <form>
                    <table class="table table-hover" style="text-align:center;">
-                      <col width="50px"/>
-                      <col width="50px"/>
                       <col width="100px"/>
-                      <col width="80px"/>
+                      <col width="150px"/>
+                      <col width="200px"/>
+                      <col width="100px"/>
+                      <col width="150px"/>
+                
                       <thead>
                       <tr>
-                         <th>모임 번호 </th><th>모임장</th><th>모임이름</th><th></th>
+                         <th>모임 번호 </th><th>모임장</th><th>모임이름</th><th>  회비 관리</th><th>커뮤니티</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -69,16 +72,17 @@
                      <c:choose>
                      	<c:when test="${empty list}">
 						<tr>
-							<td colspan="4">--가입된 모임이 없습니다.--</td>
+							<td colspan="5">--가입된 모임이 없습니다.--</td>
 						</tr>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list}" var="dto" varStatus="status">
 								<tr>
-									<td>${dto.moim_seq}</td>
-									<td>${leaderList[status.index]}</td>
+									<td style="width:100px;">${dto.moim_seq}</td>
+									<td style="width:100px;">${dto.name}</td>
 									<td>${dto.mname}</td>													
-									<td><button type="button" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">입장</button></td>
+									<td><button type="button" style="width:100px;" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">회비 관리</button></td>
+									<td><button type="button" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">커뮤니티</button></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -88,6 +92,7 @@
                 </form>
                </div>
             </div>
+            <br/><br/><br/><br/><br/><br/><br/>
         </div>
     </section>
     <!-- Footer-->

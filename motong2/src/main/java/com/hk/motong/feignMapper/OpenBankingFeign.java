@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hk.motong.apidto.AccountBalanceDto;
 import com.hk.motong.apidto.AccountListDto;
 import com.hk.motong.apidto.AccountTransactionListDto;
+import com.hk.motong.apidto.DepositReqDto;
+import com.hk.motong.apidto.DepositResDto;
 import com.hk.motong.apidto.TokenResponseDto;
 import com.hk.motong.apidto.UserMeDto;
+import com.hk.motong.apidto.UserOobDto;
 import com.hk.motong.apidto.WithdrawDto;
 import com.hk.motong.apidto.WithdrawReqDto;
 
@@ -72,5 +75,21 @@ public interface OpenBankingFeign {
 	  public WithdrawDto requestWithdraw(
 			  @RequestHeader("Authorization") String access_token,
 			  @RequestBody WithdrawReqDto reqDto);
+	  
+	// 입금
+		  @PostMapping(path="/v2.0/transfer/deposit/fin_num",produces = "application/json")
+		  public DepositResDto requestDeposit(
+				@RequestHeader("Authorization") String access_token,
+				@RequestBody DepositReqDto drdto
+		  );
+		  
+		  // oob 토큰
+		  @PostMapping(path="/oauth/2.0/token")
+		  public UserOobDto requestOobToken(
+				@RequestParam("client_id") String client_id,
+				@RequestParam("client_secret")String client_secret,
+				@RequestParam("scope") String scope,
+				@RequestParam("grant_type") String grant_type
+		  );
 
 }

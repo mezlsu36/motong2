@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.motong.utils.Paging;
 import com.hk.motong.dtos.MoimDto;
@@ -97,8 +96,10 @@ public class MoimController {
 		map.put("moim_seq", moim_seq);
 		System.out.println(map);
 		moimService.addUserMoim(map);
-			
-		return "rediect:/moimlist";
+		
+		moimService.updateAcDelflag(account_seq);
+		return "redirect:/moim/moimlist";
 	}
+	
 	
 }

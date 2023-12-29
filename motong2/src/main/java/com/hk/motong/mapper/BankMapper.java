@@ -8,4 +8,5 @@ import com.hk.motong.dtos.AccountDto;
 public interface BankMapper {
    
 	public AccountDto getmoimAccount(int account_seq);
+
 }

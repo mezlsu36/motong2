@@ -86,8 +86,7 @@
 		                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-		                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
-		                    <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
+                    		<li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
 	                    </ul>
 	         	   </div>
 				</c:when>
@@ -107,6 +106,7 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
+    	<br/>
 		<h1>모임 목록 </h1>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
@@ -176,8 +176,12 @@
     </div>
   </div>
   </div>
+  <br/><br/><br/><br/><br/><br/><br/>
 <footer class="py-3" style="background-color:#e3f2fd;">
     <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
 </footer>
+<!-- Bootstrap core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
