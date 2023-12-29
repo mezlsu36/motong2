@@ -48,13 +48,11 @@
 	ul.pagination li a {
 	    text-decoration: none;
 	    padding: 2px 2px;
-	    color: #333; 
-	    border-radius : 3px;
+	    color: #000000; 
 	}
 	
 	ul.pagination li.active a {
-	    background-color: #B5B2FF; 
-	    color: #fff; 
+	    color: #D1B2FF;
 	}
 	
 	ul.pagination li a span {
@@ -64,7 +62,6 @@
 	}
 
    </style>
-
 <script type="text/javascript">
 	$(function(){
 		$(".listContents").click(function(){
@@ -80,7 +77,7 @@
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
 				alert("입장~");
-				window.location.href = "/chat";
+	//			window.location.href = "";
 				
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
@@ -96,12 +93,6 @@
 			location.href="/moim/newmoim";
 		}
 	}
-	
-	$(document).on('click', '#btnSearch'.function(e){
-		e.preventDefault
-	});
-	
-
 	
  </script>
 </head>
@@ -121,8 +112,7 @@
 		                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-		                    <li class="nav-item"><a class="nav-link" href="/bank/bank_main">회비 관리</a></li>
-		                    <li class="nav-item"><a class="nav-link" href="">모임 커뮤니티</a></li>
+                    		<li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
 	                    </ul>
 	         	   </div>
 				</c:when>
@@ -142,6 +132,7 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
+    	<br/><br/><br/>
 		<h1>모임 목록 </h1>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
@@ -171,7 +162,7 @@
 					        <td>${dto.name}</td>
 					        <td>${dto.mname}</td>   
 					        <td><input type="password" name="pin" class="pinNum form-control"/></td>
-					        <td><button onclick="enter('${dto.pin}','${sessionScope.ldto.email}',this)">입장</button></td>
+					        <td><button onclick="enter('${dto.pin}','${sessionScope.ldto.email}',this)" >입장</button></td>
 					    </tr>
 					</c:forEach>
 				</c:otherwise>
@@ -197,8 +188,8 @@
             <col width="600px;" />
                <tr>
                   <td><input type="text" class="form-control"
-                     placeholder="검색어 입력" name="keyword" maxlength="100"  value="${map.keyword}"></td>
-                  <td><input type="submit" name="btnSearch" class="btn btn-secondary" value="검색"></td>
+                     placeholder="검색어 입력" name="research" maxlength="100"  value="${map.keyword}"></td>
+                  <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  
                   </td>  
@@ -211,8 +202,12 @@
     </div>
   </div>
   </div>
+  <br/><br/><br/><br/><br/><br/><br/>
 <footer class="py-3" style="background-color:#e3f2fd;">
     <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
 </footer>
+<!-- Bootstrap core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

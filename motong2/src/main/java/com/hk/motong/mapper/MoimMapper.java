@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.hk.motong.dtos.MoimDto;
 
-import feign.Param;
 
 @Mapper
 public interface MoimMapper {
@@ -15,7 +15,7 @@ public interface MoimMapper {
    public List<MoimDto> subsMoim(int user_seq);
    
    public List<String> moimLeader(int user_seq);
-   
+
    public String moimName(int account_seq);
    
    
@@ -26,11 +26,14 @@ public interface MoimMapper {
    
    public List<MoimDto> getMyAccountList(int user_seq);
    
+   //모임 추가할때 실행될 작업들
    public boolean addMoim(MoimDto dto);
-   
    public int getMoimSeq(int account_seq);
-   
    public boolean addUserMoim(Map<String, Integer> map);
+   public boolean updateAcDelflag(int account_seq);
+   
+   public List<MoimDto> searchMoims(@Param("keyword") String keyword);
+   
    
 
 }

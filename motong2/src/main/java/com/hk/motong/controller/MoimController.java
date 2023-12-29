@@ -97,9 +97,17 @@ public class MoimController {
 		map.put("moim_seq", moim_seq);
 		System.out.println(map);
 		moimService.addUserMoim(map);
-			
+		
+		moimService.updateAcDelflag(account_seq);
 		return "redirect:/moim/moimlist";
 	}
 	
-}
+	public String searchMoims(@RequestParam("keyword") String keyword, Model model) {
+		List<MoimDto> moims = moimService.searchMoims(keyword);
+		model.addAttribute("moims", moims);
+		return "moimlist";
+	}
 
+	
+	
+}
