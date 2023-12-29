@@ -8,17 +8,17 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <meta name="description" content="" />
-      <meta name="author" content="" />
-      <title>Motong</title>
-      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-      <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
-      <!-- Core theme CSS (includes Bootstrap)-->
-      <link href="/resources/css/styles.css" rel="stylesheet" />
-   <style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Motong</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="/resources/css/styles.css" rel="stylesheet" />
+<style>
    .right-btn {
      float: right;
    }
@@ -30,10 +30,39 @@
 		display: flex;
 		padding-left: 550px;
 		font-family: sans-serif;
-		font-weight: bold;		
+		font-weight: bold;				
+	}	
+		ul.pagination {
+	    list-style: none;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    padding: 0;
 	}
 	
+	ul.pagination li {
+	    margin: 0 5px;
+	    display: inline;
+	}
 	
+	ul.pagination li a {
+	    text-decoration: none;
+	    padding: 2px 2px;
+	    color: #333; 
+	    border-radius : 3px;
+	}
+	
+	ul.pagination li.active a {
+	    background-color: #B5B2FF; 
+	    color: #fff; 
+	}
+	
+	ul.pagination li a span {
+	    width: 15px;
+	    height: 15px;
+	    vertical-align: middle;
+	}
+
    </style>
 
 <script type="text/javascript">
@@ -67,6 +96,10 @@
 			location.href="/moim/newmoim";
 		}
 	}
+	
+	$(document).on('click', '#btnSearch'.function(e){
+		e.preventDefault
+	});
 	
 
 	
@@ -147,11 +180,11 @@
 			<!-- 페이징 처리부분 시작 -->
 				<nav style="text-align: center;">
 				  <ul class="pagination">
-				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">◀</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
 				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
 				    </c:forEach> 
-				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">▶</span></a></li>
 				  </ul>
 				</nav>
 				<!-- 페이징 처리부분 종료 -->
@@ -164,8 +197,8 @@
             <col width="600px;" />
                <tr>
                   <td><input type="text" class="form-control"
-                     placeholder="검색어 입력" name="research" maxlength="100"  value="${map.keyword}"></td>
-                  <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
+                     placeholder="검색어 입력" name="keyword" maxlength="100"  value="${map.keyword}"></td>
+                  <td><input type="submit" name="btnSearch" class="btn btn-secondary" value="검색"></td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  
                   </td>  
