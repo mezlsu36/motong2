@@ -25,7 +25,7 @@
 </head>
 <body>
 <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
         <div class="container">
        		<a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -42,6 +42,7 @@
         </div>
     </nav>
     <!-- Header - set the background image for the header in the line below-->
+        <br/><br/>
         <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
             <div class="text-center my-5">
                 <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>

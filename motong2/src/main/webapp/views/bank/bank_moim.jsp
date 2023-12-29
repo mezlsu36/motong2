@@ -64,7 +64,7 @@
 </head>
 <body>
 <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
         <div class="container">
            <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -85,7 +85,7 @@
         <div class="container my-5">
             <div class="row justify-content-center">
             <div class="col-lg-6">
-            	<br/><br/>
+            	<br/><br/><br/><br/>
                 <h2 style="font-weight: bold;">회비 관리</h2>
                 <hr/>
                 <div id="getMoimAccount">

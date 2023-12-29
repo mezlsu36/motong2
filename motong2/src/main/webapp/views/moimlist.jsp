@@ -106,7 +106,7 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
-    	<br/>
+    	<br/><br/><br/>
 		<h1>모임 목록 </h1>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
