@@ -80,23 +80,13 @@
             </div>
         </section>
     <!-- Footer-->
-<<<<<<< HEAD
-    <footer class="py-3 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
-    </footer>
-=======
     <footer class="py-3"  style="background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
         </footer>
->>>>>>> refs/remotes/origin/jueun
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
 <!--     <script src="resources/js/scripts.js"></script> -->
 </body>
-<<<<<<< HEAD
-</html>
 
-=======
 </html>
->>>>>>> refs/remotes/origin/jueun
