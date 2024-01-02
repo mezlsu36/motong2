@@ -68,7 +68,7 @@
 		SET delflag = 'Y'
 		WHERE account_seq = #{account_seq}
 	</update>
-	
+	 
 	<select id="moimSearch" parameterType="String" resultType="MoimDto">
 		SELECT moim.MOIM_SEQ, user.NAME, moim.ACCOUNT_SEQ, moim.MNAME, moim.PIN
 		FROM moim JOIN user ON moim.LEADER = user.USER_SEQ
