@@ -75,4 +75,4 @@
 		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
 	</select> 
 </mapper>
-
+ 
