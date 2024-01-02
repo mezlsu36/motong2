@@ -34,7 +34,6 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
@@ -44,6 +43,7 @@
     </nav>
     <!-- Header - set the background image for the header in the line below-->
         <br/><br/>
+
         <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
             <div class="text-center my-5">
                 <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>
@@ -80,23 +80,13 @@
             </div>
         </section>
     <!-- Footer-->
-<<<<<<< HEAD
+
     <footer class="py-3 bg-dark">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; motong 2023</p></div>
     </footer>
-=======
-    <footer class="py-3"  style="background-color:#e3f2fd;" >
-            <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
-        </footer>
->>>>>>> refs/remotes/origin/jueun
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
 <!--     <script src="resources/js/scripts.js"></script> -->
 </body>
-<<<<<<< HEAD
 </html>
-
-=======
-</html>
->>>>>>> refs/remotes/origin/jueun

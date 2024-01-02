@@ -10,6 +10,6 @@ public class Motong2Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Motong2Application.class, args);
-	}
+	} 
 
 }

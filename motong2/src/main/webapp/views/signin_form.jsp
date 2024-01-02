@@ -2,7 +2,7 @@
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=UTF-8"); %>
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -82,6 +82,10 @@
     <script src="resources/js/scripts.js"></script>
 </body>
 </html>
+
+
+
+
 
 
 

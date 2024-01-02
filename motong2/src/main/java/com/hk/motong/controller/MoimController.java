@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.hk.motong.utils.Paging;
 import com.hk.motong.dtos.MoimDto;
 import com.hk.motong.dtos.UserDto;
@@ -21,6 +23,7 @@ import com.hk.motong.service.MoimService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/moim")
@@ -82,7 +85,7 @@ public class MoimController {
 		mdto.setMname(mname);
 		mdto.setAccount_seq(account_seq);
 		mdto.setPin(moimPin);
-		System.out.println("addMoim씨발 : "+mdto);
+		System.out.println("addMoim : "+mdto);
 		moimService.addMoim(mdto);
 		
 		int moim_seq = moimService.getMoimSeq(account_seq);
@@ -93,7 +96,7 @@ public class MoimController {
 		map.put("moim_seq", moim_seq);
 		System.out.println(map);
 		moimService.addUserMoim(map);
-
+		
 		moimService.updateAcDelflag(account_seq);
 		return "redirect:/moim/moimlist";
 	}
@@ -107,6 +110,6 @@ public class MoimController {
 			
 		return "moimlist";
 	}
-	
+
 	
 }

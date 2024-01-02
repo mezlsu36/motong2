@@ -59,7 +59,7 @@
 			}				
 		}
 	}
-	 
+
 	function addMoimForm(email){
 		if(email == null || email==""){
 			alert("회원이 아닙니다. 로그인하세요");
