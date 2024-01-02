@@ -51,11 +51,11 @@
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
 				alert("입장~");
-	//			window.location.href = "";
+				window.location.href = "";
 				
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
-				pinNum.focus
+				pinNum.focus;
 			}				
 		}
 	}
