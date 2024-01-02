@@ -58,16 +58,21 @@
 		}
 		
 		//계좌등록하기(센터인증 이용기관용: 사용자 인증후에 계좌 등록 가능)
-		function addAccount(email){
-			var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
-				   +"response_type=code&" //고정값 code: 인증요청시 반환되는 값의 형식의미
-				   +"client_id=4987e938-f84b-4e23-b0a2-3b15b00f4ffd&" //이용기관의 ID
-				   +"redirect_uri=http://localhost:8070/banking/addaccount&"//응답URL
-				   +"scope=login inquiry transfer&" //토큰의 권한
-				   +"state=12345678123456781234567812345678&" //32자리 난수 설정
-				   +"auth_type=0"; //0:최초 한번 인증, 2:인증생략
-				   
-			window.open(url,"인증하기","width=400px,height=600px");	
+		function addAccount(email, useraccesstoken){
+				console.log(useraccesstoken);
+			if(useraccesstoken == "" || useraccesstoken == null){
+				alert("계좌를 등록하려면 사용자 인증을 해야합니다.");
+			}else{
+				var url="https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+					   +"response_type=code&" //고정값 code: 인증요청시 반환되는 값의 형식의미
+					   +"client_id=4987e938-f84b-4e23-b0a2-3b15b00f4ffd&" //이용기관의 ID
+					   +"redirect_uri=http://localhost:8070/banking/addaccount&"//응답URL
+					   +"scope=login inquiry transfer&" //토큰의 권한
+					   +"state=12345678123456781234567812345678&" //32자리 난수 설정
+					   +"auth_type=0"; //0:최초 한번 인증, 2:인증생략
+					   
+				window.open(url,"인증하기","width=400px,height=600px");
+			}
 		}
 		
 		//잔액확인 버튼 누르면 잔액 확인
@@ -89,6 +94,11 @@
 						$(this).find(".tranList").hide();
 					});
 				});
+				
+
+				if($(".delflag").text() == "Y"){
+					$(".delflag").next().text("사용중인 계좌");
+				}
 			});
 		
 		//거래내역조회
@@ -183,19 +193,19 @@
 					<h1>나의 계좌</h1>
 					<hr/>
 						<button type="button" class="btn btn-outline-primary" onclick="${sessionScope.ldto.useraccesstoken == null ? 'authorization()':'already()'}">사용자인증</button>
-						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}')" >계좌 등록하기</button>
+						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}','${sessionScope.ldto.useraccesstoken}')" >계좌 등록하기</button>
 						<table class="table">
 							<c:choose> 
 								<c:when test="${empty aList}"><!-- 안에가 비어있냐 -->
 									<tr>
-										<td></td>
+										<td><br/><br/>--등록된 계좌가 없습니다.(사용자 인증을 진행하세요)--</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${aList}" var="aTdto">
 										<tr>
 											<td>
-												<p style=" font-size:15pt">${aTdto.bank_name}
+												<p style=" font-size:15pt">${aTdto.bank_name}<span class="delflag" style="display:none;">${aTdto.delflag}</span><span style="color:red; font-size:8pt;"></span>
 													<button style="text-decoration : underline; border:none; background-color:white; color:black; margin-left:240px; font-size:9pt;" class="deleteAccount" 
 														onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')" >계좌 삭제</button></p>
 												<span>계좌번호 : ${aTdto.account_num_masked}</span>

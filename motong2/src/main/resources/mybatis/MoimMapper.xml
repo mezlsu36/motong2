@@ -41,11 +41,12 @@
 	</select>
 
 	<select id="getMyAccountList" parameterType="Integer" resultType="MoimDto">
-		SELECT account_seq,account_num_masked, bank_name
+		SELECT account_seq,account_num_masked, bank_name, delflag
 		FROM account
 		WHERE user_seq = #{user_seq}
 	</select>
 	
+	<!--  모임 추가할때 -->
 	<insert id="addMoim" parameterType="MoimDto">
 		INSERT INTO moim
 		VALUES (NULL, #{leader}, #{account_seq}, #{mname}, #{pin})
@@ -56,8 +57,21 @@
 		FROM moim
 		WHERE account_seq = #{account_seq}
 	</select>
+	
 	<insert id="addUserMoim" parameterType="Map">
 		INSERT INTO user_moim
 		VALUES (#{user_seq}, #{moim_seq})
 	</insert>
+	
+	<update id="updateAcDelflag" parameterType="Integer">
+		UPDATE account
+		SET delflag = 'Y'
+		WHERE account_seq = #{account_seq}
+	</update>
+	
+	<select id="moimSearch" parameterType="String" resultType="MoimDto">
+		SELECT * 
+		FROM moim
+		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
+	</select>
 </mapper>

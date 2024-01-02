@@ -75,20 +75,19 @@ public interface OpenBankingFeign {
 	  public WithdrawDto requestWithdraw(
 			  @RequestHeader("Authorization") String access_token,
 			  @RequestBody WithdrawReqDto reqDto);
-
+	  
 	  // 입금
 	  @PostMapping(path="/v2.0/transfer/deposit/fin_num",produces = "application/json")
 	  public DepositResDto requestDeposit(
-			@RequestHeader("Authorization") String access_token,
-			@RequestBody DepositReqDto drdto
-	  );
-	  
-	  // oob 토큰
+			  @RequestHeader("Authorization") String access_token,
+			  @RequestBody DepositReqDto drdto);
+		  
+		  // oob 토큰
 	  @PostMapping(path="/oauth/2.0/token")
 	  public UserOobDto requestOobToken(
-			@RequestParam("client_id") String client_id,
-			@RequestParam("client_secret")String client_secret,
-			@RequestParam("scope") String scope,
-			@RequestParam("grant_type") String grant_type
-	  );
+			  @RequestParam("client_id") String client_id,
+			  @RequestParam("client_secret")String client_secret,
+			  @RequestParam("scope") String scope,
+			  @RequestParam("grant_type") String grant_type);
+
 }

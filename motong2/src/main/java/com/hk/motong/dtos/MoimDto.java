@@ -8,6 +8,7 @@ public class MoimDto {
    private String mname;
    private String account_num_masked;
    private String bank_name;
+   private String delflag; //계좌 사용중인지 여부
    private int pin;
    public MoimDto() {
       super();
@@ -15,7 +16,7 @@ public class MoimDto {
    }
 
 public MoimDto(int moim_seq, int leader, String name, int account_seq, String mname, String account_num_masked,
-		String bank_name, int pin) {
+		String bank_name, String delflag, int pin) {
 	super();
 	this.moim_seq = moim_seq;
 	this.leader = leader;
@@ -24,6 +25,7 @@ public MoimDto(int moim_seq, int leader, String name, int account_seq, String mn
 	this.mname = mname;
 	this.account_num_masked = account_num_masked;
 	this.bank_name = bank_name;
+	this.delflag = delflag;
 	this.pin = pin;
 }
 public int getMoim_seq() {
@@ -68,6 +70,12 @@ public String getBank_name() {
 public void setBank_name(String bank_name) {
 	this.bank_name = bank_name;
 }
+public String getDelflag() {
+	return delflag;
+}
+public void setDelflag(String delflag) {
+	this.delflag = delflag;
+}
 public int getPin() {
 	return pin;
 }
@@ -77,8 +85,8 @@ public void setPin(int pin) {
 @Override
 public String toString() {
 	return "MoimDto [moim_seq=" + moim_seq + ", leader=" + leader + ", name=" + name + ", account_seq=" + account_seq
-			+ ", mname=" + mname + ", account_num_masked=" + account_num_masked + ", bank_name=" + bank_name + ", pin="
-			+ pin + "]";
+			+ ", mname=" + mname + ", account_num_masked=" + account_num_masked + ", bank_name=" + bank_name
+			+ ", delflag=" + delflag + ", pin=" + pin + "]";
 }
 
 }

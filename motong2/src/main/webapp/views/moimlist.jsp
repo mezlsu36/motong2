@@ -106,7 +106,8 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
-    	<br/>
+    	<br/><br/><br/>
+
 		<h1>모임 목록 </h1>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
@@ -155,14 +156,14 @@
 				<!-- 페이징 처리부분 종료 -->
 		<div class="container">
          <div class="row">
-         <form method="post" name="search" action="">
+         <form method="post" name="search" action="/moim/research">
             <table class="pull-right">
             <col width="300px;" />
             <col width="100px;" />
             <col width="600px;" />
                <tr>
                   <td><input type="text" class="form-control"
-                     placeholder="검색어 입력" name="research" maxlength="100"  value="${map.keyword}"></td>
+                     placeholder="검색어 입력" name="searchData" maxlength="100"></td>
                   <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  

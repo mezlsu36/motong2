@@ -44,7 +44,7 @@
 	
 	<insert id="registAccount" parameterType="AccountDto">
 		INSERT INTO account
-		VALUES (NULL, #{user_seq}, #{fintech_use_num}, #{account_num_masked},#{balance_amt}, #{bank_name})
+		VALUES (NULL, #{user_seq}, #{fintech_use_num}, #{account_num_masked},#{balance_amt}, #{bank_name},'N')
 	</insert>
 	
 	<select id="getAccountList" parameterType="int" resultType="AccountDto">

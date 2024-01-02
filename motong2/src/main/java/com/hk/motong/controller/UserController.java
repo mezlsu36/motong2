@@ -169,6 +169,7 @@ public class UserController {
 				
 			}
 			List<AccountDto> aList = userService.getAccountList(dto.getUser_seq());
+			System.out.println(aList);
 			//이제 잔액이랑 계좌 목록 띄울거 보내시오~
 			model.addAttribute("aList", aList);
 		}

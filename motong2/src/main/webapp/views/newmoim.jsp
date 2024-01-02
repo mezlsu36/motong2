@@ -22,7 +22,6 @@
         .my-div {
         text-align : center;
       }
-      
 
        .newmoim-control, select,button {
         margin-bottom: 10px;
@@ -35,12 +34,17 @@
         width : 900px; 	
       }
 
-      </style>
+	  </style>
+
 	<script type="text/javascript">
     function addMoim(){
     	var select= document.getElementsByName("account_seq")[0].value;
     	if(select == "no" || select == "noAccount"){
-	    	return false;    		
+    		alert("사용할 계좌를 선택하세요");
+    		return false;    		
+    	}else if(select == "usingAccount"){
+    		alert("다른 모임에 사용중인 계좌");
+    		return false;
     	}else{
     		return true;	
     	}    	
@@ -50,7 +54,7 @@
 	</script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
         <div class="container">
         	<a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -59,29 +63,34 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/mypage" >마이 페이지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <br/><br/><br/><br/>
-    <h2>모임 개설하기</h2>
+    <section class="py-5">
+    <div class="container my-5">
+    <div class="row justify-content-center">
+    <div class="col-lg-6">
+    <br/><br/><br/><br/><br/>
+    <h2 >모임 개설하기</h2>
     <br/>
-    <div class='my-div'>	  	   	 
-	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()">	  
+	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()" style="text-align:center;">	  
 	      <input type="hidden" name="leader" value="${sessionScope.ldto.user_seq}">
 	      <table class="table">
+	      		<col style="width:100px"/>
+	      		<col style="width:400px"/>
 	   			<tr>
-	   				<th style="width:100px">이름</th>
-	   				<td> <input type="text" name="moimname"  placeholder="모임이름을 입력하세요" aria-describedby="button-search" class="newmoim-control" ></td>
+	   				<th >이름</th>
+	   				<td> <input type="text" name="mname"  placeholder="모임이름을 입력하세요"  class="form-control" /></td>
 	   			</tr>
 	   			<tr>
 	   				<th>계좌</th>
 	   				<td>
-	   					<select name="account_seq" class="acseq">
-						      <option value="no" selected="selected">---------------</option> 
+	   					<select name="account_seq" class="acseq form-control" style="text-align:center;">
+						      <option value="no" selected="selected">-----------------------------------</option> 
 						      <c:set var="lists" value="${acList}" />
 							      <c:choose>
 							          <c:when test="${empty lists}">
@@ -89,7 +98,14 @@
 							          </c:when>
 							          <c:otherwise>
 							              <c:forEach items="${lists}" var="dto">
-							                  <option value="${dto.account_seq}">${dto.bank_name}[${dto.account_num_masked}]</option> 
+								              <c:choose>
+										          <c:when test="${dto.delflag == 'Y'}">
+										         		 <option value="usingAccount">(사용중)${dto.bank_name}[${dto.account_num_masked}]</option>
+										          </c:when>
+											      <c:otherwise>
+											      		<option value="${dto.account_seq}">${dto.bank_name}[${dto.account_num_masked}]</option> 											      
+											      </c:otherwise>
+										      </c:choose>
 							              </c:forEach>
 							          </c:otherwise>
 							      </c:choose>
@@ -98,15 +114,17 @@
 	   			</tr>
 	   			<tr>
 	   				<th>PIN번호</th>
-	   				<td><input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="newmoim-control" ></td>
+	   				<td><input type="text" name="moimPin"  placeholder="6자리" minlength="6" maxlength="6" class="form-control" ></td>
 				
 	   			</tr>
 	   		</table>
-	   		<button  class="btn btn-secondary" type="submit">모임개설!</button>
-	   		<br/><br/><br/><br/><br/><br/><br/><br/>
+	   		<button  class="btn btn-secondary"  type="submit">모임개설!</button>
+	   		<br/><br/><br/><br/><br/>
 	     </form>	     
     </div>
-    
+   </div>
+   </div>
+   </section>
    <footer class="py-3" style="background-color:#e3f2fd;">
        <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
     </footer>

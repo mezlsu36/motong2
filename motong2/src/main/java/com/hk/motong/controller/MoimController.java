@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.motong.utils.Paging;
 import com.hk.motong.dtos.MoimDto;
@@ -22,9 +21,6 @@ import com.hk.motong.service.MoimService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-
-
-
 
 @Controller
 @RequestMapping("/moim")
@@ -97,8 +93,19 @@ public class MoimController {
 		map.put("moim_seq", moim_seq);
 		System.out.println(map);
 		moimService.addUserMoim(map);
-			
+
+		moimService.updateAcDelflag(account_seq);
 		return "redirect:/moim/moimlist";
+	}
+	
+	// 모임 검색 기능
+	@PostMapping("/research")
+	public String moimSearch(String searchData,Model model,HttpServletRequest request) {		
+		List<MoimDto>list=moimService.moimSearch(searchData);
+		model.addAttribute("list", list);
+		System.out.println(list);
+			
+		return "moimlist";
 	}
 	
 	

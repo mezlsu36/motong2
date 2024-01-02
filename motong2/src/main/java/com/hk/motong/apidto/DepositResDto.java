@@ -2,8 +2,6 @@ package com.hk.motong.apidto;
 
 import java.util.List;
 
-import lombok.Data;
-
 public class DepositResDto {
 	private String api_tran_id;
     private String rsp_code;

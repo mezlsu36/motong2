@@ -93,6 +93,7 @@ public class BankingController {
 				  +"     alert('계좌등록완료');"
 				  +"</script>";
 		return str;
+
 	}
 	//거래내역조회
 	//거래내역 조회
@@ -172,7 +173,6 @@ public class BankingController {
 		WithdrawReqDto reqDto = new WithdrawReqDto();
 		System.out.println("초반:"+reqDto);
 		
-
 		reqDto.setBank_tran_id("M202201886U" +createNum());
 		reqDto.setCntr_account_type("N");
 		reqDto.setCntr_account_num("100000000008"); 
@@ -321,4 +321,5 @@ public class BankingController {
 			String formatNow = now.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 			return formatNow;
 		}
+
 }

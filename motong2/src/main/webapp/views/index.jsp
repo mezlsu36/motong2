@@ -35,6 +35,7 @@
             </div>
         </nav>
         <!-- Header - set the background image for the header in the line below-->
+       <br/><br/>
         <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
             <div class="text-center my-5">
                 <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>

@@ -52,4 +52,13 @@ public class MoimService {
    public boolean addUserMoim(Map<String, Integer> map) {
 	   return moimMapper.addUserMoim(map);
    }
+   
+   public boolean updateAcDelflag(int account_seq) {
+	   return moimMapper.updateAcDelflag(account_seq);
+   }
+   
+   public List<MoimDto> moimSearch(String searchData){
+	   List<MoimDto> list = moimMapper.moimSearch(searchData);
+	   return list;
+   }
 }

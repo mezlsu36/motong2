@@ -42,7 +42,7 @@
         <div class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                	<br/><br/><br/>
+                	<br/><br/><br/><br/><br/>
                 	<h2 style="font-weight: bold;">로그인</h2>
                 	<hr/>
                     <form action="/user/login" method="post" style="text-align: center;">
