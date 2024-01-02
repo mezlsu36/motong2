@@ -135,7 +135,7 @@
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
     	<br/><br/><br/>
 
-		<h1>모임 목록 </h1>  
+		<h1>모임 목록 </h1>   
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
             <col width="150px;" />
