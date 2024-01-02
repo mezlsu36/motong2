@@ -45,8 +45,79 @@
     <section class="py-5">
     <div class="container my-5">
     <div class="row justify-content-center">
-    <div class="col-lg-6">
-     	
+    <div class="col-lg-6" style="width:1200px; overflow:auto;">
+    <form action="/moim/addUserMoim" method="post">
+    	<input type="hidden" name="user_seq" value="${sessionScope.ldto.user_seq}">
+    	<input type="hidden" name="moim_seq" value="${dto.moim_seq}">
+        <div id="getMoim" style="width:500px; float:left;">
+     	<br/><br/><br/><br/>
+        <h2 style="font-weight: bold;">모임 상세</h2>
+        
+        <hr/>
+              <table class="table">
+              	<tr>
+                	<th>모임 번호</th>
+                	<td>${dto.moim_seq}</td>
+                </tr>
+              	<tr>
+                	<th>모임 이름</th>
+                	<td>${dto.mname}</td>
+                </tr>
+                <tr>
+                	<td colspan="2">
+                    <button  class="btn btn-outline-primary"  type="submit">모임 가입</button>
+                    </td>
+                </tr>
+                
+               </table>
+        <br/>
+        <h2 style="font-weight: bold;">모임장 정보</h2>
+        <hr/>
+              <table class="table">
+                <tr>
+                	<th>모임장</th>
+                	<td>${dto.name}</td>
+                </tr>
+                <tr>
+                	<th>모임장 이메일</th>
+                	<td>${dto.email}</td>
+                </tr>
+                <tr>
+                	<th>모임장 핸드폰번호</th>
+                	<td>${dto.phone}</td>
+                </tr>
+               </table>
+        </div>
+        <div id="moimUser" style="width:500px;  float:right;">
+        <br/><br/><br/><br/>
+        <h2 style="font-weight: bold;">모임원 목록</h2>
+        <hr/>
+        <table class="table" style="text-align: center;">
+        	<col width="100px;"/>
+        	<col width="200px;"/>
+        	<tr>
+        		<th>이름</th>
+        		<th>핸드폰</th>
+        	</tr>        
+	        <c:set var="lists" value="${list}"/>
+			<c:choose>
+				<c:when test="${empty lists}">
+					<tr>
+						<td colspan="2">--모임원이 없습니다.--</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${lists}" var="dtos">
+					    <tr class="listContents">					        
+					        <td>${dtos.name}</td>
+					        <td>${dtos.phone}</td>
+					    </tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+        </table>
+        </div>
+    </form>
     </div>
    </div>
    </div>

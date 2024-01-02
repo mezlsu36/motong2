@@ -43,7 +43,7 @@
 		});
 	});
 	
-	function enter(pin,email,btnEle){
+	function enter(pin,email,moim_seq,btnEle){
 		console.log(email);
 		if(email == null || email==""){
 			alert("회원이 아닙니다. 로그인하세요");
@@ -51,8 +51,7 @@
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
 				alert("입장~");
-				location.href = "/moim/getMoim?moim_seq="+dto.moim_seq;
-				
+				location.href = "/moim/getMoim?moim_seq="+moim_seq;
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
 				pinNum.focus;
@@ -137,7 +136,7 @@
 					        <td>${dto.name}</td>
 					        <td>${dto.mname}</td>   
 					        <td><input type="password" name="pin" class="pinNum form-control"/></td>
-					        <td><button class="btn btn-outline-secondary" onclick="enter('${dto.pin}','${sessionScope.ldto.email}',this)" >입장</button></td>
+					        <td><button class="btn btn-outline-secondary" onclick="enter('${dto.pin}','${sessionScope.ldto.email}','${dto.moim_seq}',this)" >입장</button></td>
 					    </tr>
 					</c:forEach>
 				</c:otherwise>

@@ -110,6 +110,36 @@ public class MoimController {
 			
 		return "moimlist";
 	}
+	
+	// 모임 상세 보기
+	@GetMapping("/getMoim")
+	public String getMoim(int moim_seq, Model model) {
+		System.out.println(moim_seq);
+		System.out.println("모임 상세 페이지로 이동");
+		MoimDto dto=moimService.getMoim(moim_seq);
+		
+		// 모임원 리스트
+		List<UserDto> list=moimService.moimUser(moim_seq);
+		System.out.println(list);
+		model.addAttribute("list",list);
+		
+		System.out.println(dto);
+		model.addAttribute("dto",dto);
+		
+		return "getMoim";
+	}
+	
+	// 모임 가입 (모임원 추가)
+	@PostMapping("/addUserMoim")
+	public String addUserMoim(int user_seq, int moim_seq) {
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("user_seq", user_seq);
+		map.put("moim_seq", moim_seq);
+		System.out.println(map);
+		moimService.addUserMoim(map);
+		
+		return "redirect:/moim/getMoim?moim_seq="+moim_seq;
+	}
 
 	
 }

@@ -4,6 +4,8 @@ public class MoimDto {
    private int moim_seq;
    private int leader;
    private String name;//팀장 이름
+   private String email;//팀장 이메일
+   private String phone;//팀장 핸드폰번호
    private int account_seq;
    private String mname;
    private String account_num_masked;
@@ -15,12 +17,14 @@ public class MoimDto {
       // TODO Auto-generated constructor stub
    }
 
-	public MoimDto(int moim_seq, int leader, String name, int account_seq, String mname, String account_num_masked,
+	public MoimDto(int moim_seq, int leader, String name, String email, String phone, int account_seq, String mname, String account_num_masked,
 			String bank_name, String delflag, int pin) {
 		super();
 		this.moim_seq = moim_seq;
 		this.leader = leader;
 		this.name = name;
+		this.email = email;
+		this.phone = phone;
 		this.account_seq = account_seq;
 		this.mname = mname;
 		this.account_num_masked = account_num_masked;
@@ -46,6 +50,23 @@ public class MoimDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public int getAccount_seq() {
 		return account_seq;
 	}
@@ -82,11 +103,14 @@ public class MoimDto {
 	public void setPin(int pin) {
 		this.pin = pin;
 	}
+
 	@Override
 	public String toString() {
-		return "MoimDto [moim_seq=" + moim_seq + ", leader=" + leader + ", name=" + name + ", account_seq=" + account_seq
-				+ ", mname=" + mname + ", account_num_masked=" + account_num_masked + ", bank_name=" + bank_name
-				+ ", delflag=" + delflag + ", pin=" + pin + "]";
+		return "MoimDto [moim_seq=" + moim_seq + ", leader=" + leader + ", name=" + name + ", email=" + email
+				+ ", phone=" + phone + ", account_seq=" + account_seq + ", mname=" + mname + ", account_num_masked="
+				+ account_num_masked + ", bank_name=" + bank_name + ", delflag=" + delflag + ", pin=" + pin + "]";
 	}
+	
+	
 
 }

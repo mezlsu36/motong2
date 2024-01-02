@@ -75,8 +75,16 @@
 		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
 	</select>
 	
-	<select id="">
-		
+	<select id="getMoim" parameterType="Integer" resultType="MoimDto">
+		SELECT moim.MOIM_SEQ, moim.MNAME, user.NAME, user.email, user.phone
+		FROM moim JOIN user ON moim.LEADER=user.USER_SEQ 
+		WHERE MOIM.MOIM_SEQ=#{moim_seq};	
+	</select>
+	
+	<select id="moimUser" parameterType="Integer" resultType="UserDto">
+		SELECT user.NAME, user.PHONE
+		FROM user JOIN user_moim ON user.USER_SEQ=user_moim.USER_SEQ
+		WHERE MOIM_SEQ=#{moim_seq};
 	</select>
 </mapper>
  
