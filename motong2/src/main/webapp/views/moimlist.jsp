@@ -136,7 +136,7 @@
     	<br/><br/><br/>
 
 		<h1>모임 목록 </h1>   
-		<hr/>
+		<hr/> 
 	 	<table class="table" style="text-align: center;">	 	
             <col width="150px;" />
             <col width="150px;" />
