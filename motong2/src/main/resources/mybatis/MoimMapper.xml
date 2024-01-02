@@ -73,6 +73,10 @@
 		SELECT moim.MOIM_SEQ, user.NAME, moim.ACCOUNT_SEQ, moim.MNAME, moim.PIN
 		FROM moim JOIN user ON moim.LEADER = user.USER_SEQ
 		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
-	</select>  
+	</select>
+	
+	<select id="">
+		
+	</select>
 </mapper>
  
