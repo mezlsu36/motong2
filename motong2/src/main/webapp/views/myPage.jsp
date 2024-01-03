@@ -95,10 +95,13 @@
 					});
 				});
 				
-
-				if($(".delflag").text() == "Y"){
-					$(".delflag").next().text("사용중인 계좌");
-				}
+				
+				
+				$(".delflag").each(function (index, item) {
+					if($(this).text() == "Y"){
+				     	$(this).next().text("사용중인 계좌");
+					}
+				});	
 			});
 		
 		//거래내역조회

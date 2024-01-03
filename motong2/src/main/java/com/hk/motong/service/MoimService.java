@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.motong.dtos.MoimDto;
+import com.hk.motong.dtos.UserDto;
 import com.hk.motong.mapper.MoimMapper;
 
 @Service
@@ -56,4 +57,12 @@ public class MoimService {
    public boolean updateAcDelflag(int account_seq) {
 	   return moimMapper.updateAcDelflag(account_seq);
    }
+   
+   public List<MoimDto> moimSearch(String searchData){
+	   List<MoimDto> list = moimMapper.moimSearch(searchData);
+	   return list;
+   }
+   
+   
+
 }

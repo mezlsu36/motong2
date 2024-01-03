@@ -101,5 +101,15 @@ public class MoimController {
 		return "redirect:/moim/moimlist";
 	}
 	
+	// 모임 검색 기능
+	@PostMapping("/research")
+	public String moimSearch(String searchData,Model model,HttpServletRequest request) {		
+		List<MoimDto>list=moimService.moimSearch(searchData);
+		model.addAttribute("list", list);
+		System.out.println(list);
+			
+		return "moimlist";
+	}
+	
 	
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.hk.motong.dtos.MoimDto;
+import com.hk.motong.dtos.UserDto;
 
 
 @Mapper
@@ -31,4 +32,10 @@ public interface MoimMapper {
    public boolean addUserMoim(Map<String, Integer> map);
    public boolean updateAcDelflag(int account_seq);
 
+   
+   // 모임 검색 기능
+   public List<MoimDto> moimSearch(String searchData);
+   
+
+  
 }
