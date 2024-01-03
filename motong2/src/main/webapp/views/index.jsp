@@ -13,6 +13,26 @@
         <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/styles.css" rel="stylesheet" />
+        <style type="text/css">
+        	.py-5{background-color: #EAEAEA;}
+	        .carousel-container {
+			    overflow: hidden;
+			    height: 300px; /* 캐러셀의 높이 조절 */
+			}
+			
+			.carousel {
+			    display: flex;
+			    transition: transform 0.5s ease-in-out; /* 슬라이드 애니메이션 속성 */
+			}
+			
+			.carousel-item {
+			    flex: 0 0 100%; /* 각 아이템의 가로 크기를 캐러셀의 너비로 조절 */
+			    box-sizing: border-box;
+			    text-align: center;
+			    padding: 20px;
+			}
+			.fw-bolder{margin-top: 250px;}
+		</style>
         <script type="text/javascript">
         	
         </script>
@@ -26,20 +46,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">SignIN</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Header - set the background image for the header in the line below-->
-        <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
+        <div class="py-5 bg-image-full" style="background-image: url('resources/img/main.png'); background-size: 100% 100%; height: 100vh;">
             <div class="text-center my-5">
-                <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>
-                <p class="text-white-50 mb-0">Landing Page Template</p>
+                <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+                <p class="text-white-50 mb-0">가장 편리한 모임통장</p>
             </div>
-        </header>
+        </div>
         <!-- Content section-->
         <section class="py-5">
             <div class="container my-5">
@@ -52,23 +73,8 @@
                 </div>
             </div>
         </section>
-        <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-            <div style="height: 20rem"></div>
-        </div>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2></h2>
-                        <p class="lead"></p>
-                        <p class="mb-0"></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+      
         <!-- Footer-->
         <footer class="py-3"  style="background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
