@@ -14,7 +14,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/styles.css" rel="stylesheet" />
         <style type="text/css">
-        	.py-5{background-color: #EAEAEA;}
+        	.py-5{background-color: #EAEAEA;} 
 	        .carousel-container {
 			    overflow: hidden;
 			    height: 300px; /* 캐러셀의 높이 조절 */

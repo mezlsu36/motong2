@@ -28,7 +28,7 @@
 		    display: flex;
 		    transition: transform 0.5s ease-in-out; /* 슬라이드 애니메이션 속성 */
 		}
-		
+		 
 		.carousel-item {
 		    flex: 0 0 100%; /* 각 아이템의 가로 크기를 캐러셀의 너비로 조절 */
 		    box-sizing: border-box;
