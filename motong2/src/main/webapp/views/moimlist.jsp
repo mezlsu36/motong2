@@ -78,7 +78,7 @@
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
 				alert("입장~");
-	//			window.location.href = "";
+//				window.location.href = "";
 				
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
@@ -136,7 +136,7 @@
     	<br/><br/><br/>
 
 		<h1>모임 목록 </h1>   
-		<hr/> 
+		<hr/>  
 	 	<table class="table" style="text-align: center;">	 	
             <col width="150px;" />
             <col width="150px;" />
