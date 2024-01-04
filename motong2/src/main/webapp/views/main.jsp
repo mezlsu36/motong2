@@ -15,42 +15,33 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
 	<style type="text/css">
-		.fw-bolder{margin-top: 250px;}
-		.box{border-bottom: 1px solid gray; margin-bottom: 10px;}
-		.box > .sub_menu{text-align: right;}
 		.py-5{background-color: #EAEAEA;}
-		.carousel-container {
-		    overflow: hidden;
-		    height: 300px; /* 캐러셀의 높이 조절 */
-		}
-		
-		.carousel {
-		    display: flex;
-		    transition: transform 0.5s ease-in-out; /* 슬라이드 애니메이션 속성 */
-		}
-		 
 		.carousel-item {
-		    flex: 0 0 100%; /* 각 아이템의 가로 크기를 캐러셀의 너비로 조절 */
-		    box-sizing: border-box;
+		    position: relative;
+		    height: 680px; 
+		  }
+		
+		  .carousel-item img {
+		    object-fit: cover;
+		    width: 100%;
+		    height: 100%;
+		  }
+		
+		  .text-overlay {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
 		    text-align: center;
-		    padding: 20px;
-		}
+		    color: white;
+		  }
+		  
 	</style>
-	<script type="text/javascript">
-	
-		document.addEventListener("DOMContentLoaded", function () {
-		    const carousel = document.querySelector(".carousel");
-		    let currentIndex = 0;
-	
-		    setInterval(function () {
-		        currentIndex = (currentIndex + 1) % carousel.children.length;
-		        updateCarousel();
-		    }, 3000); // 3초마다 슬라이드 전환
-	
-		    function updateCarousel() {
-		        const translateValue = -currentIndex * 100 + "%";
-		        carousel.style.transform = "translateY(" + translateValue + ")";
-		    }
+	<script type="text/javascript">	
+		$(document).ready(function (){
+			setInterval(function (){
+				$('#carouselExampleFade').carousel('next');
+			}, 5000);
 		});
 	
 	</script>
@@ -75,25 +66,52 @@
         </div>
     </nav> 
         <br/><br/>
+		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active position-relative">
+		      <img src="resources/img/main.png" class="d-block w-100 img-fluid" alt="Image 1">
+		      <div class="text-overlay">
+		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <p class="text-white mb-0">가장 편리한 모임통장</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item position-relative">
+		      <img src="resources/img/main2.png" class="d-block w-100 img-fluid" alt="Image 2">
+		      <div class="text-overlay">
+		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <p class="text-white mb-0">가장 편리한 모임통장</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item position-relative">
+		      <img src="resources/img/main3.png" class="d-block w-100 img-fluid" alt="Image 3">
+		      <div class="text-overlay">
+		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <p class="text-white mb-0">가장 편리한 모임통장</p>
+		      </div>
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Next</span>
+		  </button>
+		</div>
 
-        <div class="py-5 bg-image-full" style="background-image: url('resources/img/main.png'); background-size: 100% 100%; height: 100vh;">
-            <div class="text-center my-5">
-                <h1 class="text-white fs-3 fw-bolder">모통이</h1>
-                <p class="text-white mb-0">가장 편리한 모임통장</p>
-            </div>
-        </div>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>모임통장</h2>
-                        <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
-                        <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+		<!-- Content section-->
+		<section class="py-5">
+		  <div class="container my-5">
+		    <div class="row justify-content-center">
+		      <div class="col-lg-6">
+		        <h2>모임통장</h2>
+		        <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
+		        <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
+		      </div>
+		    </div>
+		  </div>
+		</section>
 
     <!-- Footer-->
     <footer class="py-3"  style="background-color:#e3f2fd;" >
