@@ -7,7 +7,7 @@
       SELECT moim.MOIM_SEQ, moim.LEADER, moim.ACCOUNT_SEQ, moim.MNAME, user.NAME
 	  FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
 			JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
-	  WHERE user_moim.USER_SEQ=#{user_seq};
+	  WHERE user_moim.USER_SEQ=#{user_seq}; 
    </select>
 
 	<select id="moimLeader" parameterType="Integer" resultType="String">
@@ -49,7 +49,7 @@
 	<!--  모임 추가할때 -->
 	<insert id="addMoim" parameterType="MoimDto">
 		INSERT INTO moim
-		VALUES (NULL, #{leader}, #{account_seq}, #{mname}, #{pin})
+		VALUES (NULL, #{leader}, #{account_seq}, #{mname}, #{pin}, #{roomno})
 	</insert>
 	
 	<select id="getMoimSeq" parameterType="int" resultType="int">
@@ -68,19 +68,12 @@
 		SET delflag = 'Y'
 		WHERE account_seq = #{account_seq}
 	</update>
-	
-	<select id="searchMoims" parameterType="string" resultType="MoimDTO">
-	    SELECT * 
-	    FROM moim
-	    WHERE moim_name LIKE CONCAT('%', #{keyword}, '%')
+	 
+	<select id="moimSearch" parameterType="String" resultType="MoimDto">
+		SELECT moim.MOIM_SEQ, user.NAME, moim.ACCOUNT_SEQ, moim.MNAME, moim.PIN
+		FROM moim JOIN user ON moim.LEADER = user.USER_SEQ
+		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
 	</select>
-	
 </mapper>
-
-
-
-
-
-
 
 
