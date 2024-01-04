@@ -102,7 +102,11 @@
                 			<td colspan="2">
                 			<button type="button" id="tranList" class="btn btn-outline-primary" onclick="transactionList('${dto.fintech_use_num}',this)">거래 내역 조회</button>
                 			<button type="button" class="btn btn-outline-primary" onclick="window.open('/banking/deposit_popup?fintech_use_num=${dto.fintech_use_num}', 'withdrawpopup','width=700, height=400, top=150, left=200')">입금</button>
-                			<button type="button" class="btn btn-outline-primary" onclick="window.open('/banking/withdraw_popup?fintech_use_num=${dto.fintech_use_num}', 'withdrawpopup','width=700, height=400, top=150, left=200')">출금</button>
+                			<c:choose>
+                			<c:when test="${sessionScope.ldto.user_seq eq dto.user_seq}">
+                				<button type="button" class="btn btn-outline-primary" onclick="window.open('/banking/withdraw_popup?fintech_use_num=${dto.fintech_use_num}', 'withdrawpopup','width=700, height=400, top=150, left=200')">출금</button>
+                			</c:when>
+                			</c:choose>
                 			<br/><br/><div class="tranList"></div>
                 		</tr>
                 	</table>

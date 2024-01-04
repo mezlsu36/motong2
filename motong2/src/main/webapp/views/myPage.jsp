@@ -95,10 +95,12 @@
 					});
 				});
 				
-
-				if($(".delflag").text() == "Y"){
-					$(".delflag").next().text("사용중인 계좌");
-				}
+				
+				$(".delflag").each(function (index, item) {
+		               if($(this).text() == "Y"){
+		                    $(this).next().text("사용중인 계좌");
+		               }
+		        });   
 			});
 		
 		//거래내역조회
@@ -205,9 +207,12 @@
 									<c:forEach items="${aList}" var="aTdto">
 										<tr>
 											<td>
-												<p style=" font-size:15pt">${aTdto.bank_name}<span class="delflag" style="display:none;">${aTdto.delflag}</span><span style="color:red; font-size:8pt;"></span>
+												<p style="font-size:15pt">${aTdto.bank_name}
+													<span class="delflag" style="display:none;">${aTdto.delflag}</span>
+													<span style="color:red; font-size:8pt;"></span>
 													<button style="text-decoration : underline; border:none; background-color:white; color:black; margin-left:240px; font-size:9pt;" class="deleteAccount" 
-														onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')" >계좌 삭제</button></p>
+															onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')">계좌 삭제</button>
+												</p>
 												<span>계좌번호 : ${aTdto.account_num_masked}</span>
 												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px;">잔액조회</button>
 												<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>

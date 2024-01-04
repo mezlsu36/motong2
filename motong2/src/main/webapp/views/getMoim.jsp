@@ -91,7 +91,7 @@
         <div id="moimUser" style="width:500px;  float:right;">
         <br/><br/><br/><br/>
         <h2 style="font-weight: bold;">모임원 목록</h2>
-        <hr/>
+      
         <table class="table" style="text-align: center;">
         	<col width="100px;"/>
         	<col width="200px;"/>

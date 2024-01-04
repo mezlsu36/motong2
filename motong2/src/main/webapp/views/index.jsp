@@ -34,13 +34,12 @@
             </div>
         </nav>
         <!-- Header - set the background image for the header in the line below-->
-       <br/><br/>
-        <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
+      <div class="py-5 bg-image-full" style="background-image: url('resources/img/main.png'); background-size: 100% 100%; height: 100vh;">
             <div class="text-center my-5">
-                <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>
-                <p class="text-white-50 mb-0">Landing Page Template</p>
+                <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+                <p class="text-white mb-0">가장 편리한 모임통장</p>
             </div>
-        </header>
+        </div>
         <!-- Content section-->
         <section class="py-5">
             <div class="container my-5">
@@ -49,23 +48,6 @@
                         <h2>모임통장</h2>
                         <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
                         <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-            <div style="height: 20rem"></div>
-        </div>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2></h2>
-                        <p class="lead"></p>
-                        <p class="mb-0"></p>
                     </div>
                 </div>
             </div>
