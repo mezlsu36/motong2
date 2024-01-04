@@ -123,6 +123,11 @@ public class MoimController {
 		System.out.println(list);
 		model.addAttribute("list",list);
 		
+		// 모임원 user_seq 만 받는 리스트
+		List<Integer> seqList=moimService.moimUserSeq(moim_seq);
+		System.out.println(seqList);
+		model.addAttribute("seqList",seqList);
+				
 		System.out.println(dto);
 		model.addAttribute("dto",dto);
 		
@@ -131,14 +136,16 @@ public class MoimController {
 	
 	// 모임 가입 (모임원 추가)
 	@PostMapping("/addUserMoim")
-	public String addUserMoim(int user_seq, int moim_seq) {
+	public String addUserMoim(int user_seq, int moim_seq, HttpServletRequest request) {
 		Map<String,Integer> map = new HashMap<String, Integer>();
 		map.put("user_seq", user_seq);
 		map.put("moim_seq", moim_seq);
 		System.out.println(map);
 		moimService.addUserMoim(map);
 		
-		return "redirect:/moim/getMoim?moim_seq="+moim_seq;
+		request.setAttribute("msg","모임에 가입되었습니다.");
+		request.setAttribute("url","/moim/getMoim?moim_seq="+moim_seq);
+		return "alert";
 	}
 
 	

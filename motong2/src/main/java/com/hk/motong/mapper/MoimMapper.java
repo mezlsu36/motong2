@@ -39,4 +39,7 @@ public interface MoimMapper {
    
    // 모임원 목록
    public List<UserDto> moimUser(int moim_seq);
+   
+   // 모임원 userseq만 받아옴
+   public List<Integer> moimUserSeq(int moim_seq);
 }

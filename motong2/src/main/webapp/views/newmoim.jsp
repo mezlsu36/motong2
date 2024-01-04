@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8" />
@@ -17,25 +17,7 @@
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="/resources/css/styles.css" rel="stylesheet" />
       <style>
-        h2 { text-align: center; margin-top: 10px;}
-        
-        .my-div {
-        text-align : center;
-      }
-
-       .newmoim-control, select,button {
-        margin-bottom: 10px;
-      }    
-      .table{
-        display: flex;
-      	text-align: center;
-      	margin-left : 620px; 
-      	flex-direction: column;   
-        width : 900px; 	
-      }
-
-	  </style>
-
+	 </style>
 	<script type="text/javascript">
     function addMoim(){
     	var select= document.getElementsByName("account_seq")[0].value;

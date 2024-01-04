@@ -2,7 +2,8 @@
 <%@page import="com.hk.motong.dtos.MoimDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,7 @@
 	  </style>
 
 	<script type="text/javascript">
-  
-     
+  	
 	</script>
 </head>
 <body>
@@ -63,9 +63,22 @@
                 	<th>모임 이름</th>
                 	<td>${dto.mname}</td>
                 </tr>
+                <c:set var="flag" value="f" />
+                <c:forEach items="${seqList}" var="item" varStatus="status">
+                	<c:if test="${sessionScope.ldto.user_seq eq seqList[status.index]}">
+	                	<c:set var="flag" value="t" />
+                	</c:if>
+				</c:forEach>
                 <tr>
-                	<td colspan="2">
-                    <button  class="btn btn-outline-primary"  type="submit">모임 가입</button>
+                	<td colspan="2">                	
+                	<c:choose>
+                		<c:when test="${flag eq 't' }">
+                			<span style="color:blue;">이미 가입되어 있습니다.</span>
+                		</c:when>
+                		<c:otherwise>
+				            <button class="btn btn-outline-primary" type="submit">모임 가입</button>
+                		</c:otherwise>
+                	</c:choose>	
                     </td>
                 </tr>
                 
