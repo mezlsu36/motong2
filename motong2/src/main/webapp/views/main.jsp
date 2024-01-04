@@ -79,7 +79,7 @@
         <div class="py-5 bg-image-full" style="background-image: url('resources/img/main.png'); background-size: 100% 100%; height: 100vh;">
             <div class="text-center my-5">
                 <h1 class="text-white fs-3 fw-bolder">모통이</h1>
-                <p class="text-white-50 mb-0">가장 편리한 모임통장</p>
+                <p class="text-white mb-0">가장 편리한 모임통장</p>
             </div>
         </div>
         <!-- Content section-->
