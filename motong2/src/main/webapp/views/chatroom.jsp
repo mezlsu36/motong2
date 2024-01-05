@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.hk.motong.dtos.MoimDto"%>
+<%@page import="com.hk.motong.dtos.ListDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,16 +37,19 @@
    });
    
    function wsEvt() {
-      //채팅이 시작되면 실행되는 함수
-     // ws.onopen = function(data){
+      
+   //채팅이 시작되면 실행되는 함수
+   ws.onopen = function(data){
+       var option ={
+            type : "wellcom",
+            userId: $("#userId").val(),
+            roomNo : $("#roomNo").val(),
+            msg : $("#userId").val() + "님이 입장하셨습니다."
+           }
+          ws.send(JSON.stringify(option));
+      }
          
-     //    var user = $("#userId").val();
-      //   var  str = $("#userId").val() + "님이 입장하셨습니다."
 
-      //   $("#chatting").append(str);
-      
-     // }
-      
    
    //   ws.onclose = function(data){
          
@@ -59,25 +62,34 @@
     //  }
       
       
-      //서버에서 메시지를 받으면 실행하는 함수
+     //서버에서 메시지를 받으면 실행하는 함수
       ws.onmessage = function(data) {
          //메시지를 받으면 동작
          var msg = data.data;
+         console.log(msg);
          var json = JSON.parse(msg);
          
-         if (json.userId == "${sessionScope.ldto.name}" ) {
-            $("#chatting").append("<div id='id_content'><p>" + "</p><span id='content'>" + json.userId + ": " + json.msg + "</span></div>");
+         if (json.type == "wellcom") {
+            $("#chatting").append("<span id='ent_chat'> " + json.msg + "</span>" +"<br/><p></p>");   
+         } else if (json.type == "bye") {
+            $("#chatting").append("<span id='ent_chat'> " + json.msg + "</span>" +"<br/><p></p>");   
+         }else if (json.userId == "${sessionScope.ldto.name}" ) {
+            $("#chatting").append("<p></p><div id='id_content'><span id='content'>" + json.userId + ": " + json.msg + "</span></div><p></p>");   
          }else {
-            $("#chatting").append("<div id='id_content2'><p>" + "</p><a id='content'>" + json.userId + ": " + json.msg + "</a></div>");   
-         } 
-         
+               $("#chatting").append("<p></p><div id='id_content2'><a id='content2'>" + json.userId + ": " + json.msg + "</a></div><p></p>");   
+            } 
          var chatting = $('#chatting');
-         chatting.scrollTop(chatting.prop('scrollHeight'));
-        
-
+          chatting.scrollTop(chatting.prop('scrollHeight'));
       }
       
 
+    //웹소켓 연결 종료되면 실행
+      ws.onclose=function(){
+         
+         ws=null;//웹소켓 연결 끊고 null로 초기화
+//         alert("채팅종료");
+      }
+      
       //키보드를 누르면 함수 실행 --> 누른 키의 code가 13이면 enter 키임(enter키를 누르면 send()함수 실행)
       document.addEventListener("keypress", function(e){
          if(e.keyCode == 13){ //enter press
@@ -85,7 +97,9 @@
          }
       });
    }
-
+   
+ 
+   
    //메시지를 서버로 전송하는 함수
    function send() {
       //전송할 내용을 json으로 정의
@@ -101,8 +115,10 @@
       var chat = $('#chat'); //chat: 입력박스 엘리먼트 탐색
       chat.val("");//메시지 보냈으니 입력박스 초기화
 //       alert(chatting.prop('scrollHeight'));
+      
+      
    }
-   
+  
 
    
 </script>
@@ -128,7 +144,7 @@
       text-align: center;
       margin-left: 10px;
    }
-   #id_content > span{
+  #id_content > span{
       width:1120px;
       height:60px;
       display:inline-block;
@@ -153,16 +169,16 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#e3f2fd;">
         <div class="container">
-           <img src="resources/img/logo.png" style="width:100px; height:50px;">
-            <a class="navbar-brand" href="#!">MOTONG</a>
+       		<a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signin_form">SignIN</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/moimlist">모임리스트</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/chat">Talk</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
@@ -170,7 +186,7 @@
 <div id="container">
    <h2>대화방</h2>
       <!-- Main Content-->
-      <input type="hidden" id="roomNo" value="1">
+      <input type="hidden" id="roomNo" value="${param.roomNo}"><br/>
      <input type="hidden" id="userId" value="${sessionScope.ldto.name}">
    <main>
          <div class="container-fluid">
@@ -181,8 +197,8 @@
                 </div>
              </div>
              <div class="input-group mb-3">
-               <input id="chat" type="text" placeholder="메세지를 입력하세요"
-               class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+               <input id="chat" type="text" placeholder="메세지를 입력하세요" name="chatt"
+               class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" required />
                <div class="input-group-append">
                 <button class="btn btn-outline-secondary" id="send-btn"  onclick="send()" type="button">전송</button>
                </div>   
@@ -193,7 +209,6 @@
 </div>
 <footer class="py-3 bg-dark">
        <div class="container"><p class="m-0 text-center text-white" style="height: 40px;">Copyright &copy; motong 2023</p></div>
-</footer>
 <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
