@@ -13,6 +13,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Motong</title>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
       <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
@@ -50,8 +51,9 @@
 		}else{
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
-				alert("입장~");
-				location.href = "/moim/getMoim?moim_seq="+moim_seq;
+				swal("입장~").then(function(){
+			    	location.href = "/moim/getMoim?moim_seq="+moim_seq;
+				});
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
 				pinNum.focus;

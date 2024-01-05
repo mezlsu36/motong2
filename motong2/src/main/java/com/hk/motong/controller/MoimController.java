@@ -143,7 +143,6 @@ public class MoimController {
 		System.out.println(map);
 		moimService.addUserMoim(map);
 		
-		request.setAttribute("msg","모임에 가입되었습니다.");
 		request.setAttribute("url","/moim/getMoim?moim_seq="+moim_seq);
 		return "alert";
 	}

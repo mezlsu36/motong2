@@ -8,6 +8,8 @@
 <html>
 <head>
  <meta charset="utf-8" />
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <meta name="description" content="" />
       <meta name="author" content="" />
@@ -22,7 +24,7 @@
 	  </style>
 
 	<script type="text/javascript">
-  	
+		
 	</script>
 </head>
 <body>
@@ -64,27 +66,22 @@
                 	<th>모임 이름</th>
                 	<td>${dto.mname}</td>
                 </tr>
+               </table>
                 <c:set var="flag" value="f" />
                 <c:forEach items="${seqList}" var="item" varStatus="status">
                 	<c:if test="${sessionScope.ldto.user_seq eq seqList[status.index]}">
 	                	<c:set var="flag" value="t" />
                 	</c:if>
 				</c:forEach>
-                <tr>
-                	<td colspan="2">                	
-                	<c:choose>
+				<c:choose>
                 		<c:when test="${flag eq 't' }">
                 			<span style="color:blue;">이미 가입되어 있습니다.</span>
                 		</c:when>
                 		<c:otherwise>
-				            <button class="btn btn-outline-primary" type="submit">모임 가입</button>
+				            <button class="btn btn-outline-primary" data-dismiss="alert" type="submit">모임 가입</button>
                 		</c:otherwise>
-                	</c:choose>	
-                    </td>
-                </tr>
-                
-               </table>
-        <br/>
+                </c:choose>	
+        <br/><br/>
         <h2 style="font-weight: bold;">모임장 정보</h2>
         <hr/>
               <table class="table">
