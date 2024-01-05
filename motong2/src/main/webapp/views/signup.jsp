@@ -10,7 +10,7 @@
     <meta name="author" content="" />
     <title>회원가입</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
 
@@ -94,7 +94,7 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
+                        <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/user/signup">회원가입</a></li>
                     </ul>
                 </div>
             </div>
@@ -105,6 +105,7 @@
             <div class="row justify-content-center"> 
                 <div class="col-lg-6">
                 <br/><br/><br/>
+                    <div style="padding:20px; border-radius: 20px; background-color: #FCFCFC; box-shadow: 5px 5px 15px gray; ">
                 	<h2 style="font-weight: bold;">회원가입</h2>
                 	<hr/>
 
@@ -113,42 +114,44 @@
                     		<tr>
 
                     			<th>이메일</th>
-                    			<td><input type="text"name="email" class="form-control hi" required/>
-                    				<a href="#" onclick="idChk()">중복체크</a>
+                    			<td><input style="margin:auto;" type="text"name="email" class="form-control hi" required/>
+                    				<a style="margin-left:250px;" href="#" onclick="idChk()">중복체크</a>
                     				<span id="idChk" style="display:none;">n</span>
                     				<span id="enabledEmail"></span>
                     			</td>
                     		</tr>
                     		<tr>
                     			<th>비밀번호</th>
-                    			<td><input type="password" name="password" class="form-control hi" minlength="8" maxlength="16" placeholder="8자리 이상 16자리 이하" required /></td>
+                    			<td><input style="margin:auto;" type="password" name="password" class="form-control hi" minlength="8" maxlength="16" placeholder="8자리 이상 16자리 이하" required /></td>
                     		</tr>
                     		<tr>
                     			<th>비밀번호 확인</th>
                     			<td>
-                    				<input type="password" name="passwordChk" class="form-control hi" required />
+                    				<input style="margin:auto;" type="password" name="passwordChk" class="form-control hi" required />
                     				<span id="diff" style="color:red; font-size:10pt;"></span>
                     			</td>
                     		</tr>
                     		<tr>
                     			<th>이름</th>
-                    			<td><input type="text" name="name" class="form-control hi" required/></td>
+                    			<td><input style="margin:auto;" type="text" name="name" class="form-control hi" required/></td>
                     		</tr>
                     		<tr>
                     			<th>핸드폰번호</th>
-                    			<td><input type="text" name="phone" class="form-control hi" required/></td>
+                    			<td><input style="margin:auto;" type="text" name="phone" class="form-control hi" required/></td>
                     		</tr>
                     	</table>
-                    	<button style="font-weight: bold;" type="submit" class="btn btn-outline-primary">가입하기</button>
+                    	<button style="width:200px; font-weight: bold;" type="submit" class="btn btn-outline-primary">가입하기</button>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Footer-->
-     <footer style="width:100%; position:absolute; bottom:0; background-color:#e3f2fd;" class="py-3"  >
+    
+     <footer style="width:100%; bottom:0; background-color:#e3f2fd;" class="py-3"  >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
-        </footer>
+     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

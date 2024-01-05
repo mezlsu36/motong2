@@ -11,7 +11,7 @@
     <title>Motong</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
 	<style type="text/css">
@@ -56,8 +56,7 @@
                     <li><img src="/resources/img/user.png" style="width:30px; height:30px; margin-top: 5px"/></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-
+                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
@@ -69,7 +68,9 @@
         <div class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-					<h1>나의 정보 수정</h1>
+                <div style="padding:20px; border-radius: 20px; background-color: #FCFCFC; box-shadow: 1px 1px 20px gray; ">
+					<h2 style="font-weight: bold;">나의 정보 수정</h2>
+					<hr/>
 					<div id="myinfo">
 					<form action="/user/updateMyInfo" method="post" onsubmit="return checkPW(this)">
 					<input type="hidden" name="email" class="form-control" value="${dto.email}" />
@@ -99,11 +100,12 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<button type="submit" class="btn">수정하기</button>
+									<button type="submit" class="btn btn-outline-primary">수정하기</button>
 								</td>
 							</tr>
 						</table>
 					</form>
+					</div>
 					</div>
                 </div>
             </div>

@@ -15,7 +15,7 @@
       <title>Motong</title>
       <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="/resources/css/styles.css" rel="stylesheet" />
    <style>
@@ -85,7 +85,7 @@
 		                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-		                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+		                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     		<li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
 	                    </ul>
 	         	   </div>
@@ -164,7 +164,10 @@
                <tr>
                   <td><input type="text" class="form-control"
                      placeholder="검색어 입력" name="searchData" maxlength="100"></td>
-                  <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
+                  <td><button  type="submit" name="researchBtn" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+					</svg>검색</button>
+				  </td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  
                   </td>  

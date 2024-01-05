@@ -72,21 +72,21 @@
 		    <div class="carousel-item active position-relative">
 		      <img src="resources/img/main.png" class="d-block w-100 img-fluid" alt="Image 1">
 		      <div class="text-overlay">
-		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <h1 class="text-white fs-1 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
 		      </div>
 		    </div>
 		    <div class="carousel-item position-relative">
 		      <img src="resources/img/main2.png" class="d-block w-100 img-fluid" alt="Image 2">
 		      <div class="text-overlay">
-		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <h1 class="text-white fs-1 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
 		      </div>
 		    </div>
 		    <div class="carousel-item position-relative">
 		      <img src="resources/img/main3.png" class="d-block w-100 img-fluid" alt="Image 3">
 		      <div class="text-overlay">
-		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <h1 class="text-white fs-1 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
 		      </div>
 		    </div>

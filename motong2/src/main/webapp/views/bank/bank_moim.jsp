@@ -16,7 +16,7 @@
     <title>Motong</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
    <style type="text/css">
@@ -76,7 +76,7 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>

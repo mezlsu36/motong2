@@ -78,19 +78,22 @@
 		//잔액확인 버튼 누르면 잔액 확인
 		$(function(){
 				$(".amt-btn").click(function(){
-					$(this).siblings().eq(4).toggle();
-					$(this).parent().parent().siblings().each(function(){ 
-						
-						$(this).find("span").eq(1).hide();
+					$(this).parent().parent().next().find(".amt").toggle();
+					$(this).parents("tr").eq(1).siblings().each(function(){
+						$(this).find(".amt").hide();
+					});
+					$(this).parents("tr").eq(1).siblings().each(function(){
 						$(this).find(".tranList").hide();
 					});
-					
 				});
-				
+					
+						
 				$(".tran-btn").click(function(){
-					$(this).siblings().eq(6).toggle();
-					$(this).parent().parent().siblings().each(function(){ 
-						$(this).find("span").eq(1).hide();
+					$(this).parent().parent().next().find(".tranList").toggle();
+					$(this).parents("tr").eq(1).siblings().each(function(){
+						$(this).find(".amt").hide();
+					});
+					$(this).parents("tr").eq(1).siblings().each(function(){
 						$(this).find(".tranList").hide();
 					});
 				});
@@ -123,7 +126,7 @@
 					}
 					list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
 					//button .   p    . <div> 
-					$(btnEle).next().next().next().next().html(list);	
+					$(btnEle).parent().parent().next().find(".tranList").html(list);	
 				}
 			});
 		}
@@ -150,8 +153,7 @@
                     <li><img src="/resources/img/user.png" style="width:30px; height:30px; margin-top: 5px"/></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
+	                <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
@@ -161,18 +163,18 @@
     <!-- Content section-->
     <section class="py-5">
     <br/><br/>
-        <div class="container my-5">
+          <div class="container my-5">
        		 <div class="row justify-content-center">
                 <div class="col-lg-6" style="width:1200px; overflow:auto;">
                 	<div id="myinfo" style="width:500px; float:left;">
-					<h1>나의 정보</h1>
+					<h2 style="font-weight: bold;">나의 정보</h2>
 					<hr/>	
 						<table class="table">
 							<tr>
 								<th>이름</th>
 								<td>${dto.name}</td>
 							</tr>
-							<tr>
+							<tr> 
 								<th>아이디</th>
 								<td>${dto.email}</td>
 							</tr>
@@ -192,8 +194,8 @@
 							</tr>
 						</table>
 					</div>
-					<div id="myAccount" style="width:500px;  float:right;">
-					<h1>나의 계좌</h1>
+					<div id="myAccount" style="width:600px;  float:right;">
+					<h2 style="font-weight: bold;">나의 계좌</h2>
 					<hr/>
 						<button type="button" class="btn btn-outline-primary" onclick="${sessionScope.ldto.useraccesstoken == null ? 'authorization()':'already()'}">사용자인증</button>
 						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}','${sessionScope.ldto.useraccesstoken}')" >계좌 등록하기</button>
@@ -208,17 +210,38 @@
 									<c:forEach items="${aList}" var="aTdto">
 										<tr>
 											<td>
-												<p style="font-size:15pt">${aTdto.bank_name}
-													<span class="delflag" style="display:none;">${aTdto.delflag}</span>
-													<span style="color:red; font-size:8pt;"></span>
-													<button style="text-decoration : underline; border:none; background-color:white; color:black; margin-left:240px; font-size:9pt;" class="deleteAccount" 
-															onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')">계좌 삭제</button>
-												</p>
-												<span>계좌번호 : ${aTdto.account_num_masked}</span>
-												<button class="btn btn-outline-primary amt-btn" style="margin-left:50px;">잔액조회</button>
-												<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>
-												<br/><span class="amt" style="display:none;">${aTdto.balance_amt}원</span>
-												<br/><div class="tranList" ></div>
+												<table>
+													<col width="300px;" />
+													<col width="300px;" />
+													<tr>
+														<th>
+															<p style="font-size:15pt">${aTdto.bank_name}
+																<span class="delflag" style="display:none;">${aTdto.delflag}</span>
+																<span style="color:red; font-size:8pt;"></span>
+															</p>														
+														</th>
+														<th>
+															<button style="text-decoration : underline; border:none; background-color:white; color:black; margin-left:200px; font-size:9pt;" class="deleteAccount" 
+																	onclick="deleteAccount('${aTdto.account_seq}','${aTdto.bank_name}','${aTdto.account_num_masked}','${sessionScope.ldto.email}')">계좌 삭제</button>															
+														<th/>												
+													</tr>
+													<tr>
+														<th>
+															<span>계좌번호 : ${aTdto.account_num_masked}</span>														
+														</th>
+														<th>
+															<button class="btn btn-outline-primary amt-btn" style="margin-left:50px;">잔액조회</button>
+															<button class="btn btn-outline-primary tran-btn" onclick="transactionList('${aTdto.fintech_use_num}',this)">거래내역조회</button>
+															<br/>														
+														<th/>												
+													</tr>
+													<tr>
+														<td colspan = "2">
+															<span class="amt" style="display:none;">${aTdto.balance_amt}원</span>
+															<div class="tranList" > </div>	
+														</td>
+													</tr>
+												</table>
 											</td>
 										</tr>
 									</c:forEach>
