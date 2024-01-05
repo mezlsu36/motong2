@@ -73,7 +73,24 @@
 		SELECT moim.MOIM_SEQ, user.NAME, moim.ACCOUNT_SEQ, moim.MNAME, moim.PIN
 		FROM moim JOIN user ON moim.LEADER = user.USER_SEQ
 		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
+	</select> 
+	
+	<select id="getMoim" parameterType="Integer" resultType="MoimDto">
+		SELECT moim.MOIM_SEQ, moim.MNAME, user.NAME, user.email, user.phone
+		FROM moim JOIN user ON moim.LEADER=user.USER_SEQ 
+		WHERE MOIM.MOIM_SEQ=#{moim_seq}
 	</select>
 	
+	<select id="moimUser" parameterType="Integer" resultType="UserDto">
+		SELECT user.NAME, user.PHONE
+		FROM user JOIN user_moim ON user.USER_SEQ=user_moim.USER_SEQ
+		WHERE MOIM_SEQ=#{moim_seq}
+	</select>
 	
+	<select id="moimUserSeq" parameterType="Integer">
+		SELECT USER_SEQ
+		FROM user_moim
+		WHERE MOIM_SEQ=#{moim_seq}
+	</select>
 </mapper>
+ 

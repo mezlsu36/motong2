@@ -63,6 +63,17 @@ public class MoimService {
 	   return list;
    }
    
+   public MoimDto getMoim(int moim_seq) {
+	   return moimMapper.getMoim(moim_seq);
+   }
    
-
+   public List<UserDto> moimUser(int moim_seq){
+	   List<UserDto> list=moimMapper.moimUser(moim_seq);
+	   return list;
+   }
+   
+   public List<Integer> moimUserSeq(int moim_seq){
+	   List<Integer> list=moimMapper.moimUserSeq(moim_seq);
+	   return list;
+   }
 }
