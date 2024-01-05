@@ -16,6 +16,29 @@
         <script type="text/javascript">
         	
         </script>
+        <style type="text/css">
+		.py-5{background-color: #EAEAEA;}
+		.carousel-item {
+		    position: relative;
+		    height: 680px; 
+		  }
+		
+		  .carousel-item img {
+		    object-fit: cover;
+		    width: 100%;
+		    height: 100%;
+		  }
+		
+		  .text-overlay {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    text-align: center;
+		    color: white;
+		  }
+		  
+		</style>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -33,43 +56,53 @@
                 </div>
             </div>
         </nav>
-        <!-- Header - set the background image for the header in the line below-->
        <br/><br/>
-        <header class="py-5 bg-image-full" style="background-image: url('resources/img/main1.jpg'); background-size: 800px 250px;">
-            <div class="text-center my-5">
-                <h1 class="text-white fs-3 fw-bolder">Fintech Open Banking</h1>
-                <p class="text-white-50 mb-0">Landing Page Template</p>
-            </div>
-        </header>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>모임통장</h2>
-                        <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
-                        <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-            <div style="height: 20rem"></div>
-        </div>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2></h2>
-                        <p class="lead"></p>
-                        <p class="mb-0"></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active position-relative">
+		      <img src="resources/img/main.png" class="d-block w-100 img-fluid" alt="Image 1">
+		      <div class="text-overlay">
+		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <p class="text-white mb-0">가장 편리한 모임통장</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item position-relative">
+		      <img src="resources/img/main2.png" class="d-block w-100 img-fluid" alt="Image 2">
+		      <div class="text-overlay">
+		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <p class="text-white mb-0">가장 편리한 모임통장</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item position-relative">
+		      <img src="resources/img/main3.png" class="d-block w-100 img-fluid" alt="Image 3">
+		      <div class="text-overlay">
+		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <p class="text-white mb-0">가장 편리한 모임통장</p>
+		      </div>
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+
+		<!-- Content section-->
+		<section class="py-5">
+		  <div class="container my-5">
+		    <div class="row justify-content-center">
+		      <div class="col-lg-6">
+		        <h2>모임통장</h2>
+		        <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
+		        <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
+		      </div>
+		    </div>
+		  </div>
+		</section>
         <!-- Footer-->
         <footer class="py-3"  style="background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>

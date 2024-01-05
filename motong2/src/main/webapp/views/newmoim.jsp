@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8" />
@@ -17,25 +17,7 @@
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="/resources/css/styles.css" rel="stylesheet" />
       <style>
-        h2 { text-align: center; margin-top: 10px;}
-        
-        .my-div {
-        text-align : center;
-      }
-
-       .newmoim-control, select,button {
-        margin-bottom: 10px;
-      }    
-      .table{
-        display: flex;
-      	text-align: center;
-      	margin-left : 620px; 
-      	flex-direction: column;   
-        width : 900px; 	
-      }
-
-	  </style>
-
+	 </style>
 	<script type="text/javascript">
     function addMoim(){
     	var select= document.getElementsByName("account_seq")[0].value;
@@ -61,6 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
+                    <li><img src="/resources/img/user.png" style="width:30px; height:30px; margin-top: 5px"/></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
