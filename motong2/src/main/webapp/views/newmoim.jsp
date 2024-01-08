@@ -54,11 +54,11 @@
         </div>
     </nav>
     <section class="py-5">
+    <br/><br/><br/>
     <div class="container my-5">
     <div class="row justify-content-center">
-    <div class="col-lg-6">
-    <br/><br/><br/><br/><br/>
-    <h2 >모임 개설하기</h2>
+    <div class="col-lg-6" style="width:800px; overflow:auto; padding:30px; border:1px solid lightgray; border-radius: 20px;">
+    <h2 style="font-weight: bold;">모임 개설하기</h2>
     <br/>
 	    <form action="/moim/addMoim" method="post" onsubmit="return addMoim()" style="text-align:center;">	  
 	      <input type="hidden" name="leader" value="${sessionScope.ldto.user_seq}">
@@ -102,12 +102,12 @@
 	   			</tr>
 	   		</table>
 	   		<button  class="btn btn-secondary"  type="submit">모임개설!</button>
-	   		<br/><br/><br/><br/><br/>
 	     </form>	     
     </div>
    </div>
    </div>
    </section>
+   <br/><br/><br/>
    <footer class="py-3" style="background-color:#e3f2fd;">
        <div class="container"><p class="m-0 text-center text-black" style="height: 40px;">Copyright &copy; motong 2023</p></div>
     </footer>
