@@ -199,6 +199,7 @@
 					<hr size="4px"/>
 						<button type="button" class="btn btn-outline-primary" onclick="${sessionScope.ldto.useraccesstoken == null ? 'authorization()':'already()'}">사용자인증</button>
 						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}','${sessionScope.ldto.useraccesstoken}')" >계좌 등록하기</button>
+						<br/><br/>
 						<table class="table">
 							<c:choose> 
 								<c:when test="${empty aList}"><!-- 안에가 비어있냐 -->
@@ -209,7 +210,7 @@
 								<c:otherwise>
 									<c:forEach items="${aList}" var="aTdto">
 										<tr>
-											<td>
+											<td style="border-radius:20px; background-color: #DAE6FF; padding: 20px;">
 												<table>
 													<col width="300px;" />
 													<col width="300px;" />
