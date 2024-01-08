@@ -30,7 +30,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                        <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/user/signin_form">로그인</a></li>
+                        <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/user/signin_form">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
                     </ul>
                 </div>

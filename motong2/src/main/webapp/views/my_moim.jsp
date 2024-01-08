@@ -42,7 +42,7 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
@@ -51,7 +51,7 @@
     <section class="py-5">
         <div class="container my-5">
             <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-lg-6" style="width:1200px; overflow:auto;">
             	<br/><br/><br/><br/><br/>
                 <h2 style="font-weight: bold;">가입된 모임</h2>
                 <hr/>
@@ -65,7 +65,7 @@
                 
                       <thead>
                       <tr>
-                         <th>모임 번호 </th><th>모임장</th><th>모임이름</th><th>  회비 관리</th><th>커뮤니티</th>
+                         <th>No.</th><th>모임장</th><th>모임이름</th><th>  회비 관리</th><th>커뮤니티</th>
                       </tr>
                       </thead>
                       <tbody>

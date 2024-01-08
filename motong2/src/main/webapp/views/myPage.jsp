@@ -153,7 +153,7 @@
                     <li><img src="/resources/img/user.png" style="width:30px; height:30px; margin-top: 5px"/></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
-	                <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
+	                <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
@@ -163,12 +163,12 @@
     <!-- Content section-->
     <section class="py-5">
     <br/><br/>
-          <div class="container my-5">
+          <div  class="container my-5">
        		 <div class="row justify-content-center">
-                <div class="col-lg-6" style="width:1200px; overflow:auto;">
-                	<div id="myinfo" style="width:500px; float:left;">
+                <div class="col-lg-6" style="width:1200px; overflow:auto; padding:30px; border:1px solid lightgray; border-radius: 20px; ">
+                	<div id="myinfo" style="width:500px; float:left; ">
 					<h2 style="font-weight: bold;">나의 정보</h2>
-					<hr/>	
+					<hr size="4px"/>	
 						<table class="table">
 							<tr>
 								<th>이름</th>
@@ -196,7 +196,7 @@
 					</div>
 					<div id="myAccount" style="width:600px;  float:right;">
 					<h2 style="font-weight: bold;">나의 계좌</h2>
-					<hr/>
+					<hr size="4px"/>
 						<button type="button" class="btn btn-outline-primary" onclick="${sessionScope.ldto.useraccesstoken == null ? 'authorization()':'already()'}">사용자인증</button>
 						<button type="button" class="btn btn-outline-primary" onclick="addAccount('${sessionScope.ldto.email}','${sessionScope.ldto.useraccesstoken}')" >계좌 등록하기</button>
 						<table class="table">
@@ -253,7 +253,7 @@
               </div>
         </div>
     </section>
-  <br/><br/><br/><br/><br/><br/>
+  <br/><br/><br/><br/>
     <!-- Footer-->
         <footer class="py-3"  style="width:100%; background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>

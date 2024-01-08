@@ -87,7 +87,7 @@
 		                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-		                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+		                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                     		<li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
 	                    </ul>
 	         	   </div>
@@ -110,7 +110,7 @@
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
     	<br/><br/><br/>
 
-		<h1>모임 목록 </h1>
+		<h2 style="font-weight: bold; text-align: left;">모임 목록 </h2>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
             <col width="150px;" />
@@ -119,9 +119,9 @@
             <col width="120px;" />
             <col width="200px;" />
 	 		<tr>
-	 			<th>모임번호</th>
+	 			<th>No</th>
 	 			<th>모임장</th>
-	 			<th >모임이름</th>	 			
+	 			<th>모임이름</th>	 			
 	 			<th>PIN번호</th>
 	 			<th></th>
 	 		</tr>
@@ -148,11 +148,11 @@
 			<!-- 페이징 처리부분 시작 -->
 				<nav style="text-align: center;">
 				  <ul class="pagination">
-				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <li class="page-item disabled"><a class="page-link" href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
-				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
+				    	<li class="page-item active" ${sessionScope.pnum==i?"class='active'":""}><a class="page-link" href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
 				    </c:forEach> 
-				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				    <li class="page-item" ><a class="page-link" href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
 				</nav>
 				<!-- 페이징 처리부분 종료 -->

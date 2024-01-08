@@ -94,7 +94,7 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
-                        <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/user/signup">회원가입</a></li>
+                        <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/user/signup">회원가입</a></li>
                     </ul>
                 </div>
             </div>
@@ -115,7 +115,7 @@
 
                     			<th>이메일</th>
                     			<td><input style="margin:auto;" type="text"name="email" class="form-control hi" required/>
-                    				<a style="margin-left:250px;" href="#" onclick="idChk()">중복체크</a>
+                    				<a style="margin-left:310px;" href="#" onclick="idChk()">중복체크</a>
                     				<span id="idChk" style="display:none;">n</span>
                     				<span id="enabledEmail"></span>
                     			</td>

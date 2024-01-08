@@ -39,23 +39,22 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/moim/moimlist">모임리스트</a></li>
+                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/moim/moimlist">모임리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <section class="py-5">
+    <br/><br/>
     <div class="container my-5">
     <div class="row justify-content-center">
-    <div class="col-lg-6" style="width:1200px; overflow:auto;">
+    <div class="col-lg-6" style="width:1200px; overflow:auto; padding:30px; border:1px solid lightgray; border-radius: 20px;">
     <form action="/moim/addUserMoim" method="post">
     	<input type="hidden" name="user_seq" value="${sessionScope.ldto.user_seq}">
     	<input type="hidden" name="moim_seq" value="${dto.moim_seq}">
         <div id="getMoim" style="width:500px; float:left;">
-     	<br/><br/><br/><br/>
         <h2 style="font-weight: bold;">모임 상세</h2>
-        
         <hr/>
               <table class="table">
               	<tr>

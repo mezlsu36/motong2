@@ -76,17 +76,17 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a style="font-weight: bold;" class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/bank/my_moim">나의 모임</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- Content section-->
     <section class="py-5">
+        <br/><br/>
         <div class="container my-5">
             <div class="row justify-content-center">
-            <div class="col-lg-6">
-            	<br/><br/><br/><br/>
+            <div class="col-lg-6" style="width:800px; overflow:auto; padding:30px; border:1px solid lightgray; border-radius: 20px; ">
                 <h2 style="font-weight: bold;">회비 관리</h2>
                 <hr/>
                 <div id="getMoimAccount">
@@ -115,7 +115,7 @@
             </div>
             </div>
         </div>
-         <br/><br/><br/><br/><br/>
+         <br/><br/><br/><br/>
     </section>
     <!-- Footer-->
     <footer class="py-3"  style="width:100%; background-color:#e3f2fd;" >
