@@ -34,18 +34,26 @@
 			data:{"fintech_use_num":fintech_use_num},
 			dataType:"json",
 			success:function(data){ //data: 응답결과을 받을 변수
-				var list="<ul>";
+				var list="<div> <table class='table table-striped' style=''>"
+						 +"<tr style='padding:10px; background-color: #5A78AF;'>"
+						 +	"<th style='color:#F9FFFF; border-radius:10px 0 0 10px;'>거래일자</th>"
+						 +	"<th style='color:#F9FFFF;'>은행</th>"
+						 +	"<th style='color:#F9FFFF;'>거래유형</th>"
+						 +	"<th style='color:#F9FFFF;'>메모</th>"
+						 +	"<th style='color:#F9FFFF; border-radius:0 10px 10px 0;'>금액</th>"
+						 +"</tr>";
 				// data.res_list  -->  배열
 				for (var i = 0; i < data.res_list.length; i++) {
 					var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
-					list+="<li>"+res.tran_date
-					            +" ["+res.branch_name+"] "
-					            +res.inout_type+" "
-					            +res.print_content+":"
-					            +res.tran_amt+"</li>"
+					list+="<tr>"
+						  +"<td>"+res.tran_date.substring(0,4)+"-"+res.tran_date.substring(4,6)+"-"+res.tran_date.substring(6,8)+"</td>"
+						  +"<td>"+res.branch_name+"</td>"
+						  +"<td style='color:blue;'>"+res.inout_type+"</td>"
+						  +"<td>"+res.print_content+"</td>"
+						  +"<td>"+res.tran_amt+"</td>"
+						  +"</tr>"
 				}
-				list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
-				//button .   p    . <div> 
+				list+="</table></div>";
 				$(btnEle).next().next().next().next().next().html(list);	
 			}
 		});
