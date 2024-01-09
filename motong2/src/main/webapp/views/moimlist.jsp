@@ -108,9 +108,13 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
-    	<br/><br/><br/>
-
-		<h2 style="font-weight: bold; text-align: left;">모임 목록 </h2>
+    	<div style="background-color: #F7FCFF; width:100%; height:150px; display:flex;">
+    	<div style="width:850px;">
+			<h2 style=" padding:20px; font-weight: bold; text-align: left;">모임 목록</h2>
+			<a style=" margin-left:20px; width:300px; color: gray; font-size: 15px;">간편하게 모임을 개설하고 가입해보세요 !</a>
+    	</div>
+			<img src="/resources/img/gather_icon.png" style="height:180px; ">
+    	</div>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
             <col width="150px;" />
