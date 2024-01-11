@@ -113,7 +113,7 @@
 			<h2 style=" padding:20px; font-weight: bold; text-align: left;">모임 목록</h2>
 			<a style=" margin-left:20px; width:300px; color: gray; font-size: 15px;">간편하게 모임을 개설하고 가입해보세요 !</a>
     	</div>
-			<img src="/resources/img/gather_icon.png" style="height:180px; ">
+			<img src="/resources/img/moim_icon.png" style="height:180px; ">
     	</div>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
@@ -172,7 +172,7 @@
                      placeholder="검색어 입력" name="searchData" maxlength="100"></td>
                   <td><button  type="submit" name="researchBtn" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-					</svg>검색</button>
+					</svg> 검색</button>
 				  </td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  

@@ -16,7 +16,7 @@
     <title>Motong</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
    <style type="text/css">
@@ -30,7 +30,7 @@
 </head>
 <body>
 <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
+   <nav class="navbar navbar-expand-lg navbar-light" style="width:100%; position:fixed; z-index:100; top:0px;  background-color:#e3f2fd;">
         <div class="container">
            <a href="/main"><img src="/resources/img/motong_logo.png" style="width:100px; height:50px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -52,16 +52,21 @@
         <div class="container my-5">
             <div class="row justify-content-center">
             <div class="col-lg-6" style="width:1200px; overflow:auto;">
-            	<br/><br/><br/><br/><br/>
-                <h2 style="font-weight: bold;">가입된 모임</h2>
+            	<div style="background-color: #F7FCFF; width:100%; height:150px; display:flex;">
+		    	<div style="width:850px;">
+					<h2 style="padding:20px; font-weight: bold; text-align: left;">가입된 모임</h2>
+					<a style="margin-left:20px; width:300px; color: gray; font-size: 15px;">내가 가입한 모임을 확인하세요 !</a>
+		    	</div>
+				<img src="/resources/img/gather_icon.png" style="height:180px; ">
+    		</div>
                 <hr/>
-                <form>
-                   <table class="table table-hover" style="text-align:center;">
-                      <col width="100px"/>
+                <!--  <form> -->
+                    <table class="table table-hover" style="text-align:center;">
                       <col width="150px"/>
                       <col width="200px"/>
-                      <col width="100px"/>
-                      <col width="150px"/>
+                      <col width="400px"/>
+                      <col width="200px"/>
+                      <col width="200px"/>
                 
                       <thead>
                       <tr>
@@ -83,14 +88,18 @@
 									<td style="width:100px;">${dto.name}</td>
 									<td>${dto.mname}</td>													
 									<td><button type="button" style="width:100px;" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">회비 관리</button></td>
-									<td><button type="button" class="btn btn-outline-primary amt-btn" onclick="location.href='/bank/bank_moim?account_seq=${dto.account_seq}'">커뮤니티</button></td>
+									<form action="/chatform" method="post">
+									<td><input type="submit" class="btn btn-outline-primary amt-btn" value="커뮤니티"/></td>
+               						<td><input style="width:50px;" type="hidden" name="roomNo" value="${dto.moim_seq}"></td>
+               						</form>
 								</tr>
+								
 							</c:forEach>
 						</c:otherwise>
                      </c:choose>
                      </tbody>
                    </table>
-                </form>
+               <!-- </form> --> 
                </div>
             </div>
             <br/><br/><br/><br/><br/><br/><br/>
