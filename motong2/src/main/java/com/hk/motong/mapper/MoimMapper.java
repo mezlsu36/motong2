@@ -12,11 +12,13 @@ import com.hk.motong.dtos.UserDto;
 @Mapper
 public interface MoimMapper {
    
-   public List<MoimDto> subsMoim(int user_seq);
+	public int getSubsCount();
+	
+	public List<MoimDto> subsMoim(Map<String, Integer> map);
    
-   public List<String> moimLeader(int user_seq);
+	public List<String> moimLeader(int user_seq);
 
-   public String moimName(int account_seq);
+	public String moimName(int account_seq);
    
    //모임리스트
    public int getPCount();
@@ -37,8 +39,11 @@ public interface MoimMapper {
    // 모임 상세
    public MoimDto getMoim(int moim_seq);
    
-   // 모임원 목록
-   public List<UserDto> moimUser(int moim_seq);
+   //모임원목록 페이징처리용 ////////////////
+   public int getGetMoimPCount(int moim_seq);
+   
+   // 모임원 목록 페이징처리 /////
+   public List<UserDto> moimUser(Map<String, Integer> map);
    
    // 모임원 userseq만 받아옴
    public List<Integer> moimUserSeq(int moim_seq);

@@ -40,7 +40,7 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
                     <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/moim/moimlist">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim?pnum=1">나의 모임</a></li>
                 </ul>
             </div>
         </div>
@@ -126,6 +126,17 @@
 				</c:otherwise>
 			</c:choose>
         </table>
+         <!-- 페이징 처리부분 시작 -->
+		<nav style="text-align: center; margin-left: 40%">
+		  <ul class="pagination">
+		    <li class="page-item disabled"><a class="page-link" href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+		    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
+		    	<li class="page-item active" ${sessionScope.pnum==i?"class='active'":""}><a class="page-link" href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${i}">${i}<span class="sr-only"></span></a></li>
+		    </c:forEach> 
+		    <li class="page-item" ><a class="page-link" href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<!-- 페이징 처리부분 종료 -->
         </div>
     </form>
     </div>
