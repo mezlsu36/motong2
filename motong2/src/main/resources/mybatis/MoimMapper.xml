@@ -2,13 +2,23 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.motong.mapper.MoimMapper">
-   
-   <select id="subsMoim" parameterType="Integer" resultType="MoimDto">
-      SELECT moim.MOIM_SEQ, moim.LEADER, moim.ACCOUNT_SEQ, moim.MNAME, user.NAME
-	  FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
-			JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
-	  WHERE user_moim.USER_SEQ=#{user_seq};
+<!--  나의 모임 목록 페이징 처리하기 -->   
+   <select id="getSubsCount" resultType="Integer">
+   	SELECT CEIL(COUNT(*)/10) pageCount
+	FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
+		JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
    </select>
+   
+   <select id="subsMoim" parameterType="Map" resultType="MoimDto">
+    SELECT rn, moim_seq, leader, account_seq, MNAME, NAME
+	FROM ( SELECT ROW_NUMBER() over(ORDER BY moim.MOIM_SEQ) rn,
+             moim.MOIM_SEQ, moim.LEADER, moim.ACCOUNT_SEQ, moim.MNAME, user.NAME
+		   FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
+				 	 JOIN user_moim ON moim.MOIM_SEQ = user_moim.MOIM_SEQ
+		   WHERE user_moim.USER_SEQ=#{user_seq}) a
+	WHERE ceil(rn/10) = #{pnum}
+   </select>
+<!--  나의 모임 목록 페이징 처리하기 끝 --> 
 
 	<select id="moimLeader" parameterType="Integer" resultType="String">
 		SELECT user.NAME
@@ -81,11 +91,24 @@
 		WHERE MOIM.MOIM_SEQ=#{moim_seq}
 	</select>
 	
-	<select id="moimUser" parameterType="Integer" resultType="UserDto">
-		SELECT user.NAME, user.PHONE
+	
+<!--  모임원 목록 페이징 처리하기 -->
+	<select id="getGetMoimPCount" parameterType="Integer" resultType="Integer">
+		SELECT CEIL(COUNT(*)/10) pageCount
 		FROM user JOIN user_moim ON user.USER_SEQ=user_moim.USER_SEQ
 		WHERE MOIM_SEQ=#{moim_seq}
 	</select>
+	
+	<select id="moimUser" parameterType="Integer" resultType="UserDto">
+		SELECT rn,NAME, PHONE
+		FROM ( SELECT ROW_NUMBER() over(ORDER BY user.user_seq) rn,
+		             user.NAME, user.PHONE
+				 FROM user JOIN user_moim ON user.USER_SEQ=user_moim.USER_SEQ
+				 WHERE MOIM_SEQ= #{moim_seq}) a
+		WHERE ceil(rn/10) = #{pnum}
+	</select>
+<!--  모임원 목록 페이징 처리하기 끝 -->
+	
 	
 	<select id="moimUserSeq" parameterType="Integer">
 		SELECT USER_SEQ

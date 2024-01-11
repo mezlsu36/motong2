@@ -130,6 +130,17 @@
 				</c:otherwise>
 			</c:choose>
         </table>
+        <!-- 페이징 처리부분 시작 -->
+		<nav style="text-align: center;">
+		  <ul class="pagination">
+		    <li ><a href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+		    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
+		    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${i}">${i}<span class="sr-only"></span></a></li>
+		    </c:forEach> 
+		    <li ><a href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<!-- 페이징 처리부분 종료 -->
         </div>
     </form>
     </div>

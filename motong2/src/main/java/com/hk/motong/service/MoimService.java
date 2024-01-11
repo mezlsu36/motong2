@@ -16,8 +16,14 @@ public class MoimService {
    @Autowired
    private MoimMapper moimMapper;
    
-   public List<MoimDto> subsMoim(int user_seq){
-      return moimMapper.subsMoim(user_seq);
+   //마이모임 페이지처리용 getPCount
+   public int getSubsCount() {
+	   return moimMapper.getSubsCount();
+   };
+   
+   //마이모임 페이지처리
+   public List<MoimDto> subsMoim(Map<String, Integer> map){
+      return moimMapper.subsMoim(map);
    }
    
    public List<String> moimLeader(int user_seq) {
@@ -67,8 +73,13 @@ public class MoimService {
 	   return moimMapper.getMoim(moim_seq);
    }
    
-   public List<UserDto> moimUser(int moim_seq){
-	   List<UserDto> list=moimMapper.moimUser(moim_seq);
+   //겟모임 회원목록 페이지처리용 getPCount
+   public int getGetMoimPCount(int moim_seq){
+	   return moimMapper.getGetMoimPCount(moim_seq);
+   }
+ //겟모임 회원목록 페이지처리용
+   public List<UserDto> moimUser(Map<String,Integer> map){
+	   List<UserDto> list=moimMapper.moimUser(map);
 	   return list;
    }
    

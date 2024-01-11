@@ -42,7 +42,7 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim?pnum=1">나의 모임</a></li>
                 </ul>
             </div>
         </div>
@@ -90,6 +90,17 @@
                      </c:choose>
                      </tbody>
                    </table>
+                <!-- 페이징 처리부분 시작 -->
+				<nav style="text-align: center;">
+				  <ul class="pagination">
+				    <li ><a href="/bank/my_moim?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
+				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/bank/my_moim?pnum=${i}">${i}<span class="sr-only"></span></a></li>
+				    </c:forEach> 
+				    <li ><a href="/bank/my_moim?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				  </ul>
+				</nav>
+				<!-- 페이징 처리부분 종료 -->
                 </form>
                </div>
             </div>
