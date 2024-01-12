@@ -72,7 +72,7 @@
         </div>
     </section>
     <!-- Footer-->
-
+	<br/><br/>
   	<footer class="py-3"  style="bottom:0; width:100%; background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
     </footer>
