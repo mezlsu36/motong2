@@ -22,6 +22,7 @@
    <style type="text/css">
       .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
       .box > .sub_menu{text-align: right;}
+     
    </style>
    <script type="text/javascript">
 
