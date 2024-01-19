@@ -23,6 +23,12 @@
       .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
       .box > .sub_menu{text-align: right;}
      
+      .active {
+		background-color:blue;
+		color:white;
+		font-weight: bold; 
+		}
+	
    </style>
    <script type="text/javascript">
 
@@ -37,7 +43,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/main">Home</a></li>
                     <li><img src="/resources/img/user.png" style="width:30px; height:30px; margin-top: 5px"/></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
@@ -104,9 +110,9 @@
                <!-- 페이징 처리부분 시작 -->
 				<nav style="text-align: center; margin-left: 50%">
 				  <ul class="pagination">
-				    <li class="page-item disabled"><a class="page-link" href="/bank/my_moim?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <li class="page-item"><a class="page-link" href="/bank/my_moim?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
-				    	<li class="page-item active" ${sessionScope.pnum==i?"class='active'":""}><a class="page-link" href="/bank/my_moim?pnum=${i}">${i}<span class="sr-only"></span></a></li>
+				    	<li><a ${sessionScope.pnum==i?"class='active page-link'":"class='page-link'"} href="/bank/my_moim?pnum=${i}">${i}<span class="sr-only"></span></a></li>
 				    </c:forEach> 
 				    <li class="page-item" ><a class="page-link" href="/bank/my_moim?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>

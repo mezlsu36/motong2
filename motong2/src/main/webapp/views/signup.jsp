@@ -115,7 +115,7 @@
 
                     			<th>이메일</th>
                     			<td><input style="margin:auto;" type="text"name="email" class="form-control hi" required/>
-                    				<a style="margin-left:310px;" href="#" onclick="idChk()">중복체크</a>
+                    				<a style="margin-left:0px;" href="#" onclick="idChk()">중복체크</a>
                     				<span id="idChk" style="display:none;">n</span>
                     				<span id="enabledEmail"></span>
                     			</td>

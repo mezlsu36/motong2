@@ -52,7 +52,7 @@
                     			<th><img src="/resources/img/user.png" width="50px;" height="50px;"/></th>
                     			<td>
                     				<input style="margin:auto; margin-top:8px;" type="text"  name="email" class="form-control hi" placeholder="e-mail" value="${ID==null?'':ID}" required/>
-                    				<span style="color:red; font-size:10pt;">${failID==null?"":failID}</span>
+                    				<span style="color:red; font-size:10pt; margin:auto;" >${failID==null?"":failID}</span>
                     			</td>
                     		</tr>
                     		<tr>
@@ -72,7 +72,7 @@
         </div>
     </section>
     <!-- Footer-->
-	<br/><br/>
+	<br/><br/><br/>
   	<footer class="py-3"  style="bottom:0; width:100%; background-color:#e3f2fd;" >
             <div class="container"><p class="m-0 text-center text-gray" style=" height: 40px;">Copyright &copy; motong 2023</p></div>
     </footer>

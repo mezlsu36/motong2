@@ -211,14 +211,14 @@
 						<table class="table">
 							<c:choose> 
 								<c:when test="${empty aList}"><!-- 안에가 비어있냐 -->
-									<tr>
-										<td><br/><br/>--등록된 계좌가 없습니다.(사용자 인증을 진행하세요)--</td>
+									<tr style="color:red; font-weight: bold;">
+										<td><br/><br/>-- 등록된 계좌가 없습니다. (사용자 인증을 진행하세요) --</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${aList}" var="aTdto">
-										<tr>
-											<td style="border-radius:20px; background-color: #DAE6FF; padding: 20px;">
+										<tr style="margin:10px; ">
+											<td style="border-radius:20px; background-color: #DAE6FF; padding: 20px; margin:10px;">
 												<table>
 													<col width="300px;" />
 													<col width="300px;" />
@@ -246,7 +246,7 @@
 													</tr>
 													<tr>
 														<td colspan = "2">
-															<span class="amt" style="display:none;">${aTdto.balance_amt}원</span>
+															<span class="amt" style="display:none; font-size: 18px; color: blue;">잔액: 500000원</span>
 															<div class="tranList" > </div>	
 														</td>
 													</tr>

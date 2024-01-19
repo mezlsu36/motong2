@@ -58,9 +58,9 @@
         </nav>
        <br/><br/>
 		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-		  <div class="carousel-inner">
+		  <div  class="carousel-inner">
 		    <div class="carousel-item active position-relative">
-		      <img src="resources/img/main.png" class="d-block w-100 img-fluid" alt="Image 1">
+		      <img  src="resources/img/main1.png" class="d-block w-100 img-fluid" alt="Image 1">
 		      <div class="text-overlay">
 		        <h1 class="text-white fs-2 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
