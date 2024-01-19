@@ -23,6 +23,11 @@
       .box{border-bottom: 1px solid gray; margin-bottom: 10px;}
       .box > .sub_menu{text-align: right;}
      
+     .active {
+		background-color:blue;
+		color:white;
+		font-weight: bold; 
+	}
    </style>
    <script type="text/javascript">
 
@@ -106,7 +111,7 @@
 				  <ul class="pagination">
 				    <li class="page-item disabled"><a class="page-link" href="/bank/my_moim?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
-				    	<li class="page-item active" ${sessionScope.pnum==i?"class='active'":""}><a class="page-link" href="/bank/my_moim?pnum=${i}">${i}<span class="sr-only"></span></a></li>
+				    	<li><a ${sessionScope.pnum==i?"class='active page-link'":"class='page-link'"} href="/bank/my_moim?pnum=${i}">${i}<span class="sr-only"></span></a></li>
 				    </c:forEach> 
 				    <li class="page-item" ><a class="page-link" href="/bank/my_moim?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
