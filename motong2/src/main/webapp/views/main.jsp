@@ -72,21 +72,21 @@
 		    <div class="carousel-item active position-relative">
 		      <img src="resources/img/main.png" class="d-block w-100 img-fluid" alt="Image 1">
 		      <div class="text-overlay">
-		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <h1 class="text-white fs-2 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
 		      </div>
 		    </div>
 		    <div class="carousel-item position-relative">
 		      <img src="resources/img/main2.png" class="d-block w-100 img-fluid" alt="Image 2">
 		      <div class="text-overlay">
-		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <h1 class="text-white fs-2 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
 		      </div>
 		    </div>
 		    <div class="carousel-item position-relative">
 		      <img src="resources/img/main3.png" class="d-block w-100 img-fluid" alt="Image 3">
 		      <div class="text-overlay">
-		        <h1 class="text-white fs-3 fw-bolder">모통이</h1>
+		        <h1 class="text-white fs-2 fw-bolder">모통이</h1>
 		        <p class="text-white mb-0">가장 편리한 모임통장</p>
 		      </div>
 		    </div>
@@ -106,9 +106,9 @@
 		  <div class="container my-5">
 		    <div class="row justify-content-center">
 		      <div class="col-lg-6">
-		        <h2>모임통장</h2>
-		        <p class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
-		        <p class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
+		        <h2 style="font-weight: bold;">모임통장</h2><br/>
+		        <p style="font-size: medium;" class="lead">보유하고 있는 계좌를 모임용으로 전환하여 사용 할 수 있습니다.</p>
+		        <p style="font-size: medium;" class="lead">계좌를 인증하고 모임통장을 활용해보세요.</p>
 		      </div>
 		    </div>
 		  </div>

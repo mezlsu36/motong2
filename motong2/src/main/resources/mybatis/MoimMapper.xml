@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.motong.mapper.MoimMapper">
-<!--  나의 모임 목록 페이징 처리하기 -->   
+   
+   <!--  나의 모임 목록 페이징 처리하기 -->   
    <select id="getSubsCount" resultType="Integer">
    	SELECT CEIL(COUNT(*)/10) pageCount
 	FROM user JOIN moim ON user.USER_SEQ = moim.LEADER
@@ -83,7 +84,7 @@
 		SELECT moim.MOIM_SEQ, user.NAME, moim.ACCOUNT_SEQ, moim.MNAME, moim.PIN
 		FROM moim JOIN user ON moim.LEADER = user.USER_SEQ
 		WHERE MNAME LIKE CONCAT('%',#{searchData},'%')
-	</select> 
+	</select>
 	
 	<select id="getMoim" parameterType="Integer" resultType="MoimDto">
 		SELECT moim.MOIM_SEQ, moim.MNAME, user.NAME, user.email, user.phone
@@ -91,8 +92,7 @@
 		WHERE MOIM.MOIM_SEQ=#{moim_seq}
 	</select>
 	
-	
-<!--  모임원 목록 페이징 처리하기 -->
+	<!--  모임원 목록 페이징 처리하기 -->
 	<select id="getGetMoimPCount" parameterType="Integer" resultType="Integer">
 		SELECT CEIL(COUNT(*)/10) pageCount
 		FROM user JOIN user_moim ON user.USER_SEQ=user_moim.USER_SEQ
@@ -110,10 +110,13 @@
 <!--  모임원 목록 페이징 처리하기 끝 -->
 	
 	
+	
 	<select id="moimUserSeq" parameterType="Integer">
 		SELECT USER_SEQ
 		FROM user_moim
 		WHERE MOIM_SEQ=#{moim_seq}
 	</select>
+	
+	
 </mapper>
  

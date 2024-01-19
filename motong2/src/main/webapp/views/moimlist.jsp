@@ -13,9 +13,10 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Motong</title>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="/resources/css/styles.css" rel="stylesheet" />
    <style>
@@ -33,6 +34,11 @@
 		font-weight: bold;		
 	}
 	
+	.active {
+		background-color:blue;
+		color:white;
+		font-weight: bold; 
+	}
 	
    </style>
 
@@ -50,8 +56,9 @@
 		}else{
 			var pinNum = btnEle.parentNode.previousElementSibling.childNodes[0].value;
 			if(pinNum == pin){
-				alert("입장~");
-				location.href = "/moim/getMoim?moim_seq="+moim_seq+"&pnum=1";
+				swal("입장~").then(function(){
+			    	location.href = "/moim/getMoim?moim_seq="+moim_seq;
+				});
 			}else{
 				alert("PIN번호가 일치하지 않습니다.");
 				pinNum.focus;
@@ -80,20 +87,20 @@
 				<c:when test="${sessionScope.ldto.email != null}">
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-		                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main">Home</a></li>
+		                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/main">Home</a></li>
 		                    <li><img src="/resources/img/user.png" style="width:30px; height:30px; margin-top: 5px"/></li>
 		                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
 		                    <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-		                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    		<li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+		                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
+                    		<li class="nav-item"><a class="nav-link" href="/bank/my_moim?pnum=1">나의 모임</a></li>
 	                    </ul>
 	         	   </div>
 				</c:when>
 				<c:otherwise>
 		            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		            	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-		                	<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+		                	<li class="nav-item"><a class="nav-link" aria-current="page" href="/">Home</a></li>
 		                	<li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
 		                	<li class="nav-item"><a class="nav-link" href="/user/signin_form">로그인</a></li>
 		                	<li class="nav-item"><a class="nav-link" href="/user/signup">회원가입</a></li>
@@ -106,9 +113,13 @@
 	<div class="container my-5">
     <div class="row justify-content-center">
     <div class="col-lg-6" style="width:1200px; overflow:auto;">
-    	<br/><br/><br/>
-
-		<h1>모임 목록 </h1>
+    	<div style="background-color: #F7FCFF; width:100%; height:150px; display:flex;">
+    	<div style="width:850px;">
+			<h2 style=" padding:20px; font-weight: bold; text-align: left;">모임 목록</h2>
+			<a style=" margin-left:20px; width:300px; color: gray; font-size: 15px;">간편하게 모임을 개설하고 가입해보세요 !</a>
+    	</div>
+			<img src="/resources/img/moim_icon.png" style="height:180px; ">
+    	</div>
 		<hr/>
 	 	<table class="table" style="text-align: center;">	 	
             <col width="150px;" />
@@ -117,9 +128,9 @@
             <col width="120px;" />
             <col width="200px;" />
 	 		<tr>
-	 			<th>모임번호</th>
+	 			<th>No</th>
 	 			<th>모임장</th>
-	 			<th >모임이름</th>	 			
+	 			<th>모임이름</th>	 			
 	 			<th>PIN번호</th>
 	 			<th></th>
 	 		</tr>
@@ -146,11 +157,11 @@
 			<!-- 페이징 처리부분 시작 -->
 				<nav style="text-align: center;">
 				  <ul class="pagination">
-				    <li ><a href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				    <li class="page-item"><a class="page-link" href="/moim/moimlist?pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
-				    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/moimlist?pnum=${i}">${i}<span class="sr-only"></span></a></li>
+				    	<li><a ${sessionScope.pnum==i?"class='active page-link'":"class='page-link'"} href="/moim/moimlist?pnum=${i}">${i}</a></li>
 				    </c:forEach> 
-				    <li ><a href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				    <li class="page-item" ><a class="page-link" href="/moim/moimlist?pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
 				</nav>
 				<!-- 페이징 처리부분 종료 -->
@@ -164,7 +175,10 @@
                <tr>
                   <td><input type="text" class="form-control"
                      placeholder="검색어 입력" name="searchData" maxlength="100"></td>
-                  <td><input type="submit" name="researchBtn" class="btn btn-secondary" value="검색"></td>
+                  <td><button  type="submit" name="researchBtn" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+					</svg> 검색</button>
+				  </td>
                   <td style="text-align: right;">
 		               <button style="margin-left:400px;" class="btn btn-secondary" type="button" onclick="addMoimForm('${sessionScope.ldto.email}')">모임개설</button>                  
                   </td>  

@@ -16,7 +16,7 @@
     <title>Motong</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/resources/css/styles.css" rel="stylesheet" />
    <style type="text/css">
@@ -34,18 +34,26 @@
 			data:{"fintech_use_num":fintech_use_num},
 			dataType:"json",
 			success:function(data){ //data: 응답결과을 받을 변수
-				var list="<ul>";
+				var list="<div> <table class='table table-striped' style=''>"
+						 +"<tr style='padding:10px; background-color: #5A78AF;'>"
+						 +	"<th style='color:#F9FFFF; border-radius:10px 0 0 10px;'>거래일자</th>"
+						 +	"<th style='color:#F9FFFF;'>은행</th>"
+						 +	"<th style='color:#F9FFFF;'>거래유형</th>"
+						 +	"<th style='color:#F9FFFF;'>메모</th>"
+						 +	"<th style='color:#F9FFFF; border-radius:0 10px 10px 0;'>금액</th>"
+						 +"</tr>";
 				// data.res_list  -->  배열
 				for (var i = 0; i < data.res_list.length; i++) {
 					var res=data.res_list[i];// json객체를 가져온다 {key:value,...}
-					list+="<li>"+res.tran_date
-					            +" ["+res.branch_name+"] "
-					            +res.inout_type+" "
-					            +res.print_content+":"
-					            +res.tran_amt+"</li>"
+					list+="<tr>"
+						  +"<td>"+res.tran_date.substring(0,4)+"-"+res.tran_date.substring(4,6)+"-"+res.tran_date.substring(6,8)+"</td>"
+						  +"<td>"+res.branch_name+"</td>"
+						  +"<td style='color:blue;'>"+res.inout_type+"</td>"
+						  +"<td>"+res.print_content+"</td>"
+						  +"<td>"+res.tran_amt+"</td>"
+						  +"</tr>"
 				}
-				list+="</ul>";// <ul><li>거래내역1</li><li>거래내역2</li>..</ul>
-				//button .   p    . <div> 
+				list+="</table></div>";
 				$(btnEle).next().next().next().next().next().html(list);	
 			}
 		});
@@ -76,17 +84,17 @@
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}" >마이 페이지</a></li>
                     <li class="nav-item"><a class="nav-link" href="/moim/moimlist?pnum=1">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/bank/my_moim?pnum=1">나의 모임</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- Content section-->
     <section class="py-5">
+        <br/><br/>
         <div class="container my-5">
             <div class="row justify-content-center">
-            <div class="col-lg-6">
-            	<br/><br/><br/><br/>
+            <div class="col-lg-6" style="width:800px; overflow:auto; padding:30px; border:1px solid lightgray; border-radius: 20px; ">
                 <h2 style="font-weight: bold;">회비 관리</h2>
                 <hr/>
                 <div id="getMoimAccount">
@@ -115,7 +123,7 @@
             </div>
             </div>
         </div>
-         <br/><br/><br/><br/><br/>
+         <br/><br/><br/><br/>
     </section>
     <!-- Footer-->
     <footer class="py-3"  style="width:100%; background-color:#e3f2fd;" >

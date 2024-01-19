@@ -112,53 +112,53 @@ public class MoimController {
 	}
 	
 	// 모임 상세 보기
-	@GetMapping("/getMoim")
-	public String getMoim(int moim_seq,String pnum, Model model,HttpServletRequest request) {
-		System.out.println(moim_seq);
-		System.out.println("모임 상세 페이지로 이동");
-		MoimDto dto=moimService.getMoim(moim_seq);
-		
-		
-		//페이징처리시작
-		HttpSession session=request.getSession();
-	    
-		if(pnum==null) {
-			pnum=(String)session.getAttribute("pnum");//현재 조회중인 페이지번호
-		}else {
-			//새로 페이지를 요청할 경우 세션에 저장
-			session.setAttribute("pnum", pnum);
+		@GetMapping("/getMoim")
+		public String getMoim(int moim_seq,String pnum, Model model,HttpServletRequest request) {
+			System.out.println(moim_seq);
+			System.out.println("모임 상세 페이지로 이동");
+			MoimDto dto=moimService.getMoim(moim_seq);
+			
+			
+			//페이징처리시작
+			HttpSession session=request.getSession();
+		    
+			if(pnum==null) {
+				pnum=(String)session.getAttribute("pnum");//현재 조회중인 페이지번호
+			}else {
+				//새로 페이지를 요청할 경우 세션에 저장
+				session.setAttribute("pnum", pnum);
+			}
+			//---페이지번호 유지를 위한 코드 종료-------------------
+					
+			// 모임원 리스트
+			Map<String,Integer> map = new HashMap<String, Integer>();
+			map.put("pnum", Integer.parseInt(pnum));
+			map.put("moim_seq", moim_seq);
+			List<UserDto> list=moimService.moimUser(map);
+			System.out.println(list);
+			model.addAttribute("list",list);
+			
+			//페이지 수 구하기 
+			int pcount=moimService.getGetMoimPCount(moim_seq);
+			model.addAttribute("pcount", pcount);
+			
+			Map<String, Integer>pmap=Paging.pagingValue(pcount, pnum, 10);
+			model.addAttribute("pMap", pmap);
+			
+			//페이징처리끝 //////////////////////////
+			
+			
+			// 모임원 user_seq 만 받는 리스트
+			List<Integer> seqList=moimService.moimUserSeq(moim_seq);
+			System.out.println(seqList);
+			model.addAttribute("seqList",seqList);
+					
+			System.out.println(dto);
+			model.addAttribute("dto",dto);
+			
+			return "getMoim";
 		}
-		//---페이지번호 유지를 위한 코드 종료-------------------
-				
-		// 모임원 리스트
-		Map<String,Integer> map = new HashMap<String, Integer>();
-		map.put("pnum", Integer.parseInt(pnum));
-		map.put("moim_seq", moim_seq);
-		List<UserDto> list=moimService.moimUser(map);
-		System.out.println(list);
-		model.addAttribute("list",list);
 		
-		//페이지 수 구하기 
-		int pcount=moimService.getGetMoimPCount(moim_seq);
-		model.addAttribute("pcount", pcount);
-		
-		Map<String, Integer>pmap=Paging.pagingValue(pcount, pnum, 10);
-		model.addAttribute("pMap", pmap);
-		
-		//페이징처리끝 //////////////////////////
-		
-		
-		// 모임원 user_seq 만 받는 리스트
-		List<Integer> seqList=moimService.moimUserSeq(moim_seq);
-		System.out.println(seqList);
-		model.addAttribute("seqList",seqList);
-				
-		System.out.println(dto);
-		model.addAttribute("dto",dto);
-		
-		return "getMoim";
-	}
-	
 	// 모임 가입 (모임원 추가)
 	@PostMapping("/addUserMoim")
 	public String addUserMoim(int user_seq, int moim_seq, HttpServletRequest request) {
@@ -168,7 +168,6 @@ public class MoimController {
 		System.out.println(map);
 		moimService.addUserMoim(map);
 		
-		request.setAttribute("msg","모임에 가입되었습니다.");
 		request.setAttribute("url","/moim/getMoim?moim_seq="+moim_seq);
 		return "alert";
 	}

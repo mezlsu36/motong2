@@ -8,13 +8,15 @@
 <html>
 <head>
  <meta charset="utf-8" />
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Motong</title>
       <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
       <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="/resources/css/styles.css" rel="stylesheet" />
       <style>
@@ -22,7 +24,7 @@
 	  </style>
 
 	<script type="text/javascript">
-  	
+		
 	</script>
 </head>
 <body>
@@ -37,23 +39,22 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">${sessionScope.ldto.name}님</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/logout">로그아웃</a></li>
                     <li class="nav-item"><a class="nav-link" href="/user/myPage?email=${sessionScope.ldto.email}"  >마이 페이지</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/moim/moimlist">모임리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim">나의 모임</a></li>
+                    <li class="nav-item"><a style="font-weight: 800; text-shadow:2px 2px 2px lightgray;" class="nav-link" href="/moim/moimlist">모임리스트</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/bank/my_moim?pnum=1">나의 모임</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <section class="py-5">
+    <br/><br/>
     <div class="container my-5">
     <div class="row justify-content-center">
-    <div class="col-lg-6" style="width:1200px; overflow:auto;">
+    <div class="col-lg-6" style="width:1200px; overflow:auto; padding:30px; border:1px solid lightgray; border-radius: 20px;">
     <form action="/moim/addUserMoim" method="post">
     	<input type="hidden" name="user_seq" value="${sessionScope.ldto.user_seq}">
     	<input type="hidden" name="moim_seq" value="${dto.moim_seq}">
         <div id="getMoim" style="width:500px; float:left;">
-     	<br/><br/><br/><br/>
         <h2 style="font-weight: bold;">모임 상세</h2>
-        
         <hr/>
               <table class="table">
               	<tr>
@@ -64,27 +65,22 @@
                 	<th>모임 이름</th>
                 	<td>${dto.mname}</td>
                 </tr>
+               </table>
                 <c:set var="flag" value="f" />
                 <c:forEach items="${seqList}" var="item" varStatus="status">
                 	<c:if test="${sessionScope.ldto.user_seq eq seqList[status.index]}">
 	                	<c:set var="flag" value="t" />
                 	</c:if>
 				</c:forEach>
-                <tr>
-                	<td colspan="2">                	
-                	<c:choose>
+				<c:choose>
                 		<c:when test="${flag eq 't' }">
                 			<span style="color:blue;">이미 가입되어 있습니다.</span>
                 		</c:when>
                 		<c:otherwise>
-				            <button class="btn btn-outline-primary" type="submit">모임 가입</button>
+				            <button class="btn btn-outline-primary" data-dismiss="alert" type="submit">모임 가입</button>
                 		</c:otherwise>
-                	</c:choose>	
-                    </td>
-                </tr>
-                
-               </table>
-        <br/>
+                </c:choose>	
+        <br/><br/>
         <h2 style="font-weight: bold;">모임장 정보</h2>
         <hr/>
               <table class="table">
@@ -130,14 +126,14 @@
 				</c:otherwise>
 			</c:choose>
         </table>
-        <!-- 페이징 처리부분 시작 -->
-		<nav style="text-align: center;">
+         <!-- 페이징 처리부분 시작 -->
+		<nav style="text-align: center; margin-left: 40%">
 		  <ul class="pagination">
-		    <li ><a href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+		    <li class="page-item disabled"><a class="page-link" href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.prePageNum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 		    <c:forEach var="i" begin="${pMap.startPage}" end="${pMap.endPage}">
-		    	<li ${sessionScope.pnum==i?"class='active'":""}><a href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${i}">${i}<span class="sr-only"></span></a></li>
+		    	<li class="page-item active" ${sessionScope.pnum==i?"class='active'":""}><a class="page-link" href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${i}">${i}<span class="sr-only"></span></a></li>
 		    </c:forEach> 
-		    <li ><a href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		    <li class="page-item" ><a class="page-link" href="/moim/getMoim?moim_seq=${dto.moim_seq}&pnum=${pMap.nextPageNum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 		  </ul>
 		</nav>
 		<!-- 페이징 처리부분 종료 -->

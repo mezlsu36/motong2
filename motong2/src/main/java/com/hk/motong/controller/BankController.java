@@ -66,7 +66,6 @@ public class BankController {
 			
 	      return "my_moim";
 	   }
-   
    @GetMapping("/bank_moim")
    public String bank_moim(int account_seq, Model model) {
 	   System.out.println(account_seq);
